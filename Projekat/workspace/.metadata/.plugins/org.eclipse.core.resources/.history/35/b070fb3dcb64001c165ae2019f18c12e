@@ -1,0 +1,52 @@
+program mojProgram
+const bool z = true, s = 'a', m = 1;
+const int n = 2;
+
+int x, y[];
+int c[];
+
+class klasa {}
+class klasa1 extends klasa {}
+
+class klasa3 {
+	int x, y[];
+	int z;
+	
+	{
+		void x(int k, char l[])
+		int x, y[];
+		int z;	
+		{}
+		
+		int y(int x) {
+			break;
+			break_label: break;
+			
+			continue;
+			
+			goto break_label;
+			
+			return;
+			return 5;
+			return -5;
+			return (4);
+			return new int;
+			return new int[2];
+			return x.y[2].z[-2].k[1][(2)];
+			return x.y();
+			return x.y(par1, par2);
+			return x * 3 * 'x' / y % true;
+			return -x + y*3*2 - z*3;
+			
+			read (x.y[1][(2)].x);
+			
+			print(2 + 3*4*x.y);
+			print(-1 - 2, 5);
+			
+			x.y.z[2] = -x + 2*3*2 + 5;
+		}
+	}
+}
+
+{
+}
