@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/11/2021 12:58:50
+// 27/11/2021 23:31:16
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,21 +9,24 @@ public class Program implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private String progName;
+    public rs.etf.pp1.symboltable.concepts.Obj obj = null;
+
+    private ProgName ProgName;
     private DeclList DeclList;
 
-    public Program (String progName, DeclList DeclList) {
-        this.progName=progName;
+    public Program (ProgName ProgName, DeclList DeclList) {
+        this.ProgName=ProgName;
+        if(ProgName!=null) ProgName.setParent(this);
         this.DeclList=DeclList;
         if(DeclList!=null) DeclList.setParent(this);
     }
 
-    public String getProgName() {
-        return progName;
+    public ProgName getProgName() {
+        return ProgName;
     }
 
-    public void setProgName(String progName) {
-        this.progName=progName;
+    public void setProgName(ProgName ProgName) {
+        this.ProgName=ProgName;
     }
 
     public DeclList getDeclList() {
@@ -55,15 +58,18 @@ public class Program implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ProgName!=null) ProgName.accept(visitor);
         if(DeclList!=null) DeclList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ProgName!=null) ProgName.traverseTopDown(visitor);
         if(DeclList!=null) DeclList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ProgName!=null) ProgName.traverseBottomUp(visitor);
         if(DeclList!=null) DeclList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -73,7 +79,10 @@ public class Program implements SyntaxNode {
         buffer.append(tab);
         buffer.append("Program(\n");
 
-        buffer.append(" "+tab+progName);
+        if(ProgName!=null)
+            buffer.append(ProgName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(DeclList!=null)

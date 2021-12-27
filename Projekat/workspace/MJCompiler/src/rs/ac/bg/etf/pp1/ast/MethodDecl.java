@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/11/2021 12:58:50
+// 27/11/2021 23:31:16
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -10,15 +10,15 @@ public class MethodDecl implements SyntaxNode {
     private SyntaxNode parent;
     private int line;
     private ReturnType ReturnType;
-    private String methodName;
+    private String I2;
     private FormPars FormPars;
     private VarListDeclList VarListDeclList;
     private StatementList StatementList;
 
-    public MethodDecl (ReturnType ReturnType, String methodName, FormPars FormPars, VarListDeclList VarListDeclList, StatementList StatementList) {
+    public MethodDecl (ReturnType ReturnType, String I2, FormPars FormPars, VarListDeclList VarListDeclList, StatementList StatementList) {
         this.ReturnType=ReturnType;
         if(ReturnType!=null) ReturnType.setParent(this);
-        this.methodName=methodName;
+        this.I2=I2;
         this.FormPars=FormPars;
         if(FormPars!=null) FormPars.setParent(this);
         this.VarListDeclList=VarListDeclList;
@@ -35,12 +35,12 @@ public class MethodDecl implements SyntaxNode {
         this.ReturnType=ReturnType;
     }
 
-    public String getMethodName() {
-        return methodName;
+    public String getI2() {
+        return I2;
     }
 
-    public void setMethodName(String methodName) {
-        this.methodName=methodName;
+    public void setI2(String I2) {
+        this.I2=I2;
     }
 
     public FormPars getFormPars() {
@@ -121,7 +121,7 @@ public class MethodDecl implements SyntaxNode {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+methodName);
+        buffer.append(" "+tab+I2);
         buffer.append("\n");
 
         if(FormPars!=null)

@@ -61,7 +61,6 @@ terminal					PLUS, MINUS, MUL, DIV, PERCENT, EQ, NEQ, GT, GTE, LT, LTE, AND ,OR,
 terminal					MINUSMINUS, SEMI, COLON, COMMA, DOT, LPAREN, RPAREN, LBRACE, RBRACE, LBRACKET, RBRACKET;
 
 /* Nonterminals */
-nonterminal					Program;
 nonterminal					DeclList, Decl;
 nonterminal					ConstListDecls, ConstDeclList, ConstDecl, Const;
 nonterminal					Type, ReturnType, OptionalBrackets, Label;
@@ -76,11 +75,15 @@ nonterminal					OptActPars, ActPars, PrintPars;
 nonterminal					Mulop, Addop, Assignop, Relop;
 nonterminal					Condition, CondTerm, CondFact;
 
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
+
 /* Priorities */
 precedence		left		ELSE;
 
 /* Grammar Rules */
-Program 			::=		(Program) PROG IDENT:progName DeclList LBRACE RBRACE;
+Program 			::=		(Program) PROG ProgName:p DeclList LBRACE RBRACE;
+
+ProgName			::=		(ProgName) IDENT:progName;
 
 DeclList			::=		(Declarations) DeclList Decl
 							|
@@ -98,13 +101,13 @@ Decl				::=		(DeclConst) ConstListDecls
 							|
 							error COMMA;
 
-ConstListDecls		::=		(ConstListDeclarations) CONST Type:constType ConstDeclList SEMI;
+ConstListDecls		::=		(ConstListDeclarations) CONST Type ConstDeclList SEMI;
 
 ConstDeclList		::=		(MultipleConstDecls) ConstDeclList COMMA ConstDecl
 							|
 							(SingleConstDecl) ConstDecl;
 							
-ConstDecl			::=		(ConstDecl) IDENT:constName EQUAL Const:constVal;
+ConstDecl			::=		(ConstDecl) IDENT EQUAL Const;
 
 Const				::=		(NumConst) NUMBER
 							|
@@ -112,25 +115,25 @@ Const				::=		(NumConst) NUMBER
 							|
 							(BoolConst) BOOL;		
 							
-Type				::=		(Type) IDENT:typeName;
+Type				::=		(Type) IDENT;
 
-Label				::=		(Label) IDENT:labelName;
+Label				::=		(Label) IDENT;
 
-VarListDecls		::=		(VarListDeclarations) Type:varType VarDeclList SEMI;
+VarListDecls		::=		(VarListDeclarations) Type VarDeclList SEMI;
 
 VarDeclList			::=		(MultipleVarDecls) VarDeclList COMMA VarDecl
 							|
 							(SingleVarDecl) VarDecl;
 							
-VarDecl				::=		(VarDecl) IDENT:varName OptionalBrackets;
+VarDecl				::=		(VarDecl) IDENT OptionalBrackets;
 
 OptionalBrackets	::=		(Brackets) LBRACKET RBRACKET
 							|
 							(NoBrackets) /* epsilon */;
 
-ClassDecl			::=		(ClassDeclaration) CLASS IDENT:className ExtendsClause LBRACE VarListDeclList ClassMethodDecls RBRACE;
+ClassDecl			::=		(ClassDeclaration) CLASS IDENT ExtendsClause LBRACE VarListDeclList ClassMethodDecls RBRACE;
 
-ExtendsClause		::=		(Extends) EXTENDS Type:parentType
+ExtendsClause		::=		(Extends) EXTENDS Type
 							|
 							(NoExtends) /* epsilon */;
 					
@@ -148,7 +151,7 @@ MethodDeclList		::=		(MethodDeclarations) MethodDeclList MethodDecl
 							|
 							(NoMethodDeclarations) /* epsilon */;
 							
-MethodDecl			::=		(MethodDecl) ReturnType:retType IDENT:methodName LPAREN FormPars RPAREN VarListDeclList LBRACE StatementList RBRACE;
+MethodDecl			::=		(MethodDecl) ReturnType IDENT LPAREN FormPars RPAREN VarListDeclList LBRACE StatementList RBRACE;
 
 ReturnType			::=		(RetType) Type
 							|
@@ -162,7 +165,7 @@ FormParamList		::=		(MultipleFormParams) FormParamList COMMA FormParam
 							|
 							(SingleFormParam) FormParam;
 
-FormParam			::=		(FormalParameter) Type:paramType IDENT:paramName OptionalBrackets
+FormParam			::=		(FormalParameter) Type IDENT OptionalBrackets
 							|
 							error;
 						
@@ -282,6 +285,7 @@ Condition			::=		(MultipleConditions) Condition OR CondTerm
 							|
 							(SingleCondition) CondTerm
 							|
+							
 							error;
 							
 CondTerm			::=		(MultipleCondTerms) CondTerm AND CondFact

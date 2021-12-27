@@ -1,0 +1,15 @@
+Objektni cvor:
+==============
+1. Kind = {Const, Var, Meth, Elem, Fld, Type, Prog}
+2. Name = {"Ime objektnog cvora"}
+3. Type = {"Tip promenjive", "Povratni tip metode", "noType za Prog"}
+4. Next = {ulancavanje objektnih cvorova}
+5. Level = {"Br argumenata metode", "Nivo ugnjezdavanja deklarisanog imena"}
+6. Locals = {"Pokazivac na lokalne promenjive metode"}
+
+Strukturni cvor:
+================
+1. Type = {Int, Char, Bool, None, Array, Class}
+2. elemType = {"tip nadklase", "tim elemenata niza"}
+3. n = {"broj polja klase"}
+4. fields = {"Pokazivac na polja klase"}

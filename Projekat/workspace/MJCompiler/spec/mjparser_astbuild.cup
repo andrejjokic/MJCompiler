@@ -61,7 +61,6 @@ terminal					PLUS, MINUS, MUL, DIV, PERCENT, EQ, NEQ, GT, GTE, LT, LTE, AND ,OR,
 terminal					MINUSMINUS, SEMI, COLON, COMMA, DOT, LPAREN, RPAREN, LBRACE, RBRACE, LBRACKET, RBRACKET;
 
 /* Nonterminals */
-nonterminal					Program Program;
 nonterminal					DeclList DeclList;
 nonterminal Decl Decl;
 nonterminal					ConstListDecls ConstListDecls;
@@ -107,11 +106,15 @@ nonterminal					Condition Condition;
 nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
 
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
+
 /* Priorities */
 precedence		left		ELSE;
 
 /* Grammar Rules */
-Program 			::=		(Program) PROG IDENT:progName DeclList:D1 LBRACE RBRACE {: RESULT=new Program(progName, D1); RESULT.setLine(progNameleft); :};
+Program 			::=		(Program) PROG ProgName:p DeclList:D1 LBRACE RBRACE {: RESULT=new Program(p, D1); RESULT.setLine(pleft); :};
+
+ProgName			::=		(ProgName) IDENT:progName {: RESULT=new ProgName(progName); RESULT.setLine(progNameleft); :};
 
 DeclList			::=		(Declarations) DeclList:D1 Decl:D2 {: RESULT=new Declarations(D1, D2); RESULT.setLine(D1left); :}
 							|
@@ -129,13 +132,13 @@ Decl				::=		(DeclConst) ConstListDecls:C1 {: RESULT=new DeclConst(C1); RESULT.s
 							|
 							error COMMA {: RESULT=new DeclDerived2(); :};
 
-ConstListDecls		::=		(ConstListDeclarations) CONST Type:constType ConstDeclList:C1 SEMI {: RESULT=new ConstListDeclarations(constType, C1); RESULT.setLine(constTypeleft); :};
+ConstListDecls		::=		(ConstListDeclarations) CONST Type:T1 ConstDeclList:C2 SEMI {: RESULT=new ConstListDeclarations(T1, C2); RESULT.setLine(T1left); :};
 
 ConstDeclList		::=		(MultipleConstDecls) ConstDeclList:C1 COMMA ConstDecl:C2 {: RESULT=new MultipleConstDecls(C1, C2); RESULT.setLine(C1left); :}
 							|
 							(SingleConstDecl) ConstDecl:C1 {: RESULT=new SingleConstDecl(C1); RESULT.setLine(C1left); :};
 							
-ConstDecl			::=		(ConstDecl) IDENT:constName EQUAL Const:constVal {: RESULT=new ConstDecl(constName, constVal); RESULT.setLine(constNameleft); :};
+ConstDecl			::=		(ConstDecl) IDENT:I1 EQUAL Const:C2 {: RESULT=new ConstDecl(I1, C2); RESULT.setLine(I1left); :};
 
 Const				::=		(NumConst) NUMBER:N1 {: RESULT=new NumConst(N1); RESULT.setLine(N1left); :}
 							|
@@ -143,25 +146,25 @@ Const				::=		(NumConst) NUMBER:N1 {: RESULT=new NumConst(N1); RESULT.setLine(N1
 							|
 							(BoolConst) BOOL {: RESULT=new BoolConst(); :};		
 							
-Type				::=		(Type) IDENT:typeName {: RESULT=new Type(typeName); RESULT.setLine(typeNameleft); :};
+Type				::=		(Type) IDENT:I1 {: RESULT=new Type(I1); RESULT.setLine(I1left); :};
 
-Label				::=		(Label) IDENT:labelName {: RESULT=new Label(labelName); RESULT.setLine(labelNameleft); :};
+Label				::=		(Label) IDENT:I1 {: RESULT=new Label(I1); RESULT.setLine(I1left); :};
 
-VarListDecls		::=		(VarListDeclarations) Type:varType VarDeclList:V1 SEMI {: RESULT=new VarListDeclarations(varType, V1); RESULT.setLine(varTypeleft); :};
+VarListDecls		::=		(VarListDeclarations) Type:T1 VarDeclList:V2 SEMI {: RESULT=new VarListDeclarations(T1, V2); RESULT.setLine(T1left); :};
 
 VarDeclList			::=		(MultipleVarDecls) VarDeclList:V1 COMMA VarDecl:V2 {: RESULT=new MultipleVarDecls(V1, V2); RESULT.setLine(V1left); :}
 							|
 							(SingleVarDecl) VarDecl:V1 {: RESULT=new SingleVarDecl(V1); RESULT.setLine(V1left); :};
 							
-VarDecl				::=		(VarDecl) IDENT:varName OptionalBrackets:O1 {: RESULT=new VarDecl(varName, O1); RESULT.setLine(varNameleft); :};
+VarDecl				::=		(VarDecl) IDENT:I1 OptionalBrackets:O2 {: RESULT=new VarDecl(I1, O2); RESULT.setLine(I1left); :};
 
 OptionalBrackets	::=		(Brackets) LBRACKET RBRACKET {: RESULT=new Brackets(); :}
 							|
 							(NoBrackets) {: RESULT=new NoBrackets(); :} /* epsilon */;
 
-ClassDecl			::=		(ClassDeclaration) CLASS IDENT:className ExtendsClause:E1 LBRACE VarListDeclList:V2 ClassMethodDecls:C3 RBRACE {: RESULT=new ClassDeclaration(className, E1, V2, C3); RESULT.setLine(classNameleft); :};
+ClassDecl			::=		(ClassDeclaration) CLASS IDENT:I1 ExtendsClause:E2 LBRACE VarListDeclList:V3 ClassMethodDecls:C4 RBRACE {: RESULT=new ClassDeclaration(I1, E2, V3, C4); RESULT.setLine(I1left); :};
 
-ExtendsClause		::=		(Extends) EXTENDS Type:parentType {: RESULT=new Extends(parentType); RESULT.setLine(parentTypeleft); :}
+ExtendsClause		::=		(Extends) EXTENDS Type:T1 {: RESULT=new Extends(T1); RESULT.setLine(T1left); :}
 							|
 							(NoExtends) {: RESULT=new NoExtends(); :} /* epsilon */;
 					
@@ -179,7 +182,7 @@ MethodDeclList		::=		(MethodDeclarations) MethodDeclList:M1 MethodDecl:M2 {: RES
 							|
 							(NoMethodDeclarations) {: RESULT=new NoMethodDeclarations(); :} /* epsilon */;
 							
-MethodDecl			::=		(MethodDecl) ReturnType:retType IDENT:methodName LPAREN FormPars:F1 RPAREN VarListDeclList:V2 LBRACE StatementList:S3 RBRACE {: RESULT=new MethodDecl(retType, methodName, F1, V2, S3); RESULT.setLine(retTypeleft); :};
+MethodDecl			::=		(MethodDecl) ReturnType:R1 IDENT:I2 LPAREN FormPars:F3 RPAREN VarListDeclList:V4 LBRACE StatementList:S5 RBRACE {: RESULT=new MethodDecl(R1, I2, F3, V4, S5); RESULT.setLine(R1left); :};
 
 ReturnType			::=		(RetType) Type:T1 {: RESULT=new RetType(T1); RESULT.setLine(T1left); :}
 							|
@@ -193,7 +196,7 @@ FormParamList		::=		(MultipleFormParams) FormParamList:F1 COMMA FormParam:F2 {: 
 							|
 							(SingleFormParam) FormParam:F1 {: RESULT=new SingleFormParam(F1); RESULT.setLine(F1left); :};
 
-FormParam			::=		(FormalParameter) Type:paramType IDENT:paramName OptionalBrackets:O1 {: RESULT=new FormalParameter(paramType, paramName, O1); RESULT.setLine(paramTypeleft); :}
+FormParam			::=		(FormalParameter) Type:T1 IDENT:I2 OptionalBrackets:O3 {: RESULT=new FormalParameter(T1, I2, O3); RESULT.setLine(T1left); :}
 							|
 							error {: RESULT=new FormParamDerived1(); :};
 						
@@ -313,6 +316,7 @@ Condition			::=		(MultipleConditions) Condition:C1 OR CondTerm:C2 {: RESULT=new 
 							|
 							(SingleCondition) CondTerm:C1 {: RESULT=new SingleCondition(C1); RESULT.setLine(C1left); :}
 							|
+							
 							error {: RESULT=new ConditionDerived1(); :};
 							
 CondTerm			::=		(MultipleCondTerms) CondTerm:C1 AND CondFact:C2 {: RESULT=new MultipleCondTerms(C1, C2); RESULT.setLine(C1left); :}

@@ -1,19 +1,19 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/11/2021 12:58:50
+// 27/11/2021 23:31:16
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ClassDeclaration extends ClassDecl {
 
-    private String className;
+    private String I1;
     private ExtendsClause ExtendsClause;
     private VarListDeclList VarListDeclList;
     private ClassMethodDecls ClassMethodDecls;
 
-    public ClassDeclaration (String className, ExtendsClause ExtendsClause, VarListDeclList VarListDeclList, ClassMethodDecls ClassMethodDecls) {
-        this.className=className;
+    public ClassDeclaration (String I1, ExtendsClause ExtendsClause, VarListDeclList VarListDeclList, ClassMethodDecls ClassMethodDecls) {
+        this.I1=I1;
         this.ExtendsClause=ExtendsClause;
         if(ExtendsClause!=null) ExtendsClause.setParent(this);
         this.VarListDeclList=VarListDeclList;
@@ -22,12 +22,12 @@ public class ClassDeclaration extends ClassDecl {
         if(ClassMethodDecls!=null) ClassMethodDecls.setParent(this);
     }
 
-    public String getClassName() {
-        return className;
+    public String getI1() {
+        return I1;
     }
 
-    public void setClassName(String className) {
-        this.className=className;
+    public void setI1(String I1) {
+        this.I1=I1;
     }
 
     public ExtendsClause getExtendsClause() {
@@ -83,7 +83,7 @@ public class ClassDeclaration extends ClassDecl {
         buffer.append(tab);
         buffer.append("ClassDeclaration(\n");
 
-        buffer.append(" "+tab+className);
+        buffer.append(" "+tab+I1);
         buffer.append("\n");
 
         if(ExtendsClause!=null)
