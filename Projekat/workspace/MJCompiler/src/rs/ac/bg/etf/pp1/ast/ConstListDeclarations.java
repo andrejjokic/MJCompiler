@@ -1,28 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 27/11/2021 23:31:16
+// 29/11/2021 13:53:28
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class ConstListDeclarations extends ConstListDecls {
 
-    private Type Type;
+    private ConstDeclType ConstDeclType;
     private ConstDeclList ConstDeclList;
 
-    public ConstListDeclarations (Type Type, ConstDeclList ConstDeclList) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
+    public ConstListDeclarations (ConstDeclType ConstDeclType, ConstDeclList ConstDeclList) {
+        this.ConstDeclType=ConstDeclType;
+        if(ConstDeclType!=null) ConstDeclType.setParent(this);
         this.ConstDeclList=ConstDeclList;
         if(ConstDeclList!=null) ConstDeclList.setParent(this);
     }
 
-    public Type getType() {
-        return Type;
+    public ConstDeclType getConstDeclType() {
+        return ConstDeclType;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
+    public void setConstDeclType(ConstDeclType ConstDeclType) {
+        this.ConstDeclType=ConstDeclType;
     }
 
     public ConstDeclList getConstDeclList() {
@@ -38,18 +38,18 @@ public class ConstListDeclarations extends ConstListDecls {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
+        if(ConstDeclType!=null) ConstDeclType.accept(visitor);
         if(ConstDeclList!=null) ConstDeclList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
+        if(ConstDeclType!=null) ConstDeclType.traverseTopDown(visitor);
         if(ConstDeclList!=null) ConstDeclList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
+        if(ConstDeclType!=null) ConstDeclType.traverseBottomUp(visitor);
         if(ConstDeclList!=null) ConstDeclList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -59,8 +59,8 @@ public class ConstListDeclarations extends ConstListDecls {
         buffer.append(tab);
         buffer.append("ConstListDeclarations(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
+        if(ConstDeclType!=null)
+            buffer.append(ConstDeclType.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

@@ -1,0 +1,65 @@
+INFO  13:56:01,448 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  13:56:01,486 - #2 program
+INFO  13:56:01,486 - #22 mojProgram
+INFO  13:56:01,486 - #7 const
+INFO  13:56:01,487 - #22 int
+INFO  13:56:01,487 - #22 q
+INFO  13:56:01,488 - #39 =
+INFO  13:56:01,488 - #23 1
+INFO  13:56:01,488 - #44 ,
+INFO  13:56:01,488 - #22 w
+INFO  13:56:01,488 - #39 =
+INFO  13:56:01,489 - #24 c
+INFO  13:56:01,489 - #44 ,
+INFO  13:56:01,489 - #22 e
+INFO  13:56:01,489 - #39 =
+INFO  13:56:01,489 - #25 true
+INFO  13:56:01,489 - #42 ;
+INFO  13:56:01,489 - #48 {
+INFO  13:56:01,489 - #49 }
+INFO  13:56:01,495 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    NoDeclarations(
+    ) [NoDeclarations]
+    DeclConst(
+      ConstListDeclarations(
+        ConstDeclType(
+          Type(
+           int
+          ) [Type]
+        ) [ConstDeclType]
+        MultipleConstDecls(
+          MultipleConstDecls(
+            SingleConstDecl(
+              ConstDecl(
+               q
+                NumConst(
+                 1
+                ) [NumConst]
+              ) [ConstDecl]
+            ) [SingleConstDecl]
+            ConstDecl(
+             w
+              CharConst(
+               c
+              ) [CharConst]
+            ) [ConstDecl]
+          ) [MultipleConstDecls]
+          ConstDecl(
+           e
+            BoolConst(
+             true
+            ) [BoolConst]
+          ) [ConstDecl]
+        ) [MultipleConstDecls]
+      ) [ConstListDeclarations]
+    ) [DeclConst]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  13:56:01,497 - ===================================
+INFO  13:56:01,499 - ===================================

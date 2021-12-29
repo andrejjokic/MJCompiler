@@ -1,0 +1,2051 @@
+INFO  11:56:54,409 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_parser.mj
+INFO  11:56:54,448 - #2 program
+INFO  11:56:54,448 - #22 mojProgram
+INFO  11:56:54,448 - #7 const
+INFO  11:56:54,449 - #22 bool
+INFO  11:56:54,449 - #22 z
+INFO  11:56:54,450 - #39 =
+INFO  11:56:54,450 - #25 true
+INFO  11:56:54,450 - #44 ,
+INFO  11:56:54,451 - #22 s
+INFO  11:56:54,451 - #39 =
+INFO  11:56:54,451 - #24 a
+INFO  11:56:54,451 - #44 ,
+INFO  11:56:54,451 - #22 m
+INFO  11:56:54,451 - #39 =
+INFO  11:56:54,451 - #23 1
+INFO  11:56:54,451 - #42 ;
+INFO  11:56:54,451 - #7 const
+INFO  11:56:54,452 - #22 int
+INFO  11:56:54,452 - #22 n
+INFO  11:56:54,452 - #39 =
+INFO  11:56:54,452 - #23 2
+INFO  11:56:54,492 - #42 ;
+INFO  11:56:54,492 - #7 const
+INFO  11:56:54,492 - #22 int
+INFO  11:56:54,493 - #42 ;
+ERROR 11:56:54,493 - 
+Sintaksna greska na liniji 5
+INFO  11:56:54,493 - #7 const
+INFO  11:56:54,493 - #22 lsdl
+INFO  11:56:54,493 - #44 ,
+ERROR 11:56:54,494 - 
+Sintaksna greska na liniji 6
+INFO  11:56:54,494 - #22 int
+INFO  11:56:54,494 - #22 x
+INFO  11:56:54,494 - #50 [
+INFO  11:56:54,495 - #42 ;
+ERROR 11:56:54,495 - 
+Sintaksna greska na liniji 7
+INFO  11:56:54,495 - #22 int
+INFO  11:56:54,495 - #22 x
+INFO  11:56:54,495 - #44 ,
+INFO  11:56:54,497 - #22 y
+INFO  11:56:54,497 - #50 [
+INFO  11:56:54,497 - #51 ]
+INFO  11:56:54,497 - #42 ;
+INFO  11:56:54,497 - #22 int
+INFO  11:56:54,497 - #22 c
+INFO  11:56:54,497 - #50 [
+INFO  11:56:54,498 - #51 ]
+INFO  11:56:54,498 - #42 ;
+INFO  11:56:54,498 - #21 record
+INFO  11:56:54,498 - #22 rekord1
+INFO  11:56:54,498 - #48 {
+INFO  11:56:54,498 - #49 }
+INFO  11:56:54,498 - #21 record
+INFO  11:56:54,499 - #22 rekord2
+INFO  11:56:54,499 - #48 {
+INFO  11:56:54,499 - #22 int
+INFO  11:56:54,499 - #22 x
+INFO  11:56:54,499 - #50 [
+INFO  11:56:54,499 - #51 ]
+INFO  11:56:54,499 - #44 ,
+INFO  11:56:54,499 - #22 y
+INFO  11:56:54,499 - #42 ;
+INFO  11:56:54,499 - #22 int
+INFO  11:56:54,499 - #22 z
+INFO  11:56:54,499 - #42 ;
+INFO  11:56:54,499 - #49 }
+INFO  11:56:54,499 - #4 class
+INFO  11:56:54,499 - #22 klasa
+INFO  11:56:54,499 - #48 {
+INFO  11:56:54,500 - #49 }
+INFO  11:56:54,500 - #4 class
+INFO  11:56:54,501 - #22 klasa1
+INFO  11:56:54,501 - #16 extends
+INFO  11:56:54,501 - #22 klasa
+INFO  11:56:54,501 - #48 {
+INFO  11:56:54,501 - #49 }
+INFO  11:56:54,501 - #4 class
+INFO  11:56:54,501 - #22 klasa3
+INFO  11:56:54,501 - #48 {
+INFO  11:56:54,501 - #22 int
+INFO  11:56:54,501 - #22 x
+INFO  11:56:54,501 - #44 ,
+INFO  11:56:54,501 - #22 y
+INFO  11:56:54,501 - #50 [
+INFO  11:56:54,501 - #51 ]
+INFO  11:56:54,501 - #42 ;
+INFO  11:56:54,501 - #22 int
+INFO  11:56:54,501 - #22 z
+INFO  11:56:54,502 - #42 ;
+INFO  11:56:54,502 - #48 {
+INFO  11:56:54,502 - #15 void
+INFO  11:56:54,503 - #22 x
+INFO  11:56:54,503 - #46 (
+INFO  11:56:54,503 - #22 int
+INFO  11:56:54,503 - #22 k
+INFO  11:56:54,503 - #44 ,
+INFO  11:56:54,504 - #22 char
+INFO  11:56:54,504 - #22 l
+INFO  11:56:54,504 - #50 [
+INFO  11:56:54,504 - #51 ]
+INFO  11:56:54,504 - #47 )
+INFO  11:56:54,504 - #22 int
+INFO  11:56:54,504 - #22 x
+INFO  11:56:54,504 - #44 ,
+INFO  11:56:54,504 - #22 y
+INFO  11:56:54,504 - #50 [
+INFO  11:56:54,504 - #51 ]
+INFO  11:56:54,504 - #42 ;
+INFO  11:56:54,504 - #22 int
+INFO  11:56:54,504 - #22 z
+INFO  11:56:54,504 - #42 ;
+INFO  11:56:54,504 - #48 {
+INFO  11:56:54,504 - #49 }
+INFO  11:56:54,505 - #22 int
+INFO  11:56:54,506 - #22 y
+INFO  11:56:54,506 - #46 (
+INFO  11:56:54,506 - #22 int
+INFO  11:56:54,506 - #22 x
+INFO  11:56:54,506 - #47 )
+INFO  11:56:54,506 - #48 {
+INFO  11:56:54,506 - #3 break
+INFO  11:56:54,506 - #42 ;
+INFO  11:56:54,506 - #22 break_label
+INFO  11:56:54,507 - #43 :
+INFO  11:56:54,507 - #3 break
+INFO  11:56:54,507 - #42 ;
+INFO  11:56:54,507 - #17 continue
+INFO  11:56:54,508 - #42 ;
+INFO  11:56:54,508 - #20 goto
+INFO  11:56:54,508 - #22 break_label
+INFO  11:56:54,508 - #42 ;
+INFO  11:56:54,508 - #14 return
+INFO  11:56:54,508 - #42 ;
+INFO  11:56:54,508 - #14 return
+INFO  11:56:54,510 - #23 5
+INFO  11:56:54,510 - #42 ;
+INFO  11:56:54,510 - #14 return
+INFO  11:56:54,510 - #27 -
+INFO  11:56:54,510 - #23 5
+INFO  11:56:54,510 - #42 ;
+INFO  11:56:54,510 - #14 return
+INFO  11:56:54,510 - #46 (
+INFO  11:56:54,510 - #23 4
+INFO  11:56:54,510 - #47 )
+INFO  11:56:54,510 - #42 ;
+INFO  11:56:54,510 - #14 return
+INFO  11:56:54,510 - #11 new
+INFO  11:56:54,510 - #22 int
+INFO  11:56:54,510 - #42 ;
+INFO  11:56:54,511 - #14 return
+INFO  11:56:54,511 - #11 new
+INFO  11:56:54,511 - #22 int
+INFO  11:56:54,511 - #50 [
+INFO  11:56:54,511 - #23 2
+INFO  11:56:54,511 - #51 ]
+INFO  11:56:54,511 - #42 ;
+INFO  11:56:54,511 - #14 return
+INFO  11:56:54,511 - #22 x
+INFO  11:56:54,511 - #45 .
+INFO  11:56:54,512 - #22 y
+INFO  11:56:54,512 - #50 [
+INFO  11:56:54,512 - #23 2
+INFO  11:56:54,512 - #51 ]
+INFO  11:56:54,512 - #45 .
+INFO  11:56:54,512 - #22 z
+INFO  11:56:54,512 - #50 [
+INFO  11:56:54,512 - #27 -
+INFO  11:56:54,512 - #23 2
+INFO  11:56:54,512 - #51 ]
+INFO  11:56:54,512 - #45 .
+INFO  11:56:54,512 - #22 k
+INFO  11:56:54,512 - #50 [
+INFO  11:56:54,512 - #23 1
+INFO  11:56:54,512 - #51 ]
+INFO  11:56:54,512 - #50 [
+INFO  11:56:54,512 - #46 (
+INFO  11:56:54,513 - #23 2
+INFO  11:56:54,513 - #47 )
+INFO  11:56:54,513 - #51 ]
+INFO  11:56:54,513 - #42 ;
+INFO  11:56:54,513 - #14 return
+INFO  11:56:54,513 - #22 x
+INFO  11:56:54,514 - #45 .
+INFO  11:56:54,514 - #22 y
+INFO  11:56:54,514 - #46 (
+INFO  11:56:54,514 - #47 )
+INFO  11:56:54,514 - #42 ;
+INFO  11:56:54,515 - #14 return
+INFO  11:56:54,515 - #22 x
+INFO  11:56:54,515 - #45 .
+INFO  11:56:54,515 - #22 y
+INFO  11:56:54,515 - #46 (
+INFO  11:56:54,515 - #22 par1
+INFO  11:56:54,515 - #44 ,
+INFO  11:56:54,515 - #22 par2
+INFO  11:56:54,515 - #47 )
+INFO  11:56:54,515 - #42 ;
+INFO  11:56:54,515 - #14 return
+INFO  11:56:54,515 - #22 x
+INFO  11:56:54,515 - #28 *
+INFO  11:56:54,515 - #23 3
+INFO  11:56:54,516 - #28 *
+INFO  11:56:54,516 - #24 x
+INFO  11:56:54,516 - #29 /
+INFO  11:56:54,516 - #22 y
+INFO  11:56:54,517 - #30 %
+INFO  11:56:54,517 - #25 true
+INFO  11:56:54,517 - #42 ;
+INFO  11:56:54,517 - #14 return
+INFO  11:56:54,517 - #27 -
+INFO  11:56:54,517 - #22 x
+INFO  11:56:54,517 - #26 +
+INFO  11:56:54,517 - #22 y
+INFO  11:56:54,518 - #28 *
+INFO  11:56:54,518 - #23 3
+INFO  11:56:54,518 - #28 *
+INFO  11:56:54,518 - #23 2
+INFO  11:56:54,518 - #27 -
+INFO  11:56:54,518 - #22 z
+INFO  11:56:54,518 - #28 *
+INFO  11:56:54,518 - #23 3
+INFO  11:56:54,518 - #42 ;
+INFO  11:56:54,518 - #13 read
+INFO  11:56:54,518 - #46 (
+INFO  11:56:54,518 - #22 x
+INFO  11:56:54,518 - #45 .
+INFO  11:56:54,518 - #22 y
+INFO  11:56:54,518 - #50 [
+INFO  11:56:54,518 - #23 1
+INFO  11:56:54,518 - #51 ]
+INFO  11:56:54,519 - #50 [
+INFO  11:56:54,519 - #46 (
+INFO  11:56:54,519 - #23 2
+INFO  11:56:54,519 - #47 )
+INFO  11:56:54,519 - #51 ]
+INFO  11:56:54,519 - #45 .
+INFO  11:56:54,519 - #22 x
+INFO  11:56:54,519 - #47 )
+INFO  11:56:54,519 - #42 ;
+INFO  11:56:54,519 - #12 print
+INFO  11:56:54,519 - #46 (
+INFO  11:56:54,519 - #23 2
+INFO  11:56:54,519 - #26 +
+INFO  11:56:54,519 - #23 3
+INFO  11:56:54,519 - #28 *
+INFO  11:56:54,519 - #23 4
+INFO  11:56:54,519 - #28 *
+INFO  11:56:54,519 - #22 x
+INFO  11:56:54,519 - #45 .
+INFO  11:56:54,519 - #22 y
+INFO  11:56:54,519 - #47 )
+INFO  11:56:54,519 - #42 ;
+INFO  11:56:54,519 - #12 print
+INFO  11:56:54,519 - #46 (
+INFO  11:56:54,519 - #27 -
+INFO  11:56:54,519 - #23 1
+INFO  11:56:54,519 - #27 -
+INFO  11:56:54,519 - #23 2
+INFO  11:56:54,519 - #44 ,
+INFO  11:56:54,519 - #23 5
+INFO  11:56:54,519 - #47 )
+INFO  11:56:54,520 - #42 ;
+INFO  11:56:54,520 - #22 x
+INFO  11:56:54,520 - #45 .
+INFO  11:56:54,520 - #22 y
+INFO  11:56:54,520 - #45 .
+INFO  11:56:54,520 - #22 z
+INFO  11:56:54,520 - #50 [
+INFO  11:56:54,520 - #23 2
+INFO  11:56:54,520 - #51 ]
+INFO  11:56:54,520 - #39 =
+INFO  11:56:54,520 - #27 -
+INFO  11:56:54,520 - #22 x
+INFO  11:56:54,520 - #26 +
+INFO  11:56:54,520 - #23 2
+INFO  11:56:54,520 - #28 *
+INFO  11:56:54,520 - #23 3
+INFO  11:56:54,520 - #28 *
+INFO  11:56:54,520 - #23 2
+INFO  11:56:54,520 - #26 +
+INFO  11:56:54,520 - #23 5
+INFO  11:56:54,521 - #42 ;
+INFO  11:56:54,521 - #22 x
+INFO  11:56:54,521 - #50 [
+INFO  11:56:54,521 - #23 2
+INFO  11:56:54,521 - #51 ]
+INFO  11:56:54,521 - #45 .
+INFO  11:56:54,521 - #22 c
+INFO  11:56:54,521 - #46 (
+INFO  11:56:54,521 - #47 )
+INFO  11:56:54,521 - #42 ;
+INFO  11:56:54,521 - #22 x
+INFO  11:56:54,521 - #50 [
+INFO  11:56:54,521 - #23 2
+INFO  11:56:54,521 - #51 ]
+INFO  11:56:54,521 - #45 .
+INFO  11:56:54,521 - #22 c
+INFO  11:56:54,521 - #46 (
+INFO  11:56:54,521 - #22 a1
+INFO  11:56:54,521 - #44 ,
+INFO  11:56:54,521 - #22 a2
+INFO  11:56:54,521 - #47 )
+INFO  11:56:54,521 - #42 ;
+INFO  11:56:54,521 - #22 x
+INFO  11:56:54,521 - #40 ++
+INFO  11:56:54,521 - #42 ;
+INFO  11:56:54,521 - #22 x
+INFO  11:56:54,521 - #45 .
+INFO  11:56:54,522 - #22 z
+INFO  11:56:54,522 - #45 .
+INFO  11:56:54,522 - #22 v
+INFO  11:56:54,522 - #45 .
+INFO  11:56:54,522 - #22 w
+INFO  11:56:54,522 - #50 [
+INFO  11:56:54,522 - #23 2
+INFO  11:56:54,522 - #51 ]
+INFO  11:56:54,522 - #41 --
+INFO  11:56:54,522 - #42 ;
+INFO  11:56:54,522 - #9 do
+INFO  11:56:54,522 - #3 break
+INFO  11:56:54,522 - #42 ;
+INFO  11:56:54,522 - #10 while
+INFO  11:56:54,522 - #46 (
+INFO  11:56:54,522 - #22 x
+INFO  11:56:54,522 - #47 )
+INFO  11:56:54,522 - #42 ;
+INFO  11:56:54,522 - #9 do
+INFO  11:56:54,524 - #17 continue
+INFO  11:56:54,524 - #42 ;
+INFO  11:56:54,524 - #10 while
+INFO  11:56:54,524 - #46 (
+INFO  11:56:54,524 - #22 x
+INFO  11:56:54,524 - #37 &&
+INFO  11:56:54,524 - #22 y
+INFO  11:56:54,524 - #31 ==
+INFO  11:56:54,524 - #22 o
+INFO  11:56:54,525 - #38 ||
+INFO  11:56:54,525 - #22 z
+INFO  11:56:54,525 - #36 <=
+INFO  11:56:54,525 - #23 2
+INFO  11:56:54,525 - #37 &&
+INFO  11:56:54,525 - #22 l
+INFO  11:56:54,525 - #47 )
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #8 if
+INFO  11:56:54,526 - #46 (
+INFO  11:56:54,526 - #22 x
+INFO  11:56:54,526 - #47 )
+INFO  11:56:54,526 - #14 return
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #8 if
+INFO  11:56:54,526 - #46 (
+INFO  11:56:54,526 - #22 x
+INFO  11:56:54,526 - #31 ==
+INFO  11:56:54,526 - #22 y
+INFO  11:56:54,526 - #47 )
+INFO  11:56:54,526 - #14 return
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #6 else
+INFO  11:56:54,526 - #3 break
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #8 if
+INFO  11:56:54,526 - #46 (
+INFO  11:56:54,526 - #22 x
+INFO  11:56:54,526 - #47 )
+INFO  11:56:54,526 - #8 if
+INFO  11:56:54,526 - #46 (
+INFO  11:56:54,526 - #22 y
+INFO  11:56:54,526 - #47 )
+INFO  11:56:54,526 - #3 break
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #6 else
+INFO  11:56:54,526 - #3 break
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #6 else
+INFO  11:56:54,526 - #3 break
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #8 if
+INFO  11:56:54,526 - #46 (
+INFO  11:56:54,526 - #22 x
+INFO  11:56:54,526 - #47 )
+INFO  11:56:54,526 - #8 if
+INFO  11:56:54,526 - #46 (
+INFO  11:56:54,526 - #22 y
+INFO  11:56:54,526 - #47 )
+INFO  11:56:54,526 - #3 break
+INFO  11:56:54,526 - #42 ;
+INFO  11:56:54,526 - #6 else
+INFO  11:56:54,527 - #3 break
+INFO  11:56:54,527 - #42 ;
+INFO  11:56:54,527 - #49 }
+INFO  11:56:54,527 - #15 void
+INFO  11:56:54,527 - #22 y
+INFO  11:56:54,527 - #46 (
+INFO  11:56:54,527 - #47 )
+INFO  11:56:54,527 - #48 {
+INFO  11:56:54,527 - #22 labela2
+INFO  11:56:54,527 - #43 :
+INFO  11:56:54,527 - #9 do
+INFO  11:56:54,527 - #48 {
+INFO  11:56:54,527 - #22 x
+INFO  11:56:54,527 - #40 ++
+INFO  11:56:54,527 - #42 ;
+INFO  11:56:54,527 - #49 }
+INFO  11:56:54,527 - #10 while
+INFO  11:56:54,528 - #46 (
+INFO  11:56:54,528 - #22 x
+INFO  11:56:54,528 - #32 !=
+INFO  11:56:54,528 - #23 1
+INFO  11:56:54,528 - #47 )
+INFO  11:56:54,528 - #42 ;
+INFO  11:56:54,528 - #22 x
+INFO  11:56:54,528 - #39 =
+INFO  11:56:54,528 - #22 ds
+INFO  11:56:54,528 - #50 [
+INFO  11:56:54,528 - #42 ;
+ERROR 11:56:54,528 - 
+Sintaksna greska na liniji 92
+INFO  11:56:54,528 - #49 }
+INFO  11:56:54,528 - #15 void
+INFO  11:56:54,528 - #22 test
+INFO  11:56:54,529 - #46 (
+INFO  11:56:54,529 - #22 int
+INFO  11:56:54,529 - #47 )
+ERROR 11:56:54,529 - 
+Sintaksna greska na liniji 95
+INFO  11:56:54,529 - #48 {
+INFO  11:56:54,529 - #49 }
+INFO  11:56:54,529 - #15 void
+INFO  11:56:54,529 - #22 test2
+INFO  11:56:54,529 - #46 (
+INFO  11:56:54,529 - #22 int
+INFO  11:56:54,529 - #22 x
+INFO  11:56:54,529 - #50 [
+INFO  11:56:54,529 - #44 ,
+ERROR 11:56:54,529 - 
+Sintaksna greska na liniji 96
+INFO  11:56:54,529 - #22 int
+INFO  11:56:54,529 - #22 c
+INFO  11:56:54,529 - #47 )
+INFO  11:56:54,529 - #48 {
+INFO  11:56:54,529 - #8 if
+INFO  11:56:54,529 - #46 (
+INFO  11:56:54,529 - #22 x
+INFO  11:56:54,529 - #31 ==
+INFO  11:56:54,529 - #47 )
+ERROR 11:56:54,529 - 
+Sintaksna greska na liniji 97
+INFO  11:56:54,530 - #14 return
+INFO  11:56:54,530 - #42 ;
+INFO  11:56:54,530 - #8 if
+INFO  11:56:54,530 - #46 (
+INFO  11:56:54,530 - #22 x
+INFO  11:56:54,530 - #31 ==
+INFO  11:56:54,530 - #22 y
+INFO  11:56:54,530 - #38 ||
+INFO  11:56:54,530 - #47 )
+ERROR 11:56:54,530 - 
+Sintaksna greska na liniji 98
+INFO  11:56:54,530 - #3 break
+INFO  11:56:54,530 - #42 ;
+INFO  11:56:54,530 - #49 }
+INFO  11:56:54,530 - #49 }
+INFO  11:56:54,530 - #49 }
+INFO  11:56:54,530 - #48 {
+INFO  11:56:54,530 - #49 }
+INFO  11:56:54,539 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        Declarations(
+          Declarations(
+            Declarations(
+              Declarations(
+                Declarations(
+                  Declarations(
+                    Declarations(
+                      Declarations(
+                        Declarations(
+                          NoDeclarations(
+                          ) [NoDeclarations]
+                          DeclConst(
+                            ConstListDeclarations(
+                              ConstDeclType(
+                                Type(
+                                 bool
+                                ) [Type]
+                              ) [ConstDeclType]
+                              MultipleConstDecls(
+                                MultipleConstDecls(
+                                  SingleConstDecl(
+                                    ConstDecl(
+                                     z
+                                      BoolConst(
+                                       true
+                                      ) [BoolConst]
+                                    ) [ConstDecl]
+                                  ) [SingleConstDecl]
+                                  ConstDecl(
+                                   s
+                                    CharConst(
+                                     a
+                                    ) [CharConst]
+                                  ) [ConstDecl]
+                                ) [MultipleConstDecls]
+                                ConstDecl(
+                                 m
+                                  NumConst(
+                                   1
+                                  ) [NumConst]
+                                ) [ConstDecl]
+                              ) [MultipleConstDecls]
+                            ) [ConstListDeclarations]
+                          ) [DeclConst]
+                        ) [Declarations]
+                        DeclConst(
+                          ConstListDeclarations(
+                            ConstDeclType(
+                              Type(
+                               int
+                              ) [Type]
+                            ) [ConstDeclType]
+                            SingleConstDecl(
+                              ConstDecl(
+                               n
+                                NumConst(
+                                 2
+                                ) [NumConst]
+                              ) [ConstDecl]
+                            ) [SingleConstDecl]
+                          ) [ConstListDeclarations]
+                        ) [DeclConst]
+                      ) [Declarations]
+                      DeclDerived1(
+                      ) [DeclDerived1]
+                    ) [Declarations]
+                    DeclDerived2(
+                    ) [DeclDerived2]
+                  ) [Declarations]
+                  DeclDerived1(
+                  ) [DeclDerived1]
+                ) [Declarations]
+                DeclVar(
+                  VarListDeclarations(
+                    Type(
+                     int
+                    ) [Type]
+                    MultipleVarDecls(
+                      SingleVarDecl(
+                        VarDecl(
+                         x
+                          NoBrackets(
+                          ) [NoBrackets]
+                        ) [VarDecl]
+                      ) [SingleVarDecl]
+                      VarDecl(
+                       y
+                        Brackets(
+                        ) [Brackets]
+                      ) [VarDecl]
+                    ) [MultipleVarDecls]
+                  ) [VarListDeclarations]
+                ) [DeclVar]
+              ) [Declarations]
+              DeclVar(
+                VarListDeclarations(
+                  Type(
+                   int
+                  ) [Type]
+                  SingleVarDecl(
+                    VarDecl(
+                     c
+                      Brackets(
+                      ) [Brackets]
+                    ) [VarDecl]
+                  ) [SingleVarDecl]
+                ) [VarListDeclarations]
+              ) [DeclVar]
+            ) [Declarations]
+            DeclRecord(
+              RecordDeclaration(
+               rekord1
+                NoVarListDeclarationList(
+                ) [NoVarListDeclarationList]
+              ) [RecordDeclaration]
+            ) [DeclRecord]
+          ) [Declarations]
+          DeclRecord(
+            RecordDeclaration(
+             rekord2
+              VarListDeclarationList(
+                VarListDeclarationList(
+                  NoVarListDeclarationList(
+                  ) [NoVarListDeclarationList]
+                  VarListDeclarations(
+                    Type(
+                     int
+                    ) [Type]
+                    MultipleVarDecls(
+                      SingleVarDecl(
+                        VarDecl(
+                         x
+                          Brackets(
+                          ) [Brackets]
+                        ) [VarDecl]
+                      ) [SingleVarDecl]
+                      VarDecl(
+                       y
+                        NoBrackets(
+                        ) [NoBrackets]
+                      ) [VarDecl]
+                    ) [MultipleVarDecls]
+                  ) [VarListDeclarations]
+                ) [VarListDeclarationList]
+                VarListDeclarations(
+                  Type(
+                   int
+                  ) [Type]
+                  SingleVarDecl(
+                    VarDecl(
+                     z
+                      NoBrackets(
+                      ) [NoBrackets]
+                    ) [VarDecl]
+                  ) [SingleVarDecl]
+                ) [VarListDeclarations]
+              ) [VarListDeclarationList]
+            ) [RecordDeclaration]
+          ) [DeclRecord]
+        ) [Declarations]
+        DeclClass(
+          ClassDeclaration(
+           klasa
+            NoExtends(
+            ) [NoExtends]
+            NoVarListDeclarationList(
+            ) [NoVarListDeclarationList]
+            NoClassMethodDeclarations(
+            ) [NoClassMethodDeclarations]
+          ) [ClassDeclaration]
+        ) [DeclClass]
+      ) [Declarations]
+      DeclClass(
+        ClassDeclaration(
+         klasa1
+          Extends(
+            Type(
+             klasa
+            ) [Type]
+          ) [Extends]
+          NoVarListDeclarationList(
+          ) [NoVarListDeclarationList]
+          NoClassMethodDeclarations(
+          ) [NoClassMethodDeclarations]
+        ) [ClassDeclaration]
+      ) [DeclClass]
+    ) [Declarations]
+    DeclClass(
+      ClassDeclaration(
+       klasa3
+        NoExtends(
+        ) [NoExtends]
+        VarListDeclarationList(
+          VarListDeclarationList(
+            NoVarListDeclarationList(
+            ) [NoVarListDeclarationList]
+            VarListDeclarations(
+              Type(
+               int
+              ) [Type]
+              MultipleVarDecls(
+                SingleVarDecl(
+                  VarDecl(
+                   x
+                    NoBrackets(
+                    ) [NoBrackets]
+                  ) [VarDecl]
+                ) [SingleVarDecl]
+                VarDecl(
+                 y
+                  Brackets(
+                  ) [Brackets]
+                ) [VarDecl]
+              ) [MultipleVarDecls]
+            ) [VarListDeclarations]
+          ) [VarListDeclarationList]
+          VarListDeclarations(
+            Type(
+             int
+            ) [Type]
+            SingleVarDecl(
+              VarDecl(
+               z
+                NoBrackets(
+                ) [NoBrackets]
+              ) [VarDecl]
+            ) [SingleVarDecl]
+          ) [VarListDeclarations]
+        ) [VarListDeclarationList]
+        ClassMethodDeclarations(
+          MethodDeclarations(
+            MethodDeclarations(
+              MethodDeclarations(
+                MethodDeclarations(
+                  MethodDeclarations(
+                    NoMethodDeclarations(
+                    ) [NoMethodDeclarations]
+                    MethodDecl(
+                      RetVoid(
+                      ) [RetVoid]
+                     x
+                      FormParams(
+                        MultipleFormParams(
+                          SingleFormParam(
+                            FormalParameter(
+                              Type(
+                               int
+                              ) [Type]
+                             k
+                              NoBrackets(
+                              ) [NoBrackets]
+                            ) [FormalParameter]
+                          ) [SingleFormParam]
+                          FormalParameter(
+                            Type(
+                             char
+                            ) [Type]
+                           l
+                            Brackets(
+                            ) [Brackets]
+                          ) [FormalParameter]
+                        ) [MultipleFormParams]
+                      ) [FormParams]
+                      VarListDeclarationList(
+                        VarListDeclarationList(
+                          NoVarListDeclarationList(
+                          ) [NoVarListDeclarationList]
+                          VarListDeclarations(
+                            Type(
+                             int
+                            ) [Type]
+                            MultipleVarDecls(
+                              SingleVarDecl(
+                                VarDecl(
+                                 x
+                                  NoBrackets(
+                                  ) [NoBrackets]
+                                ) [VarDecl]
+                              ) [SingleVarDecl]
+                              VarDecl(
+                               y
+                                Brackets(
+                                ) [Brackets]
+                              ) [VarDecl]
+                            ) [MultipleVarDecls]
+                          ) [VarListDeclarations]
+                        ) [VarListDeclarationList]
+                        VarListDeclarations(
+                          Type(
+                           int
+                          ) [Type]
+                          SingleVarDecl(
+                            VarDecl(
+                             z
+                              NoBrackets(
+                              ) [NoBrackets]
+                            ) [VarDecl]
+                          ) [SingleVarDecl]
+                        ) [VarListDeclarations]
+                      ) [VarListDeclarationList]
+                      NoStmt(
+                      ) [NoStmt]
+                    ) [MethodDecl]
+                  ) [MethodDeclarations]
+                  MethodDecl(
+                    RetType(
+                      Type(
+                       int
+                      ) [Type]
+                    ) [RetType]
+                   y
+                    FormParams(
+                      SingleFormParam(
+                        FormalParameter(
+                          Type(
+                           int
+                          ) [Type]
+                         x
+                          NoBrackets(
+                          ) [NoBrackets]
+                        ) [FormalParameter]
+                      ) [SingleFormParam]
+                    ) [FormParams]
+                    NoVarListDeclarationList(
+                    ) [NoVarListDeclarationList]
+                    Stmts(
+                      Stmts(
+                        Stmts(
+                          Stmts(
+                            Stmts(
+                              Stmts(
+                                Stmts(
+                                  Stmts(
+                                    Stmts(
+                                      Stmts(
+                                        Stmts(
+                                          Stmts(
+                                            Stmts(
+                                              Stmts(
+                                                Stmts(
+                                                  Stmts(
+                                                    Stmts(
+                                                      Stmts(
+                                                        Stmts(
+                                                          Stmts(
+                                                            Stmts(
+                                                              Stmts(
+                                                                Stmts(
+                                                                  Stmts(
+                                                                    Stmts(
+                                                                      Stmts(
+                                                                        Stmts(
+                                                                          Stmts(
+                                                                            Stmts(
+                                                                              NoStmt(
+                                                                              ) [NoStmt]
+                                                                              SingleStmtNoLabel(
+                                                                                BreakStmt(
+                                                                                ) [BreakStmt]
+                                                                              ) [SingleStmtNoLabel]
+                                                                            ) [Stmts]
+                                                                            SingleStmtWithLabel(
+                                                                              Label(
+                                                                               break_label
+                                                                              ) [Label]
+                                                                              BreakStmt(
+                                                                              ) [BreakStmt]
+                                                                            ) [SingleStmtWithLabel]
+                                                                          ) [Stmts]
+                                                                          SingleStmtNoLabel(
+                                                                            ContinueStmt(
+                                                                            ) [ContinueStmt]
+                                                                          ) [SingleStmtNoLabel]
+                                                                        ) [Stmts]
+                                                                        SingleStmtNoLabel(
+                                                                          GotoStmt(
+                                                                            Label(
+                                                                             break_label
+                                                                            ) [Label]
+                                                                          ) [GotoStmt]
+                                                                        ) [SingleStmtNoLabel]
+                                                                      ) [Stmts]
+                                                                      SingleStmtNoLabel(
+                                                                        ReturnNoExprStmt(
+                                                                        ) [ReturnNoExprStmt]
+                                                                      ) [SingleStmtNoLabel]
+                                                                    ) [Stmts]
+                                                                    SingleStmtNoLabel(
+                                                                      ReturnExprStmt(
+                                                                        SingleExprWithMinus(
+                                                                          SingleTerm(
+                                                                            FactorWithConst(
+                                                                              NumConst(
+                                                                               5
+                                                                              ) [NumConst]
+                                                                            ) [FactorWithConst]
+                                                                          ) [SingleTerm]
+                                                                        ) [SingleExprWithMinus]
+                                                                      ) [ReturnExprStmt]
+                                                                    ) [SingleStmtNoLabel]
+                                                                  ) [Stmts]
+                                                                  SingleStmtNoLabel(
+                                                                    ReturnExprStmt(
+                                                                      SingleExpr(
+                                                                        SingleTerm(
+                                                                          FactorWithConst(
+                                                                            NumConst(
+                                                                             5
+                                                                            ) [NumConst]
+                                                                          ) [FactorWithConst]
+                                                                        ) [SingleTerm]
+                                                                      ) [SingleExpr]
+                                                                    ) [ReturnExprStmt]
+                                                                  ) [SingleStmtNoLabel]
+                                                                ) [Stmts]
+                                                                SingleStmtNoLabel(
+                                                                  ReturnExprStmt(
+                                                                    SingleExprWithMinus(
+                                                                      SingleTerm(
+                                                                        FactorWithParen(
+                                                                          SingleExprWithMinus(
+                                                                            SingleTerm(
+                                                                              FactorWithConst(
+                                                                                NumConst(
+                                                                                 4
+                                                                                ) [NumConst]
+                                                                              ) [FactorWithConst]
+                                                                            ) [SingleTerm]
+                                                                          ) [SingleExprWithMinus]
+                                                                        ) [FactorWithParen]
+                                                                      ) [SingleTerm]
+                                                                    ) [SingleExprWithMinus]
+                                                                  ) [ReturnExprStmt]
+                                                                ) [SingleStmtNoLabel]
+                                                              ) [Stmts]
+                                                              SingleStmtNoLabel(
+                                                                ReturnExprStmt(
+                                                                  SingleExprWithMinus(
+                                                                    SingleTerm(
+                                                                      FactorWithNew(
+                                                                        Type(
+                                                                         int
+                                                                        ) [Type]
+                                                                      ) [FactorWithNew]
+                                                                    ) [SingleTerm]
+                                                                  ) [SingleExprWithMinus]
+                                                                ) [ReturnExprStmt]
+                                                              ) [SingleStmtNoLabel]
+                                                            ) [Stmts]
+                                                            SingleStmtNoLabel(
+                                                              ReturnExprStmt(
+                                                                SingleExprWithMinus(
+                                                                  SingleTerm(
+                                                                    FactorWithNewArray(
+                                                                      Type(
+                                                                       int
+                                                                      ) [Type]
+                                                                      SingleExprWithMinus(
+                                                                        SingleTerm(
+                                                                          FactorWithConst(
+                                                                            NumConst(
+                                                                             2
+                                                                            ) [NumConst]
+                                                                          ) [FactorWithConst]
+                                                                        ) [SingleTerm]
+                                                                      ) [SingleExprWithMinus]
+                                                                    ) [FactorWithNewArray]
+                                                                  ) [SingleTerm]
+                                                                ) [SingleExprWithMinus]
+                                                              ) [ReturnExprStmt]
+                                                            ) [SingleStmtNoLabel]
+                                                          ) [Stmts]
+                                                          SingleStmtNoLabel(
+                                                            ReturnExprStmt(
+                                                              SingleExprWithMinus(
+                                                                SingleTerm(
+                                                                  FactorDesignator(
+                                                                    Designator(
+                                                                     x
+                                                                      MultipleIndexing(
+                                                                        MultipleIndexing(
+                                                                          MultipleIndexing(
+                                                                            MultipleIndexing(
+                                                                              MultipleIndexing(
+                                                                                MultipleIndexing(
+                                                                                  MultipleIndexing(
+                                                                                    NoIndexing(
+                                                                                    ) [NoIndexing]
+                                                                                    IndexingField(
+                                                                                     y
+                                                                                    ) [IndexingField]
+                                                                                  ) [MultipleIndexing]
+                                                                                  IndexingArray(
+                                                                                    SingleExprWithMinus(
+                                                                                      SingleTerm(
+                                                                                        FactorWithConst(
+                                                                                          NumConst(
+                                                                                           2
+                                                                                          ) [NumConst]
+                                                                                        ) [FactorWithConst]
+                                                                                      ) [SingleTerm]
+                                                                                    ) [SingleExprWithMinus]
+                                                                                  ) [IndexingArray]
+                                                                                ) [MultipleIndexing]
+                                                                                IndexingField(
+                                                                                 z
+                                                                                ) [IndexingField]
+                                                                              ) [MultipleIndexing]
+                                                                              IndexingArray(
+                                                                                SingleExpr(
+                                                                                  SingleTerm(
+                                                                                    FactorWithConst(
+                                                                                      NumConst(
+                                                                                       2
+                                                                                      ) [NumConst]
+                                                                                    ) [FactorWithConst]
+                                                                                  ) [SingleTerm]
+                                                                                ) [SingleExpr]
+                                                                              ) [IndexingArray]
+                                                                            ) [MultipleIndexing]
+                                                                            IndexingField(
+                                                                             k
+                                                                            ) [IndexingField]
+                                                                          ) [MultipleIndexing]
+                                                                          IndexingArray(
+                                                                            SingleExprWithMinus(
+                                                                              SingleTerm(
+                                                                                FactorWithConst(
+                                                                                  NumConst(
+                                                                                   1
+                                                                                  ) [NumConst]
+                                                                                ) [FactorWithConst]
+                                                                              ) [SingleTerm]
+                                                                            ) [SingleExprWithMinus]
+                                                                          ) [IndexingArray]
+                                                                        ) [MultipleIndexing]
+                                                                        IndexingArray(
+                                                                          SingleExprWithMinus(
+                                                                            SingleTerm(
+                                                                              FactorWithParen(
+                                                                                SingleExprWithMinus(
+                                                                                  SingleTerm(
+                                                                                    FactorWithConst(
+                                                                                      NumConst(
+                                                                                       2
+                                                                                      ) [NumConst]
+                                                                                    ) [FactorWithConst]
+                                                                                  ) [SingleTerm]
+                                                                                ) [SingleExprWithMinus]
+                                                                              ) [FactorWithParen]
+                                                                            ) [SingleTerm]
+                                                                          ) [SingleExprWithMinus]
+                                                                        ) [IndexingArray]
+                                                                      ) [MultipleIndexing]
+                                                                    ) [Designator]
+                                                                  ) [FactorDesignator]
+                                                                ) [SingleTerm]
+                                                              ) [SingleExprWithMinus]
+                                                            ) [ReturnExprStmt]
+                                                          ) [SingleStmtNoLabel]
+                                                        ) [Stmts]
+                                                        SingleStmtNoLabel(
+                                                          ReturnExprStmt(
+                                                            SingleExprWithMinus(
+                                                              SingleTerm(
+                                                                FactorDesignatorFuncCall(
+                                                                  Designator(
+                                                                   x
+                                                                    MultipleIndexing(
+                                                                      NoIndexing(
+                                                                      ) [NoIndexing]
+                                                                      IndexingField(
+                                                                       y
+                                                                      ) [IndexingField]
+                                                                    ) [MultipleIndexing]
+                                                                  ) [Designator]
+                                                                  NoOptActPars(
+                                                                  ) [NoOptActPars]
+                                                                ) [FactorDesignatorFuncCall]
+                                                              ) [SingleTerm]
+                                                            ) [SingleExprWithMinus]
+                                                          ) [ReturnExprStmt]
+                                                        ) [SingleStmtNoLabel]
+                                                      ) [Stmts]
+                                                      SingleStmtNoLabel(
+                                                        ReturnExprStmt(
+                                                          SingleExprWithMinus(
+                                                            SingleTerm(
+                                                              FactorDesignatorFuncCall(
+                                                                Designator(
+                                                                 x
+                                                                  MultipleIndexing(
+                                                                    NoIndexing(
+                                                                    ) [NoIndexing]
+                                                                    IndexingField(
+                                                                     y
+                                                                    ) [IndexingField]
+                                                                  ) [MultipleIndexing]
+                                                                ) [Designator]
+                                                                WithOptActPars(
+                                                                  MultipleActPars(
+                                                                    SingleActPars(
+                                                                      SingleExprWithMinus(
+                                                                        SingleTerm(
+                                                                          FactorDesignator(
+                                                                            Designator(
+                                                                             par1
+                                                                              NoIndexing(
+                                                                              ) [NoIndexing]
+                                                                            ) [Designator]
+                                                                          ) [FactorDesignator]
+                                                                        ) [SingleTerm]
+                                                                      ) [SingleExprWithMinus]
+                                                                    ) [SingleActPars]
+                                                                    SingleExprWithMinus(
+                                                                      SingleTerm(
+                                                                        FactorDesignator(
+                                                                          Designator(
+                                                                           par2
+                                                                            NoIndexing(
+                                                                            ) [NoIndexing]
+                                                                          ) [Designator]
+                                                                        ) [FactorDesignator]
+                                                                      ) [SingleTerm]
+                                                                    ) [SingleExprWithMinus]
+                                                                  ) [MultipleActPars]
+                                                                ) [WithOptActPars]
+                                                              ) [FactorDesignatorFuncCall]
+                                                            ) [SingleTerm]
+                                                          ) [SingleExprWithMinus]
+                                                        ) [ReturnExprStmt]
+                                                      ) [SingleStmtNoLabel]
+                                                    ) [Stmts]
+                                                    SingleStmtNoLabel(
+                                                      ReturnExprStmt(
+                                                        SingleExprWithMinus(
+                                                          MultipleTerm(
+                                                            MultipleTerm(
+                                                              MultipleTerm(
+                                                                MultipleTerm(
+                                                                  SingleTerm(
+                                                                    FactorDesignator(
+                                                                      Designator(
+                                                                       x
+                                                                        NoIndexing(
+                                                                        ) [NoIndexing]
+                                                                      ) [Designator]
+                                                                    ) [FactorDesignator]
+                                                                  ) [SingleTerm]
+                                                                  Mul(
+                                                                  ) [Mul]
+                                                                  FactorWithConst(
+                                                                    NumConst(
+                                                                     3
+                                                                    ) [NumConst]
+                                                                  ) [FactorWithConst]
+                                                                ) [MultipleTerm]
+                                                                Mul(
+                                                                ) [Mul]
+                                                                FactorWithConst(
+                                                                  CharConst(
+                                                                   x
+                                                                  ) [CharConst]
+                                                                ) [FactorWithConst]
+                                                              ) [MultipleTerm]
+                                                              Div(
+                                                              ) [Div]
+                                                              FactorDesignator(
+                                                                Designator(
+                                                                 y
+                                                                  NoIndexing(
+                                                                  ) [NoIndexing]
+                                                                ) [Designator]
+                                                              ) [FactorDesignator]
+                                                            ) [MultipleTerm]
+                                                            Percent(
+                                                            ) [Percent]
+                                                            FactorWithConst(
+                                                              BoolConst(
+                                                               true
+                                                              ) [BoolConst]
+                                                            ) [FactorWithConst]
+                                                          ) [MultipleTerm]
+                                                        ) [SingleExprWithMinus]
+                                                      ) [ReturnExprStmt]
+                                                    ) [SingleStmtNoLabel]
+                                                  ) [Stmts]
+                                                  SingleStmtNoLabel(
+                                                    ReturnExprStmt(
+                                                      MultipleExpr(
+                                                        MultipleExpr(
+                                                          SingleExpr(
+                                                            SingleTerm(
+                                                              FactorDesignator(
+                                                                Designator(
+                                                                 x
+                                                                  NoIndexing(
+                                                                  ) [NoIndexing]
+                                                                ) [Designator]
+                                                              ) [FactorDesignator]
+                                                            ) [SingleTerm]
+                                                          ) [SingleExpr]
+                                                          Add(
+                                                          ) [Add]
+                                                          MultipleTerm(
+                                                            MultipleTerm(
+                                                              SingleTerm(
+                                                                FactorDesignator(
+                                                                  Designator(
+                                                                   y
+                                                                    NoIndexing(
+                                                                    ) [NoIndexing]
+                                                                  ) [Designator]
+                                                                ) [FactorDesignator]
+                                                              ) [SingleTerm]
+                                                              Mul(
+                                                              ) [Mul]
+                                                              FactorWithConst(
+                                                                NumConst(
+                                                                 3
+                                                                ) [NumConst]
+                                                              ) [FactorWithConst]
+                                                            ) [MultipleTerm]
+                                                            Mul(
+                                                            ) [Mul]
+                                                            FactorWithConst(
+                                                              NumConst(
+                                                               2
+                                                              ) [NumConst]
+                                                            ) [FactorWithConst]
+                                                          ) [MultipleTerm]
+                                                        ) [MultipleExpr]
+                                                        Minus(
+                                                        ) [Minus]
+                                                        MultipleTerm(
+                                                          SingleTerm(
+                                                            FactorDesignator(
+                                                              Designator(
+                                                               z
+                                                                NoIndexing(
+                                                                ) [NoIndexing]
+                                                              ) [Designator]
+                                                            ) [FactorDesignator]
+                                                          ) [SingleTerm]
+                                                          Mul(
+                                                          ) [Mul]
+                                                          FactorWithConst(
+                                                            NumConst(
+                                                             3
+                                                            ) [NumConst]
+                                                          ) [FactorWithConst]
+                                                        ) [MultipleTerm]
+                                                      ) [MultipleExpr]
+                                                    ) [ReturnExprStmt]
+                                                  ) [SingleStmtNoLabel]
+                                                ) [Stmts]
+                                                SingleStmtNoLabel(
+                                                  ReadStmt(
+                                                    Designator(
+                                                     x
+                                                      MultipleIndexing(
+                                                        MultipleIndexing(
+                                                          MultipleIndexing(
+                                                            MultipleIndexing(
+                                                              NoIndexing(
+                                                              ) [NoIndexing]
+                                                              IndexingField(
+                                                               y
+                                                              ) [IndexingField]
+                                                            ) [MultipleIndexing]
+                                                            IndexingArray(
+                                                              SingleExprWithMinus(
+                                                                SingleTerm(
+                                                                  FactorWithConst(
+                                                                    NumConst(
+                                                                     1
+                                                                    ) [NumConst]
+                                                                  ) [FactorWithConst]
+                                                                ) [SingleTerm]
+                                                              ) [SingleExprWithMinus]
+                                                            ) [IndexingArray]
+                                                          ) [MultipleIndexing]
+                                                          IndexingArray(
+                                                            SingleExprWithMinus(
+                                                              SingleTerm(
+                                                                FactorWithParen(
+                                                                  SingleExprWithMinus(
+                                                                    SingleTerm(
+                                                                      FactorWithConst(
+                                                                        NumConst(
+                                                                         2
+                                                                        ) [NumConst]
+                                                                      ) [FactorWithConst]
+                                                                    ) [SingleTerm]
+                                                                  ) [SingleExprWithMinus]
+                                                                ) [FactorWithParen]
+                                                              ) [SingleTerm]
+                                                            ) [SingleExprWithMinus]
+                                                          ) [IndexingArray]
+                                                        ) [MultipleIndexing]
+                                                        IndexingField(
+                                                         x
+                                                        ) [IndexingField]
+                                                      ) [MultipleIndexing]
+                                                    ) [Designator]
+                                                  ) [ReadStmt]
+                                                ) [SingleStmtNoLabel]
+                                              ) [Stmts]
+                                              SingleStmtNoLabel(
+                                                PrintStmt(
+                                                  PrintParameters(
+                                                    MultipleExpr(
+                                                      SingleExprWithMinus(
+                                                        SingleTerm(
+                                                          FactorWithConst(
+                                                            NumConst(
+                                                             2
+                                                            ) [NumConst]
+                                                          ) [FactorWithConst]
+                                                        ) [SingleTerm]
+                                                      ) [SingleExprWithMinus]
+                                                      Add(
+                                                      ) [Add]
+                                                      MultipleTerm(
+                                                        MultipleTerm(
+                                                          SingleTerm(
+                                                            FactorWithConst(
+                                                              NumConst(
+                                                               3
+                                                              ) [NumConst]
+                                                            ) [FactorWithConst]
+                                                          ) [SingleTerm]
+                                                          Mul(
+                                                          ) [Mul]
+                                                          FactorWithConst(
+                                                            NumConst(
+                                                             4
+                                                            ) [NumConst]
+                                                          ) [FactorWithConst]
+                                                        ) [MultipleTerm]
+                                                        Mul(
+                                                        ) [Mul]
+                                                        FactorDesignator(
+                                                          Designator(
+                                                           x
+                                                            MultipleIndexing(
+                                                              NoIndexing(
+                                                              ) [NoIndexing]
+                                                              IndexingField(
+                                                               y
+                                                              ) [IndexingField]
+                                                            ) [MultipleIndexing]
+                                                          ) [Designator]
+                                                        ) [FactorDesignator]
+                                                      ) [MultipleTerm]
+                                                    ) [MultipleExpr]
+                                                  ) [PrintParameters]
+                                                ) [PrintStmt]
+                                              ) [SingleStmtNoLabel]
+                                            ) [Stmts]
+                                            SingleStmtNoLabel(
+                                              PrintStmt(
+                                                PrintParametersWithConst(
+                                                  MultipleExpr(
+                                                    SingleExpr(
+                                                      SingleTerm(
+                                                        FactorWithConst(
+                                                          NumConst(
+                                                           1
+                                                          ) [NumConst]
+                                                        ) [FactorWithConst]
+                                                      ) [SingleTerm]
+                                                    ) [SingleExpr]
+                                                    Minus(
+                                                    ) [Minus]
+                                                    SingleTerm(
+                                                      FactorWithConst(
+                                                        NumConst(
+                                                         2
+                                                        ) [NumConst]
+                                                      ) [FactorWithConst]
+                                                    ) [SingleTerm]
+                                                  ) [MultipleExpr]
+                                                 5
+                                                ) [PrintParametersWithConst]
+                                              ) [PrintStmt]
+                                            ) [SingleStmtNoLabel]
+                                          ) [Stmts]
+                                          SingleStmtNoLabel(
+                                            DesignatorStmt(
+                                              DesignatorStmtAssign(
+                                                Designator(
+                                                 x
+                                                  MultipleIndexing(
+                                                    MultipleIndexing(
+                                                      MultipleIndexing(
+                                                        NoIndexing(
+                                                        ) [NoIndexing]
+                                                        IndexingField(
+                                                         y
+                                                        ) [IndexingField]
+                                                      ) [MultipleIndexing]
+                                                      IndexingField(
+                                                       z
+                                                      ) [IndexingField]
+                                                    ) [MultipleIndexing]
+                                                    IndexingArray(
+                                                      SingleExprWithMinus(
+                                                        SingleTerm(
+                                                          FactorWithConst(
+                                                            NumConst(
+                                                             2
+                                                            ) [NumConst]
+                                                          ) [FactorWithConst]
+                                                        ) [SingleTerm]
+                                                      ) [SingleExprWithMinus]
+                                                    ) [IndexingArray]
+                                                  ) [MultipleIndexing]
+                                                ) [Designator]
+                                                Assignop(
+                                                ) [Assignop]
+                                                MultipleExpr(
+                                                  MultipleExpr(
+                                                    SingleExpr(
+                                                      SingleTerm(
+                                                        FactorDesignator(
+                                                          Designator(
+                                                           x
+                                                            NoIndexing(
+                                                            ) [NoIndexing]
+                                                          ) [Designator]
+                                                        ) [FactorDesignator]
+                                                      ) [SingleTerm]
+                                                    ) [SingleExpr]
+                                                    Add(
+                                                    ) [Add]
+                                                    MultipleTerm(
+                                                      MultipleTerm(
+                                                        SingleTerm(
+                                                          FactorWithConst(
+                                                            NumConst(
+                                                             2
+                                                            ) [NumConst]
+                                                          ) [FactorWithConst]
+                                                        ) [SingleTerm]
+                                                        Mul(
+                                                        ) [Mul]
+                                                        FactorWithConst(
+                                                          NumConst(
+                                                           3
+                                                          ) [NumConst]
+                                                        ) [FactorWithConst]
+                                                      ) [MultipleTerm]
+                                                      Mul(
+                                                      ) [Mul]
+                                                      FactorWithConst(
+                                                        NumConst(
+                                                         2
+                                                        ) [NumConst]
+                                                      ) [FactorWithConst]
+                                                    ) [MultipleTerm]
+                                                  ) [MultipleExpr]
+                                                  Add(
+                                                  ) [Add]
+                                                  SingleTerm(
+                                                    FactorWithConst(
+                                                      NumConst(
+                                                       5
+                                                      ) [NumConst]
+                                                    ) [FactorWithConst]
+                                                  ) [SingleTerm]
+                                                ) [MultipleExpr]
+                                              ) [DesignatorStmtAssign]
+                                            ) [DesignatorStmt]
+                                          ) [SingleStmtNoLabel]
+                                        ) [Stmts]
+                                        SingleStmtNoLabel(
+                                          DesignatorStmt(
+                                            DesignatorStmtFuncCall(
+                                              Designator(
+                                               x
+                                                MultipleIndexing(
+                                                  MultipleIndexing(
+                                                    NoIndexing(
+                                                    ) [NoIndexing]
+                                                    IndexingArray(
+                                                      SingleExprWithMinus(
+                                                        SingleTerm(
+                                                          FactorWithConst(
+                                                            NumConst(
+                                                             2
+                                                            ) [NumConst]
+                                                          ) [FactorWithConst]
+                                                        ) [SingleTerm]
+                                                      ) [SingleExprWithMinus]
+                                                    ) [IndexingArray]
+                                                  ) [MultipleIndexing]
+                                                  IndexingField(
+                                                   c
+                                                  ) [IndexingField]
+                                                ) [MultipleIndexing]
+                                              ) [Designator]
+                                              NoOptActPars(
+                                              ) [NoOptActPars]
+                                            ) [DesignatorStmtFuncCall]
+                                          ) [DesignatorStmt]
+                                        ) [SingleStmtNoLabel]
+                                      ) [Stmts]
+                                      SingleStmtNoLabel(
+                                        DesignatorStmt(
+                                          DesignatorStmtFuncCall(
+                                            Designator(
+                                             x
+                                              MultipleIndexing(
+                                                MultipleIndexing(
+                                                  NoIndexing(
+                                                  ) [NoIndexing]
+                                                  IndexingArray(
+                                                    SingleExprWithMinus(
+                                                      SingleTerm(
+                                                        FactorWithConst(
+                                                          NumConst(
+                                                           2
+                                                          ) [NumConst]
+                                                        ) [FactorWithConst]
+                                                      ) [SingleTerm]
+                                                    ) [SingleExprWithMinus]
+                                                  ) [IndexingArray]
+                                                ) [MultipleIndexing]
+                                                IndexingField(
+                                                 c
+                                                ) [IndexingField]
+                                              ) [MultipleIndexing]
+                                            ) [Designator]
+                                            WithOptActPars(
+                                              MultipleActPars(
+                                                SingleActPars(
+                                                  SingleExprWithMinus(
+                                                    SingleTerm(
+                                                      FactorDesignator(
+                                                        Designator(
+                                                         a1
+                                                          NoIndexing(
+                                                          ) [NoIndexing]
+                                                        ) [Designator]
+                                                      ) [FactorDesignator]
+                                                    ) [SingleTerm]
+                                                  ) [SingleExprWithMinus]
+                                                ) [SingleActPars]
+                                                SingleExprWithMinus(
+                                                  SingleTerm(
+                                                    FactorDesignator(
+                                                      Designator(
+                                                       a2
+                                                        NoIndexing(
+                                                        ) [NoIndexing]
+                                                      ) [Designator]
+                                                    ) [FactorDesignator]
+                                                  ) [SingleTerm]
+                                                ) [SingleExprWithMinus]
+                                              ) [MultipleActPars]
+                                            ) [WithOptActPars]
+                                          ) [DesignatorStmtFuncCall]
+                                        ) [DesignatorStmt]
+                                      ) [SingleStmtNoLabel]
+                                    ) [Stmts]
+                                    SingleStmtNoLabel(
+                                      DesignatorStmt(
+                                        DesignatorStmtInc(
+                                          Designator(
+                                           x
+                                            NoIndexing(
+                                            ) [NoIndexing]
+                                          ) [Designator]
+                                        ) [DesignatorStmtInc]
+                                      ) [DesignatorStmt]
+                                    ) [SingleStmtNoLabel]
+                                  ) [Stmts]
+                                  SingleStmtNoLabel(
+                                    DesignatorStmt(
+                                      DesignatorStmtDec(
+                                        Designator(
+                                         x
+                                          MultipleIndexing(
+                                            MultipleIndexing(
+                                              MultipleIndexing(
+                                                MultipleIndexing(
+                                                  NoIndexing(
+                                                  ) [NoIndexing]
+                                                  IndexingField(
+                                                   z
+                                                  ) [IndexingField]
+                                                ) [MultipleIndexing]
+                                                IndexingField(
+                                                 v
+                                                ) [IndexingField]
+                                              ) [MultipleIndexing]
+                                              IndexingField(
+                                               w
+                                              ) [IndexingField]
+                                            ) [MultipleIndexing]
+                                            IndexingArray(
+                                              SingleExprWithMinus(
+                                                SingleTerm(
+                                                  FactorWithConst(
+                                                    NumConst(
+                                                     2
+                                                    ) [NumConst]
+                                                  ) [FactorWithConst]
+                                                ) [SingleTerm]
+                                              ) [SingleExprWithMinus]
+                                            ) [IndexingArray]
+                                          ) [MultipleIndexing]
+                                        ) [Designator]
+                                      ) [DesignatorStmtDec]
+                                    ) [DesignatorStmt]
+                                  ) [SingleStmtNoLabel]
+                                ) [Stmts]
+                                SingleStmtNoLabel(
+                                  DoWhileStmt(
+                                    SingleStmtNoLabel(
+                                      BreakStmt(
+                                      ) [BreakStmt]
+                                    ) [SingleStmtNoLabel]
+                                    SingleCondition(
+                                      SingleCondTerm(
+                                        SingleCondFact(
+                                          SingleExprWithMinus(
+                                            SingleTerm(
+                                              FactorDesignator(
+                                                Designator(
+                                                 x
+                                                  NoIndexing(
+                                                  ) [NoIndexing]
+                                                ) [Designator]
+                                              ) [FactorDesignator]
+                                            ) [SingleTerm]
+                                          ) [SingleExprWithMinus]
+                                        ) [SingleCondFact]
+                                      ) [SingleCondTerm]
+                                    ) [SingleCondition]
+                                  ) [DoWhileStmt]
+                                ) [SingleStmtNoLabel]
+                              ) [Stmts]
+                              SingleStmtNoLabel(
+                                DoWhileStmt(
+                                  SingleStmtNoLabel(
+                                    ContinueStmt(
+                                    ) [ContinueStmt]
+                                  ) [SingleStmtNoLabel]
+                                  MultipleConditions(
+                                    SingleCondition(
+                                      MultipleCondTerms(
+                                        SingleCondTerm(
+                                          SingleCondFact(
+                                            SingleExprWithMinus(
+                                              SingleTerm(
+                                                FactorDesignator(
+                                                  Designator(
+                                                   x
+                                                    NoIndexing(
+                                                    ) [NoIndexing]
+                                                  ) [Designator]
+                                                ) [FactorDesignator]
+                                              ) [SingleTerm]
+                                            ) [SingleExprWithMinus]
+                                          ) [SingleCondFact]
+                                        ) [SingleCondTerm]
+                                        DoubleCondFact(
+                                          SingleExprWithMinus(
+                                            SingleTerm(
+                                              FactorDesignator(
+                                                Designator(
+                                                 y
+                                                  NoIndexing(
+                                                  ) [NoIndexing]
+                                                ) [Designator]
+                                              ) [FactorDesignator]
+                                            ) [SingleTerm]
+                                          ) [SingleExprWithMinus]
+                                          EqualTo(
+                                          ) [EqualTo]
+                                          SingleExprWithMinus(
+                                            SingleTerm(
+                                              FactorDesignator(
+                                                Designator(
+                                                 o
+                                                  NoIndexing(
+                                                  ) [NoIndexing]
+                                                ) [Designator]
+                                              ) [FactorDesignator]
+                                            ) [SingleTerm]
+                                          ) [SingleExprWithMinus]
+                                        ) [DoubleCondFact]
+                                      ) [MultipleCondTerms]
+                                    ) [SingleCondition]
+                                    MultipleCondTerms(
+                                      SingleCondTerm(
+                                        DoubleCondFact(
+                                          SingleExprWithMinus(
+                                            SingleTerm(
+                                              FactorDesignator(
+                                                Designator(
+                                                 z
+                                                  NoIndexing(
+                                                  ) [NoIndexing]
+                                                ) [Designator]
+                                              ) [FactorDesignator]
+                                            ) [SingleTerm]
+                                          ) [SingleExprWithMinus]
+                                          LessOrEqualThen(
+                                          ) [LessOrEqualThen]
+                                          SingleExprWithMinus(
+                                            SingleTerm(
+                                              FactorWithConst(
+                                                NumConst(
+                                                 2
+                                                ) [NumConst]
+                                              ) [FactorWithConst]
+                                            ) [SingleTerm]
+                                          ) [SingleExprWithMinus]
+                                        ) [DoubleCondFact]
+                                      ) [SingleCondTerm]
+                                      SingleCondFact(
+                                        SingleExprWithMinus(
+                                          SingleTerm(
+                                            FactorDesignator(
+                                              Designator(
+                                               l
+                                                NoIndexing(
+                                                ) [NoIndexing]
+                                              ) [Designator]
+                                            ) [FactorDesignator]
+                                          ) [SingleTerm]
+                                        ) [SingleExprWithMinus]
+                                      ) [SingleCondFact]
+                                    ) [MultipleCondTerms]
+                                  ) [MultipleConditions]
+                                ) [DoWhileStmt]
+                              ) [SingleStmtNoLabel]
+                            ) [Stmts]
+                            SingleStmtNoLabel(
+                              IfStmt(
+                                SingleCondition(
+                                  SingleCondTerm(
+                                    SingleCondFact(
+                                      SingleExprWithMinus(
+                                        SingleTerm(
+                                          FactorDesignator(
+                                            Designator(
+                                             x
+                                              NoIndexing(
+                                              ) [NoIndexing]
+                                            ) [Designator]
+                                          ) [FactorDesignator]
+                                        ) [SingleTerm]
+                                      ) [SingleExprWithMinus]
+                                    ) [SingleCondFact]
+                                  ) [SingleCondTerm]
+                                ) [SingleCondition]
+                                SingleStmtNoLabel(
+                                  ReturnNoExprStmt(
+                                  ) [ReturnNoExprStmt]
+                                ) [SingleStmtNoLabel]
+                              ) [IfStmt]
+                            ) [SingleStmtNoLabel]
+                          ) [Stmts]
+                          SingleStmtNoLabel(
+                            IfElseStmt(
+                              SingleCondition(
+                                SingleCondTerm(
+                                  DoubleCondFact(
+                                    SingleExprWithMinus(
+                                      SingleTerm(
+                                        FactorDesignator(
+                                          Designator(
+                                           x
+                                            NoIndexing(
+                                            ) [NoIndexing]
+                                          ) [Designator]
+                                        ) [FactorDesignator]
+                                      ) [SingleTerm]
+                                    ) [SingleExprWithMinus]
+                                    EqualTo(
+                                    ) [EqualTo]
+                                    SingleExprWithMinus(
+                                      SingleTerm(
+                                        FactorDesignator(
+                                          Designator(
+                                           y
+                                            NoIndexing(
+                                            ) [NoIndexing]
+                                          ) [Designator]
+                                        ) [FactorDesignator]
+                                      ) [SingleTerm]
+                                    ) [SingleExprWithMinus]
+                                  ) [DoubleCondFact]
+                                ) [SingleCondTerm]
+                              ) [SingleCondition]
+                              SingleStmtNoLabel(
+                                ReturnNoExprStmt(
+                                ) [ReturnNoExprStmt]
+                              ) [SingleStmtNoLabel]
+                              SingleStmtNoLabel(
+                                BreakStmt(
+                                ) [BreakStmt]
+                              ) [SingleStmtNoLabel]
+                            ) [IfElseStmt]
+                          ) [SingleStmtNoLabel]
+                        ) [Stmts]
+                        SingleStmtNoLabel(
+                          IfElseStmt(
+                            SingleCondition(
+                              SingleCondTerm(
+                                SingleCondFact(
+                                  SingleExprWithMinus(
+                                    SingleTerm(
+                                      FactorDesignator(
+                                        Designator(
+                                         x
+                                          NoIndexing(
+                                          ) [NoIndexing]
+                                        ) [Designator]
+                                      ) [FactorDesignator]
+                                    ) [SingleTerm]
+                                  ) [SingleExprWithMinus]
+                                ) [SingleCondFact]
+                              ) [SingleCondTerm]
+                            ) [SingleCondition]
+                            SingleStmtNoLabel(
+                              IfElseStmt(
+                                SingleCondition(
+                                  SingleCondTerm(
+                                    SingleCondFact(
+                                      SingleExprWithMinus(
+                                        SingleTerm(
+                                          FactorDesignator(
+                                            Designator(
+                                             y
+                                              NoIndexing(
+                                              ) [NoIndexing]
+                                            ) [Designator]
+                                          ) [FactorDesignator]
+                                        ) [SingleTerm]
+                                      ) [SingleExprWithMinus]
+                                    ) [SingleCondFact]
+                                  ) [SingleCondTerm]
+                                ) [SingleCondition]
+                                SingleStmtNoLabel(
+                                  BreakStmt(
+                                  ) [BreakStmt]
+                                ) [SingleStmtNoLabel]
+                                SingleStmtNoLabel(
+                                  BreakStmt(
+                                  ) [BreakStmt]
+                                ) [SingleStmtNoLabel]
+                              ) [IfElseStmt]
+                            ) [SingleStmtNoLabel]
+                            SingleStmtNoLabel(
+                              BreakStmt(
+                              ) [BreakStmt]
+                            ) [SingleStmtNoLabel]
+                          ) [IfElseStmt]
+                        ) [SingleStmtNoLabel]
+                      ) [Stmts]
+                      SingleStmtNoLabel(
+                        IfStmt(
+                          SingleCondition(
+                            SingleCondTerm(
+                              SingleCondFact(
+                                SingleExprWithMinus(
+                                  SingleTerm(
+                                    FactorDesignator(
+                                      Designator(
+                                       x
+                                        NoIndexing(
+                                        ) [NoIndexing]
+                                      ) [Designator]
+                                    ) [FactorDesignator]
+                                  ) [SingleTerm]
+                                ) [SingleExprWithMinus]
+                              ) [SingleCondFact]
+                            ) [SingleCondTerm]
+                          ) [SingleCondition]
+                          SingleStmtNoLabel(
+                            IfElseStmt(
+                              SingleCondition(
+                                SingleCondTerm(
+                                  SingleCondFact(
+                                    SingleExprWithMinus(
+                                      SingleTerm(
+                                        FactorDesignator(
+                                          Designator(
+                                           y
+                                            NoIndexing(
+                                            ) [NoIndexing]
+                                          ) [Designator]
+                                        ) [FactorDesignator]
+                                      ) [SingleTerm]
+                                    ) [SingleExprWithMinus]
+                                  ) [SingleCondFact]
+                                ) [SingleCondTerm]
+                              ) [SingleCondition]
+                              SingleStmtNoLabel(
+                                BreakStmt(
+                                ) [BreakStmt]
+                              ) [SingleStmtNoLabel]
+                              SingleStmtNoLabel(
+                                BreakStmt(
+                                ) [BreakStmt]
+                              ) [SingleStmtNoLabel]
+                            ) [IfElseStmt]
+                          ) [SingleStmtNoLabel]
+                        ) [IfStmt]
+                      ) [SingleStmtNoLabel]
+                    ) [Stmts]
+                  ) [MethodDecl]
+                ) [MethodDeclarations]
+                MethodDecl(
+                  RetVoid(
+                  ) [RetVoid]
+                 y
+                  NoFormParams(
+                  ) [NoFormParams]
+                  NoVarListDeclarationList(
+                  ) [NoVarListDeclarationList]
+                  Stmts(
+                    Stmts(
+                      NoStmt(
+                      ) [NoStmt]
+                      SingleStmtWithLabel(
+                        Label(
+                         labela2
+                        ) [Label]
+                        DoWhileStmt(
+                          MultipleStmts(
+                            Statements(
+                              Stmts(
+                                NoStmt(
+                                ) [NoStmt]
+                                SingleStmtNoLabel(
+                                  DesignatorStmt(
+                                    DesignatorStmtInc(
+                                      Designator(
+                                       x
+                                        NoIndexing(
+                                        ) [NoIndexing]
+                                      ) [Designator]
+                                    ) [DesignatorStmtInc]
+                                  ) [DesignatorStmt]
+                                ) [SingleStmtNoLabel]
+                              ) [Stmts]
+                            ) [Statements]
+                          ) [MultipleStmts]
+                          SingleCondition(
+                            SingleCondTerm(
+                              DoubleCondFact(
+                                SingleExprWithMinus(
+                                  SingleTerm(
+                                    FactorDesignator(
+                                      Designator(
+                                       x
+                                        NoIndexing(
+                                        ) [NoIndexing]
+                                      ) [Designator]
+                                    ) [FactorDesignator]
+                                  ) [SingleTerm]
+                                ) [SingleExprWithMinus]
+                                NotEqualTo(
+                                ) [NotEqualTo]
+                                SingleExprWithMinus(
+                                  SingleTerm(
+                                    FactorWithConst(
+                                      NumConst(
+                                       1
+                                      ) [NumConst]
+                                    ) [FactorWithConst]
+                                  ) [SingleTerm]
+                                ) [SingleExprWithMinus]
+                              ) [DoubleCondFact]
+                            ) [SingleCondTerm]
+                          ) [SingleCondition]
+                        ) [DoWhileStmt]
+                      ) [SingleStmtWithLabel]
+                    ) [Stmts]
+                    SingleStmtNoLabel(
+                      DesignatorStmt(
+                        DesignatorStatementDerived1(
+                          Designator(
+                           x
+                            NoIndexing(
+                            ) [NoIndexing]
+                          ) [Designator]
+                          Assignop(
+                          ) [Assignop]
+                        ) [DesignatorStatementDerived1]
+                      ) [DesignatorStmt]
+                    ) [SingleStmtNoLabel]
+                  ) [Stmts]
+                ) [MethodDecl]
+              ) [MethodDeclarations]
+              MethodDecl(
+                RetVoid(
+                ) [RetVoid]
+               test
+                FormParams(
+                  SingleFormParam(
+                    FormParamDerived1(
+                    ) [FormParamDerived1]
+                  ) [SingleFormParam]
+                ) [FormParams]
+                NoVarListDeclarationList(
+                ) [NoVarListDeclarationList]
+                NoStmt(
+                ) [NoStmt]
+              ) [MethodDecl]
+            ) [MethodDeclarations]
+            MethodDecl(
+              RetVoid(
+              ) [RetVoid]
+             test2
+              FormParams(
+                MultipleFormParams(
+                  SingleFormParam(
+                    FormParamDerived1(
+                    ) [FormParamDerived1]
+                  ) [SingleFormParam]
+                  FormalParameter(
+                    Type(
+                     int
+                    ) [Type]
+                   c
+                    NoBrackets(
+                    ) [NoBrackets]
+                  ) [FormalParameter]
+                ) [MultipleFormParams]
+              ) [FormParams]
+              NoVarListDeclarationList(
+              ) [NoVarListDeclarationList]
+              Stmts(
+                Stmts(
+                  NoStmt(
+                  ) [NoStmt]
+                  SingleStmtNoLabel(
+                    IfStmt(
+                      ConditionDerived1(
+                      ) [ConditionDerived1]
+                      SingleStmtNoLabel(
+                        ReturnNoExprStmt(
+                        ) [ReturnNoExprStmt]
+                      ) [SingleStmtNoLabel]
+                    ) [IfStmt]
+                  ) [SingleStmtNoLabel]
+                ) [Stmts]
+                SingleStmtNoLabel(
+                  IfStmt(
+                    ConditionDerived1(
+                    ) [ConditionDerived1]
+                    SingleStmtNoLabel(
+                      BreakStmt(
+                      ) [BreakStmt]
+                    ) [SingleStmtNoLabel]
+                  ) [IfStmt]
+                ) [SingleStmtNoLabel]
+              ) [Stmts]
+            ) [MethodDecl]
+          ) [MethodDeclarations]
+        ) [ClassMethodDeclarations]
+      ) [ClassDeclaration]
+    ) [DeclClass]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  11:56:54,542 - ===================================

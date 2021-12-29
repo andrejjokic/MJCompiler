@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 27/11/2021 23:31:16
+// 29/11/2021 13:53:28
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -35,6 +35,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(FormParamList FormParamList) { }
     public void visit(Decl Decl) { }
     public void visit(Statement Statement) { }
+    public void visit(VarDecl VarDecl) { }
     public void visit(ClassDecl ClassDecl) { }
     public void visit(CondFact CondFact) { }
     public void visit(OptActPars OptActPars) { }
@@ -125,11 +126,11 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NoExtends NoExtends) { visit(); }
     public void visit(Extends Extends) { visit(); }
     public void visit(ClassDeclaration ClassDeclaration) { visit(); }
-    public void visit(NoBrackets NoBrackets) { visit(); }
-    public void visit(Brackets Brackets) { visit(); }
-    public void visit(VarDecl VarDecl) { visit(); }
+    public void visit(VarDeclNoBrackets VarDeclNoBrackets) { visit(); }
+    public void visit(VarDeclBrackets VarDeclBrackets) { visit(); }
     public void visit(SingleVarDecl SingleVarDecl) { visit(); }
     public void visit(MultipleVarDecls MultipleVarDecls) { visit(); }
+    public void visit(VarListDeclsType VarListDeclsType) { visit(); }
     public void visit(VarListDeclarations VarListDeclarations) { visit(); }
     public void visit(Label Label) { visit(); }
     public void visit(Type Type) { visit(); }
@@ -139,6 +140,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ConstDecl ConstDecl) { visit(); }
     public void visit(SingleConstDecl SingleConstDecl) { visit(); }
     public void visit(MultipleConstDecls MultipleConstDecls) { visit(); }
+    public void visit(ConstDeclType ConstDeclType) { visit(); }
     public void visit(ConstListDeclarations ConstListDeclarations) { visit(); }
     public void visit(DeclDerived2 DeclDerived2) { visit(); }
     public void visit(DeclDerived1 DeclDerived1) { visit(); }

@@ -1,0 +1,43 @@
+INFO  12:00:22,651 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  12:00:22,688 - #2 program
+INFO  12:00:22,688 - #22 mojProgram
+INFO  12:00:22,688 - #7 const
+INFO  12:00:22,689 - #22 int
+INFO  12:00:22,689 - #22 x
+INFO  12:00:22,690 - #39 =
+INFO  12:00:22,690 - #23 2
+INFO  12:00:22,690 - #42 ;
+INFO  12:00:22,691 - #48 {
+INFO  12:00:22,691 - #49 }
+INFO  12:00:22,694 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    NoDeclarations(
+    ) [NoDeclarations]
+    DeclConst(
+      ConstListDeclarations(
+        ConstDeclType(
+          Type(
+           int
+          ) [Type]
+        ) [ConstDeclType]
+        SingleConstDecl(
+          ConstDecl(
+           x
+            NumConst(
+             2
+            ) [NumConst]
+          ) [ConstDecl]
+        ) [SingleConstDecl]
+      ) [ConstListDeclarations]
+    ) [DeclConst]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  12:00:22,716 - ===================================
+INFO  12:00:22,718 - Pronadjen i zabelezen tip liste konstanti
+INFO  12:00:22,718 - Ubacen konstanta x tipa rs.etf.pp1.symboltable.concepts.Struct@6e2c634b u listu simbola
+INFO  12:00:22,718 - ===================================

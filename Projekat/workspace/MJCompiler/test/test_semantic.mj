@@ -1,0 +1,6 @@
+program mojProgram
+	const int q = 1, w = 'c', e = true;
+	int r, t[];
+	bool y;
+{
+}

@@ -1,0 +1,16 @@
+INFO  11:59:52,275 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  11:59:52,313 - #2 program
+INFO  11:59:52,313 - #22 mojProgram
+INFO  11:59:52,314 - #48 {
+INFO  11:59:52,314 - #49 }
+INFO  11:59:52,318 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  NoDeclarations(
+  ) [NoDeclarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  11:59:52,318 - ===================================
+INFO  11:59:52,320 - ===================================

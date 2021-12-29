@@ -1,0 +1,43 @@
+INFO  13:16:12,384 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  13:16:12,420 - #2 program
+INFO  13:16:12,420 - #22 mojProgram
+INFO  13:16:12,420 - #7 const
+INFO  13:16:12,421 - #22 int
+INFO  13:16:12,421 - #22 x
+INFO  13:16:12,422 - #39 =
+INFO  13:16:12,422 - #23 1
+INFO  13:16:12,422 - #42 ;
+INFO  13:16:12,423 - #48 {
+INFO  13:16:12,423 - #49 }
+INFO  13:16:12,430 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    NoDeclarations(
+    ) [NoDeclarations]
+    DeclConst(
+      ConstListDeclarations(
+        ConstDeclType(
+          Type(
+           int
+          ) [Type]
+        ) [ConstDeclType]
+        SingleConstDecl(
+          ConstDecl(
+           x
+            NumConst(
+             1
+            ) [NumConst]
+          ) [ConstDecl]
+        ) [SingleConstDecl]
+      ) [ConstListDeclarations]
+    ) [DeclConst]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  13:16:12,433 - ===================================
+INFO  13:16:12,433 - Prepoznat tip 1 liste deklaracija konstanti
+INFO  13:16:12,433 - Ubacen simbol x!
+INFO  13:16:12,433 - ===================================

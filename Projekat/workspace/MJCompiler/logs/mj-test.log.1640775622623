@@ -1,0 +1,26 @@
+INFO  12:00:05,214 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  12:00:05,250 - #2 program
+INFO  12:00:05,250 - #22 mojProgram
+INFO  12:00:05,250 - #7 const
+INFO  12:00:05,251 - #22 int
+INFO  12:00:05,251 - #22 x
+INFO  12:00:05,252 - #42 ;
+ERROR 12:00:05,252 - 
+Sintaksna greska na liniji 2
+INFO  12:00:05,252 - #48 {
+INFO  12:00:05,252 - #49 }
+INFO  12:00:05,257 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    NoDeclarations(
+    ) [NoDeclarations]
+    DeclDerived1(
+    ) [DeclDerived1]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  12:00:05,257 - ===================================
+INFO  12:00:05,258 - ===================================

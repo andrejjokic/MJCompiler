@@ -54,7 +54,7 @@ terminal	String			IDENT;
 /* Constant terminals */
 terminal	Integer			NUMBER;
 terminal	Character 		CHAR;
-terminal					BOOL;
+terminal	Boolean			BOOL;
 	
 /* Operator terminals */
 terminal					PLUS, MINUS, MUL, DIV, PERCENT, EQ, NEQ, GT, GTE, LT, LTE, AND ,OR, EQUAL, PLUSPLUS;
@@ -66,15 +66,15 @@ nonterminal Decl Decl;
 nonterminal					ConstListDecls ConstListDecls;
 nonterminal ConstDeclList ConstDeclList;
 nonterminal ConstDecl ConstDecl;
-nonterminal Const Const;
-nonterminal					Type Type;
-nonterminal ReturnType ReturnType;
+nonterminal ConstDeclType ConstDeclType;
+nonterminal					ReturnType ReturnType;
 nonterminal OptionalBrackets OptionalBrackets;
 nonterminal Label Label;
 nonterminal					VarListDeclList VarListDeclList;
 nonterminal VarListDecls VarListDecls;
 nonterminal VarDeclList VarDeclList;
 nonterminal VarDecl VarDecl;
+nonterminal VarListDeclsType VarListDeclsType;
 nonterminal					ClassDecl ClassDecl;
 nonterminal ClassMethodDecls ClassMethodDecls;
 nonterminal MethodDeclList MethodDeclList;
@@ -107,12 +107,14 @@ nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Const;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type;
 
 /* Priorities */
 precedence		left		ELSE;
 
 /* Grammar Rules */
-Program 			::=		(Program) PROG ProgName:p DeclList:D1 LBRACE RBRACE {: RESULT=new Program(p, D1); RESULT.setLine(pleft); :};
+Program 			::=		(Program) PROG ProgName:p DeclList:D1 LBRACE MethodDeclList:M2 RBRACE {: RESULT=new Program(p, D1, M2); RESULT.setLine(pleft); :};
 
 ProgName			::=		(ProgName) IDENT:progName {: RESULT=new ProgName(progName); RESULT.setLine(progNameleft); :};
 
@@ -132,35 +134,37 @@ Decl				::=		(DeclConst) ConstListDecls:C1 {: RESULT=new DeclConst(C1); RESULT.s
 							|
 							error COMMA {: RESULT=new DeclDerived2(); :};
 
-ConstListDecls		::=		(ConstListDeclarations) CONST Type:T1 ConstDeclList:C2 SEMI {: RESULT=new ConstListDeclarations(T1, C2); RESULT.setLine(T1left); :};
+ConstListDecls		::=		(ConstListDeclarations) CONST ConstDeclType:C1 ConstDeclList:C2 SEMI {: RESULT=new ConstListDeclarations(C1, C2); RESULT.setLine(C1left); :};
+
+ConstDeclType		::=		(ConstDeclType) Type:T1 {: RESULT=new ConstDeclType(T1); RESULT.setLine(T1left); :};
 
 ConstDeclList		::=		(MultipleConstDecls) ConstDeclList:C1 COMMA ConstDecl:C2 {: RESULT=new MultipleConstDecls(C1, C2); RESULT.setLine(C1left); :}
 							|
 							(SingleConstDecl) ConstDecl:C1 {: RESULT=new SingleConstDecl(C1); RESULT.setLine(C1left); :};
 							
-ConstDecl			::=		(ConstDecl) IDENT:I1 EQUAL Const:C2 {: RESULT=new ConstDecl(I1, C2); RESULT.setLine(I1left); :};
+ConstDecl			::=		(ConstDecl) IDENT:constName EQUAL Const:c {: RESULT=new ConstDecl(constName, c); RESULT.setLine(constNameleft); :};
 
-Const				::=		(NumConst) NUMBER:N1 {: RESULT=new NumConst(N1); RESULT.setLine(N1left); :}
+Const				::=		(NumConst) NUMBER:numVal {: RESULT=new NumConst(numVal); RESULT.setLine(numValleft); :}
 							|
-							(CharConst) CHAR:C1 {: RESULT=new CharConst(C1); RESULT.setLine(C1left); :}
+							(CharConst) CHAR:charVal {: RESULT=new CharConst(charVal); RESULT.setLine(charValleft); :}
 							|
-							(BoolConst) BOOL {: RESULT=new BoolConst(); :};		
+							(BoolConst) BOOL:boolVal {: RESULT=new BoolConst(boolVal); RESULT.setLine(boolValleft); :};		
 							
-Type				::=		(Type) IDENT:I1 {: RESULT=new Type(I1); RESULT.setLine(I1left); :};
+Type				::=		(Type) IDENT:typeName {: RESULT=new Type(typeName); RESULT.setLine(typeNameleft); :};
 
 Label				::=		(Label) IDENT:I1 {: RESULT=new Label(I1); RESULT.setLine(I1left); :};
 
-VarListDecls		::=		(VarListDeclarations) Type:T1 VarDeclList:V2 SEMI {: RESULT=new VarListDeclarations(T1, V2); RESULT.setLine(T1left); :};
+VarListDecls		::=		(VarListDeclarations) VarListDeclsType:V1 VarDeclList:V2 SEMI {: RESULT=new VarListDeclarations(V1, V2); RESULT.setLine(V1left); :};
+
+VarListDeclsType	::= 	(VarListDeclsType) Type:T1 {: RESULT=new VarListDeclsType(T1); RESULT.setLine(T1left); :};
 
 VarDeclList			::=		(MultipleVarDecls) VarDeclList:V1 COMMA VarDecl:V2 {: RESULT=new MultipleVarDecls(V1, V2); RESULT.setLine(V1left); :}
 							|
 							(SingleVarDecl) VarDecl:V1 {: RESULT=new SingleVarDecl(V1); RESULT.setLine(V1left); :};
 							
-VarDecl				::=		(VarDecl) IDENT:I1 OptionalBrackets:O2 {: RESULT=new VarDecl(I1, O2); RESULT.setLine(I1left); :};
-
-OptionalBrackets	::=		(Brackets) LBRACKET RBRACKET {: RESULT=new Brackets(); :}
+VarDecl				::=		(VarDeclBrackets) IDENT:varName LBRACKET RBRACKET {: RESULT=new VarDeclBrackets(varName); RESULT.setLine(varNameleft); :}
 							|
-							(NoBrackets) {: RESULT=new NoBrackets(); :} /* epsilon */;
+							(VarDeclNoBrackets) IDENT:varName {: RESULT=new VarDeclNoBrackets(varName); RESULT.setLine(varNameleft); :};
 
 ClassDecl			::=		(ClassDeclaration) CLASS IDENT:I1 ExtendsClause:E2 LBRACE VarListDeclList:V3 ClassMethodDecls:C4 RBRACE {: RESULT=new ClassDeclaration(I1, E2, V3, C4); RESULT.setLine(I1left); :};
 

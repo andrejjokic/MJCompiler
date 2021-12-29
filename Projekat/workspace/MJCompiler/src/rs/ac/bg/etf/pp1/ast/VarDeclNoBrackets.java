@@ -1,13 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 27/11/2021 23:31:16
+// 29/11/2021 13:53:28
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class NoBrackets extends OptionalBrackets {
+public class VarDeclNoBrackets extends VarDecl {
 
-    public NoBrackets () {
+    private String varName;
+
+    public VarDeclNoBrackets (String varName) {
+        this.varName=varName;
+    }
+
+    public String getVarName() {
+        return varName;
+    }
+
+    public void setVarName(String varName) {
+        this.varName=varName;
     }
 
     public void accept(Visitor visitor) {
@@ -28,10 +39,13 @@ public class NoBrackets extends OptionalBrackets {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("NoBrackets(\n");
+        buffer.append("VarDeclNoBrackets(\n");
+
+        buffer.append(" "+tab+varName);
+        buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [NoBrackets]");
+        buffer.append(") [VarDeclNoBrackets]");
         return buffer.toString();
     }
 }

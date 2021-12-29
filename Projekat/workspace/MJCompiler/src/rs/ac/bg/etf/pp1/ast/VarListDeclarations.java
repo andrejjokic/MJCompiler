@@ -1,28 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 27/11/2021 23:31:16
+// 29/11/2021 13:53:28
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class VarListDeclarations extends VarListDecls {
 
-    private Type Type;
+    private VarListDeclsType VarListDeclsType;
     private VarDeclList VarDeclList;
 
-    public VarListDeclarations (Type Type, VarDeclList VarDeclList) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
+    public VarListDeclarations (VarListDeclsType VarListDeclsType, VarDeclList VarDeclList) {
+        this.VarListDeclsType=VarListDeclsType;
+        if(VarListDeclsType!=null) VarListDeclsType.setParent(this);
         this.VarDeclList=VarDeclList;
         if(VarDeclList!=null) VarDeclList.setParent(this);
     }
 
-    public Type getType() {
-        return Type;
+    public VarListDeclsType getVarListDeclsType() {
+        return VarListDeclsType;
     }
 
-    public void setType(Type Type) {
-        this.Type=Type;
+    public void setVarListDeclsType(VarListDeclsType VarListDeclsType) {
+        this.VarListDeclsType=VarListDeclsType;
     }
 
     public VarDeclList getVarDeclList() {
@@ -38,18 +38,18 @@ public class VarListDeclarations extends VarListDecls {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
+        if(VarListDeclsType!=null) VarListDeclsType.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
+        if(VarListDeclsType!=null) VarListDeclsType.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
+        if(VarListDeclsType!=null) VarListDeclsType.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -59,8 +59,8 @@ public class VarListDeclarations extends VarListDecls {
         buffer.append(tab);
         buffer.append("VarListDeclarations(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
+        if(VarListDeclsType!=null)
+            buffer.append(VarListDeclsType.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

@@ -54,7 +54,7 @@ terminal	String			IDENT;
 /* Constant terminals */
 terminal	Integer			NUMBER;
 terminal	Character 		CHAR;
-terminal					BOOL;
+terminal	Boolean			BOOL;
 	
 /* Operator terminals */
 terminal					PLUS, MINUS, MUL, DIV, PERCENT, EQ, NEQ, GT, GTE, LT, LTE, AND ,OR, EQUAL, PLUSPLUS;
@@ -62,9 +62,9 @@ terminal					MINUSMINUS, SEMI, COLON, COMMA, DOT, LPAREN, RPAREN, LBRACE, RBRACE
 
 /* Nonterminals */
 nonterminal					DeclList, Decl;
-nonterminal					ConstListDecls, ConstDeclList, ConstDecl, Const;
-nonterminal					Type, ReturnType, OptionalBrackets, Label;
-nonterminal					VarListDeclList, VarListDecls, VarDeclList, VarDecl;
+nonterminal					ConstListDecls, ConstDeclList, ConstDecl, ConstDeclType;
+nonterminal					ReturnType, OptionalBrackets, Label;
+nonterminal					VarListDeclList, VarListDecls, VarDeclList, VarDecl, VarListDeclsType;
 nonterminal					ClassDecl, ClassMethodDecls, MethodDeclList, MethodDecl, ExtendsClause;
 nonterminal					RecordDecl;
 nonterminal					FormPars, FormParamList, FormParam;
@@ -76,12 +76,14 @@ nonterminal					Mulop, Addop, Assignop, Relop;
 nonterminal					Condition, CondTerm, CondFact;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Const;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type;
 
 /* Priorities */
 precedence		left		ELSE;
 
 /* Grammar Rules */
-Program 			::=		(Program) PROG ProgName:p DeclList LBRACE RBRACE;
+Program 			::=		(Program) PROG ProgName:p DeclList LBRACE MethodDeclList RBRACE;
 
 ProgName			::=		(ProgName) IDENT:progName;
 
@@ -101,35 +103,37 @@ Decl				::=		(DeclConst) ConstListDecls
 							|
 							error COMMA;
 
-ConstListDecls		::=		(ConstListDeclarations) CONST Type ConstDeclList SEMI;
+ConstListDecls		::=		(ConstListDeclarations) CONST ConstDeclType ConstDeclList SEMI;
+
+ConstDeclType		::=		(ConstDeclType) Type;
 
 ConstDeclList		::=		(MultipleConstDecls) ConstDeclList COMMA ConstDecl
 							|
 							(SingleConstDecl) ConstDecl;
 							
-ConstDecl			::=		(ConstDecl) IDENT EQUAL Const;
+ConstDecl			::=		(ConstDecl) IDENT:constName EQUAL Const:c;
 
-Const				::=		(NumConst) NUMBER
+Const				::=		(NumConst) NUMBER:numVal
 							|
-							(CharConst) CHAR
+							(CharConst) CHAR:charVal
 							|
-							(BoolConst) BOOL;		
+							(BoolConst) BOOL:boolVal;		
 							
-Type				::=		(Type) IDENT;
+Type				::=		(Type) IDENT:typeName;
 
 Label				::=		(Label) IDENT;
 
-VarListDecls		::=		(VarListDeclarations) Type VarDeclList SEMI;
+VarListDecls		::=		(VarListDeclarations) VarListDeclsType VarDeclList SEMI;
+
+VarListDeclsType	::= 	(VarListDeclsType) Type;
 
 VarDeclList			::=		(MultipleVarDecls) VarDeclList COMMA VarDecl
 							|
 							(SingleVarDecl) VarDecl;
 							
-VarDecl				::=		(VarDecl) IDENT OptionalBrackets;
-
-OptionalBrackets	::=		(Brackets) LBRACKET RBRACKET
+VarDecl				::=		(VarDeclBrackets) IDENT:varName LBRACKET RBRACKET
 							|
-							(NoBrackets) /* epsilon */;
+							(VarDeclNoBrackets) IDENT:varName;
 
 ClassDecl			::=		(ClassDeclaration) CLASS IDENT ExtendsClause LBRACE VarListDeclList ClassMethodDecls RBRACE;
 

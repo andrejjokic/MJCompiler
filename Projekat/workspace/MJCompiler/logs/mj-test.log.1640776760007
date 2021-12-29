@@ -1,0 +1,86 @@
+INFO  12:09:25,604 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  12:09:25,683 - #2 program
+INFO  12:09:25,683 - #22 mojProgram
+INFO  12:09:25,683 - #7 const
+INFO  12:09:25,686 - #22 int
+INFO  12:09:25,686 - #22 x
+INFO  12:09:25,688 - #39 =
+INFO  12:09:25,688 - #23 2
+INFO  12:09:25,688 - #44 ,
+INFO  12:09:25,690 - #22 y
+INFO  12:09:25,690 - #39 =
+INFO  12:09:25,690 - #23 3
+INFO  12:09:25,691 - #42 ;
+INFO  12:09:25,691 - #7 const
+INFO  12:09:25,692 - #22 c
+INFO  12:09:25,692 - #22 z
+INFO  12:09:25,692 - #39 =
+INFO  12:09:25,692 - #23 2
+INFO  12:09:25,692 - #42 ;
+INFO  12:09:25,692 - #48 {
+INFO  12:09:25,693 - #49 }
+INFO  12:09:25,704 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      NoDeclarations(
+      ) [NoDeclarations]
+      DeclConst(
+        ConstListDeclarations(
+          ConstDeclType(
+            Type(
+             int
+            ) [Type]
+          ) [ConstDeclType]
+          MultipleConstDecls(
+            SingleConstDecl(
+              ConstDecl(
+               x
+                NumConst(
+                 2
+                ) [NumConst]
+              ) [ConstDecl]
+            ) [SingleConstDecl]
+            ConstDecl(
+             y
+              NumConst(
+               3
+              ) [NumConst]
+            ) [ConstDecl]
+          ) [MultipleConstDecls]
+        ) [ConstListDeclarations]
+      ) [DeclConst]
+    ) [Declarations]
+    DeclConst(
+      ConstListDeclarations(
+        ConstDeclType(
+          Type(
+           c
+          ) [Type]
+        ) [ConstDeclType]
+        SingleConstDecl(
+          ConstDecl(
+           z
+            NumConst(
+             2
+            ) [NumConst]
+          ) [ConstDecl]
+        ) [SingleConstDecl]
+      ) [ConstListDeclarations]
+    ) [DeclConst]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  12:09:25,706 - ===================================
+INFO  12:09:25,711 - Pronadjen i zabelezen tip liste konstanti
+INFO  12:09:25,711 - Ubacen konstanta x tipa 1 u tabelu simbola
+INFO  12:09:25,711 - Ubacen konstanta y tipa 1 u tabelu simbola
+INFO  12:09:25,711 - Zavrsena deklaracija liste konstanti
+ERROR 12:09:25,711 - Nije pronadjen tip c u tabeli simbola! 
+INFO  12:09:25,711 - Pronadjen i zabelezen tip liste konstanti
+INFO  12:09:25,711 - Nije prepoznat tip konstante u tabeli simbola
+INFO  12:09:25,712 - Zavrsena deklaracija liste konstanti
+INFO  12:09:25,712 - ===================================

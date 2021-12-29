@@ -1,0 +1,70 @@
+INFO  13:44:53,796 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  13:44:53,833 - #2 program
+INFO  13:44:53,833 - #22 mojProgram
+INFO  13:44:53,833 - #7 const
+INFO  13:44:53,834 - #22 int
+INFO  13:44:53,834 - #22 q
+INFO  13:44:53,835 - #39 =
+INFO  13:44:53,835 - #23 1
+INFO  13:44:53,835 - #44 ,
+INFO  13:44:53,836 - #22 w
+INFO  13:44:53,836 - #39 =
+INFO  13:44:53,836 - #24 c
+INFO  13:44:53,836 - #44 ,
+INFO  13:44:53,836 - #22 e
+INFO  13:44:53,836 - #39 =
+INFO  13:44:53,836 - #25 true
+INFO  13:44:53,836 - #42 ;
+INFO  13:44:53,836 - #48 {
+INFO  13:44:53,837 - #49 }
+INFO  13:44:53,842 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    NoDeclarations(
+    ) [NoDeclarations]
+    DeclConst(
+      ConstListDeclarations(
+        ConstDeclType(
+          Type(
+           int
+          ) [Type]
+        ) [ConstDeclType]
+        MultipleConstDecls(
+          MultipleConstDecls(
+            SingleConstDecl(
+              ConstDecl(
+               q
+                NumConst(
+                 1
+                ) [NumConst]
+              ) [ConstDecl]
+            ) [SingleConstDecl]
+            ConstDecl(
+             w
+              CharConst(
+               c
+              ) [CharConst]
+            ) [ConstDecl]
+          ) [MultipleConstDecls]
+          ConstDecl(
+           e
+            BoolConst(
+             true
+            ) [BoolConst]
+          ) [ConstDecl]
+        ) [MultipleConstDecls]
+      ) [ConstListDeclarations]
+    ) [DeclConst]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  13:44:53,845 - ===================================
+INFO  13:44:53,846 - Prepoznat tip 1 liste deklaracija konstanti
+INFO  13:44:53,846 - Ubacen simbol q!---1
+INFO  13:44:53,846 - Ubacen simbol w!---2
+INFO  13:44:53,846 - Ubacen simbol e!---5
+INFO  13:44:53,846 - Zavrsena deklaracija liste simbola!
+INFO  13:44:53,846 - ===================================

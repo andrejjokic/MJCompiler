@@ -1,0 +1,148 @@
+INFO  12:26:37,372 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  12:26:37,419 - #2 program
+INFO  12:26:37,419 - #22 mojProgram
+INFO  12:26:37,419 - #7 const
+INFO  12:26:37,420 - #22 int
+INFO  12:26:37,420 - #22 x
+INFO  12:26:37,421 - #39 =
+INFO  12:26:37,421 - #23 2
+INFO  12:26:37,421 - #44 ,
+INFO  12:26:37,422 - #22 y
+INFO  12:26:37,422 - #39 =
+INFO  12:26:37,422 - #23 3
+INFO  12:26:37,422 - #42 ;
+INFO  12:26:37,422 - #7 const
+INFO  12:26:37,422 - #22 c
+INFO  12:26:37,422 - #22 z
+INFO  12:26:37,422 - #39 =
+INFO  12:26:37,422 - #23 2
+INFO  12:26:37,422 - #42 ;
+INFO  12:26:37,423 - #22 int
+INFO  12:26:37,423 - #22 c
+INFO  12:26:37,423 - #44 ,
+INFO  12:26:37,425 - #22 v
+INFO  12:26:37,425 - #42 ;
+INFO  12:26:37,425 - #22 char
+INFO  12:26:37,426 - #22 b
+INFO  12:26:37,426 - #50 [
+INFO  12:26:37,426 - #51 ]
+INFO  12:26:37,426 - #44 ,
+INFO  12:26:37,426 - #22 m
+INFO  12:26:37,426 - #42 ;
+INFO  12:26:37,426 - #48 {
+INFO  12:26:37,426 - #49 }
+INFO  12:26:37,430 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        Declarations(
+          NoDeclarations(
+          ) [NoDeclarations]
+          DeclConst(
+            ConstListDeclarations(
+              ConstDeclType(
+                Type(
+                 int
+                ) [Type]
+              ) [ConstDeclType]
+              MultipleConstDecls(
+                SingleConstDecl(
+                  ConstDecl(
+                   x
+                    NumConst(
+                     2
+                    ) [NumConst]
+                  ) [ConstDecl]
+                ) [SingleConstDecl]
+                ConstDecl(
+                 y
+                  NumConst(
+                   3
+                  ) [NumConst]
+                ) [ConstDecl]
+              ) [MultipleConstDecls]
+            ) [ConstListDeclarations]
+          ) [DeclConst]
+        ) [Declarations]
+        DeclConst(
+          ConstListDeclarations(
+            ConstDeclType(
+              Type(
+               c
+              ) [Type]
+            ) [ConstDeclType]
+            SingleConstDecl(
+              ConstDecl(
+               z
+                NumConst(
+                 2
+                ) [NumConst]
+              ) [ConstDecl]
+            ) [SingleConstDecl]
+          ) [ConstListDeclarations]
+        ) [DeclConst]
+      ) [Declarations]
+      DeclVar(
+        VarListDeclarations(
+          VarDeclType(
+            Type(
+             int
+            ) [Type]
+          ) [VarDeclType]
+          MultipleVarDecls(
+            SingleVarDecl(
+              VarDeclNoBrackets(
+               c
+              ) [VarDeclNoBrackets]
+            ) [SingleVarDecl]
+            VarDeclNoBrackets(
+             v
+            ) [VarDeclNoBrackets]
+          ) [MultipleVarDecls]
+        ) [VarListDeclarations]
+      ) [DeclVar]
+    ) [Declarations]
+    DeclVar(
+      VarListDeclarations(
+        VarDeclType(
+          Type(
+           char
+          ) [Type]
+        ) [VarDeclType]
+        MultipleVarDecls(
+          SingleVarDecl(
+            VarDeclBrackets(
+             b
+            ) [VarDeclBrackets]
+          ) [SingleVarDecl]
+          VarDeclNoBrackets(
+           m
+          ) [VarDeclNoBrackets]
+        ) [MultipleVarDecls]
+      ) [VarListDeclarations]
+    ) [DeclVar]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  12:26:37,430 - ===================================
+INFO  12:26:37,431 - Pronadjen i zabelezen tip liste konstanti
+INFO  12:26:37,432 - Ubacen konstanta x tipa 1 u tabelu simbola
+INFO  12:26:37,432 - Ubacen konstanta y tipa 1 u tabelu simbola
+INFO  12:26:37,432 - Zavrsena deklaracija liste konstanti
+ERROR 12:26:37,432 - Nije pronadjen tip c u tabeli simbola! 
+INFO  12:26:37,432 - Pronadjen i zabelezen tip liste konstanti
+INFO  12:26:37,432 - Nije prepoznat tip konstante u tabeli simbola
+INFO  12:26:37,432 - Zavrsena deklaracija liste konstanti
+INFO  12:26:37,432 - Pronadjen i zabelezen tip liste promenjivih
+INFO  12:26:37,432 - Ubacena promenjiva c tipa 1 u tabelu simbola
+INFO  12:26:37,432 - Ubacena promenjiva v tipa 1 u tabelu simbola
+INFO  12:26:37,432 - Zavrsena deklaracija liste promenjivih
+INFO  12:26:37,432 - Pronadjen i zabelezen tip liste promenjivih
+INFO  12:26:37,432 - Ubacena nizovna promenjiva b tipa 2 u tabelu simbola
+INFO  12:26:37,432 - Ubacena promenjiva m tipa 2 u tabelu simbola
+INFO  12:26:37,432 - Zavrsena deklaracija liste promenjivih
+INFO  12:26:37,432 - ===================================
