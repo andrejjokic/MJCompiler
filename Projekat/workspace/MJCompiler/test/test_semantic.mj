@@ -5,8 +5,16 @@ program mojProgram
 	
 	record rekord1 {
 		int z, y[];
+		bool x;
 	}
 	
 	rekord1 rek;
+	
+	class klasa1 {
+		int x, y[];
+		char c;	
+	}
+	
+	klasa1 k;
 {
 }

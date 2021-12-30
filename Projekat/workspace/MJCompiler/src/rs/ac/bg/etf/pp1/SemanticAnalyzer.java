@@ -96,6 +96,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	/* Record Declaration */
 	public void visit(RecordName recordName) {
 		recordName.struct = new StructExtended(StructExtended.Record, new HashTableDataStructure());
+		
 		TabExtended.insert(Obj.Type, recordName.getName(), recordName.struct);
 		TabExtended.openScope();
 		
@@ -104,6 +105,32 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(RecordDeclaration recordDeclaration) {
 		TabExtended.chainLocalSymbols(recordDeclaration.getRecordName().struct);
+		TabExtended.closeScope();
+		
+		this.currentVarObjType = Obj.Var;
+	}
+	
+	/* Class Declaration */
+	public void visit(Extends ext) {
+		ext.struct = ext.getType().struct;
+	}
+	
+	public void visit(NoExtends ext) {
+		ext.struct = null;
+	}
+	
+	public void visit(ClassIdent classIdent) {
+		classIdent.struct = new StructExtended(StructExtended.Class, new HashTableDataStructure());
+		classIdent.struct.setElementType(classIdent.getExtendsClause().struct);
+				
+		TabExtended.insert(Obj.Type, classIdent.getName(), classIdent.struct);
+		TabExtended.openScope();
+		
+		this.currentVarObjType = Obj.Fld;
+	}
+	
+	public void visit(ClassDeclaration classDeclaration) {
+		TabExtended.chainLocalSymbols(classDeclaration.getClassIdent().struct);
 		TabExtended.closeScope();
 		
 		this.currentVarObjType = Obj.Var;
