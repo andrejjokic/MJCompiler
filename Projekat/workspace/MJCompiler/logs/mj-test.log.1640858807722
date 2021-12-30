@@ -1,0 +1,112 @@
+INFO  13:56:42,009 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  13:56:42,046 - #2 program
+INFO  13:56:42,046 - #22 mojProgram
+INFO  13:56:42,046 - #7 const
+INFO  13:56:42,047 - #22 int
+INFO  13:56:42,047 - #22 q
+INFO  13:56:42,048 - #39 =
+INFO  13:56:42,048 - #23 1
+INFO  13:56:42,048 - #44 ,
+INFO  13:56:42,048 - #22 w
+INFO  13:56:42,049 - #39 =
+INFO  13:56:42,049 - #24 c
+INFO  13:56:42,049 - #44 ,
+INFO  13:56:42,049 - #22 e
+INFO  13:56:42,049 - #39 =
+INFO  13:56:42,049 - #25 true
+INFO  13:56:42,049 - #42 ;
+INFO  13:56:42,049 - #22 int
+INFO  13:56:42,049 - #22 r
+INFO  13:56:42,050 - #44 ,
+INFO  13:56:42,050 - #22 t
+INFO  13:56:42,050 - #50 [
+INFO  13:56:42,052 - #51 ]
+INFO  13:56:42,052 - #42 ;
+INFO  13:56:42,052 - #22 bool
+INFO  13:56:42,053 - #22 y
+INFO  13:56:42,053 - #42 ;
+INFO  13:56:42,053 - #48 {
+INFO  13:56:42,053 - #49 }
+INFO  13:56:42,057 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        NoDeclarations(
+        ) [NoDeclarations]
+        DeclConst(
+          ConstListDeclarations(
+            ConstDeclType(
+              Type(
+               int
+              ) [Type]
+            ) [ConstDeclType]
+            MultipleConstDecls(
+              MultipleConstDecls(
+                SingleConstDecl(
+                  ConstDecl(
+                   q
+                    NumConst(
+                     1
+                    ) [NumConst]
+                  ) [ConstDecl]
+                ) [SingleConstDecl]
+                ConstDecl(
+                 w
+                  CharConst(
+                   c
+                  ) [CharConst]
+                ) [ConstDecl]
+              ) [MultipleConstDecls]
+              ConstDecl(
+               e
+                BoolConst(
+                 true
+                ) [BoolConst]
+              ) [ConstDecl]
+            ) [MultipleConstDecls]
+          ) [ConstListDeclarations]
+        ) [DeclConst]
+      ) [Declarations]
+      DeclVar(
+        VarListDeclarations(
+          VarListDeclsType(
+            Type(
+             int
+            ) [Type]
+          ) [VarListDeclsType]
+          MultipleVarDecls(
+            SingleVarDecl(
+              VarDeclNoBrackets(
+               r
+              ) [VarDeclNoBrackets]
+            ) [SingleVarDecl]
+            VarDeclBrackets(
+             t
+            ) [VarDeclBrackets]
+          ) [MultipleVarDecls]
+        ) [VarListDeclarations]
+      ) [DeclVar]
+    ) [Declarations]
+    DeclVar(
+      VarListDeclarations(
+        VarListDeclsType(
+          Type(
+           bool
+          ) [Type]
+        ) [VarListDeclsType]
+        SingleVarDecl(
+          VarDeclNoBrackets(
+           y
+          ) [VarDeclNoBrackets]
+        ) [SingleVarDecl]
+      ) [VarListDeclarations]
+    ) [DeclVar]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  13:56:42,057 - ===================================
+INFO  13:56:42,059 - ===================================

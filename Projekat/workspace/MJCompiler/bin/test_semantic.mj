@@ -2,5 +2,11 @@ program mojProgram
 	const int q = 1, w = 'c', e = true;
 	int r, t[];
 	bool y;
+	
+	record rekord1 {
+		int z, y[];
+	}
+	
+	rekord1 rek;
 {
 }

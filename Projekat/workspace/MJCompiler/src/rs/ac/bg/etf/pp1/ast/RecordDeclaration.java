@@ -1,27 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/11/2021 13:53:28
+// 30/11/2021 12:9:40
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class RecordDeclaration extends RecordDecl {
 
-    private String I1;
+    private RecordName RecordName;
     private VarListDeclList VarListDeclList;
 
-    public RecordDeclaration (String I1, VarListDeclList VarListDeclList) {
-        this.I1=I1;
+    public RecordDeclaration (RecordName RecordName, VarListDeclList VarListDeclList) {
+        this.RecordName=RecordName;
+        if(RecordName!=null) RecordName.setParent(this);
         this.VarListDeclList=VarListDeclList;
         if(VarListDeclList!=null) VarListDeclList.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public RecordName getRecordName() {
+        return RecordName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setRecordName(RecordName RecordName) {
+        this.RecordName=RecordName;
     }
 
     public VarListDeclList getVarListDeclList() {
@@ -37,15 +38,18 @@ public class RecordDeclaration extends RecordDecl {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(RecordName!=null) RecordName.accept(visitor);
         if(VarListDeclList!=null) VarListDeclList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(RecordName!=null) RecordName.traverseTopDown(visitor);
         if(VarListDeclList!=null) VarListDeclList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(RecordName!=null) RecordName.traverseBottomUp(visitor);
         if(VarListDeclList!=null) VarListDeclList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -55,7 +59,10 @@ public class RecordDeclaration extends RecordDecl {
         buffer.append(tab);
         buffer.append("RecordDeclaration(\n");
 
-        buffer.append(" "+tab+I1);
+        if(RecordName!=null)
+            buffer.append(RecordName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(VarListDeclList!=null)

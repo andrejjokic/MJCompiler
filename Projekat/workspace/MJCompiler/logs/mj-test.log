@@ -1,105 +1,165 @@
-INFO  13:56:42,009 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
-INFO  13:56:42,046 - #2 program
-INFO  13:56:42,046 - #22 mojProgram
-INFO  13:56:42,046 - #7 const
-INFO  13:56:42,047 - #22 int
-INFO  13:56:42,047 - #22 q
-INFO  13:56:42,048 - #39 =
-INFO  13:56:42,048 - #23 1
-INFO  13:56:42,048 - #44 ,
-INFO  13:56:42,048 - #22 w
-INFO  13:56:42,049 - #39 =
-INFO  13:56:42,049 - #24 c
-INFO  13:56:42,049 - #44 ,
-INFO  13:56:42,049 - #22 e
-INFO  13:56:42,049 - #39 =
-INFO  13:56:42,049 - #25 true
-INFO  13:56:42,049 - #42 ;
-INFO  13:56:42,049 - #22 int
-INFO  13:56:42,049 - #22 r
-INFO  13:56:42,050 - #44 ,
-INFO  13:56:42,050 - #22 t
-INFO  13:56:42,050 - #50 [
-INFO  13:56:42,052 - #51 ]
-INFO  13:56:42,052 - #42 ;
-INFO  13:56:42,052 - #22 bool
-INFO  13:56:42,053 - #22 y
-INFO  13:56:42,053 - #42 ;
-INFO  13:56:42,053 - #48 {
-INFO  13:56:42,053 - #49 }
-INFO  13:56:42,057 - Program(
+INFO  12:20:22,080 - Compiling source file: C:\Users\andrej.jokic\OneDrive - Aspire Technology\Desktop\Andrej\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  12:20:22,114 - #2 program
+INFO  12:20:22,114 - #22 mojProgram
+INFO  12:20:22,114 - #7 const
+INFO  12:20:22,115 - #22 int
+INFO  12:20:22,115 - #22 q
+INFO  12:20:22,116 - #39 =
+INFO  12:20:22,116 - #23 1
+INFO  12:20:22,116 - #44 ,
+INFO  12:20:22,116 - #22 w
+INFO  12:20:22,117 - #39 =
+INFO  12:20:22,117 - #24 c
+INFO  12:20:22,117 - #44 ,
+INFO  12:20:22,117 - #22 e
+INFO  12:20:22,117 - #39 =
+INFO  12:20:22,117 - #25 true
+INFO  12:20:22,117 - #42 ;
+INFO  12:20:22,117 - #22 int
+INFO  12:20:22,117 - #22 r
+INFO  12:20:22,118 - #44 ,
+INFO  12:20:22,118 - #22 t
+INFO  12:20:22,118 - #50 [
+INFO  12:20:22,118 - #51 ]
+INFO  12:20:22,118 - #42 ;
+INFO  12:20:22,118 - #22 bool
+INFO  12:20:22,118 - #22 y
+INFO  12:20:22,119 - #42 ;
+INFO  12:20:22,119 - #21 record
+INFO  12:20:22,119 - #22 rekord1
+INFO  12:20:22,119 - #48 {
+INFO  12:20:22,119 - #22 int
+INFO  12:20:22,119 - #22 z
+INFO  12:20:22,119 - #44 ,
+INFO  12:20:22,120 - #22 y
+INFO  12:20:22,120 - #50 [
+INFO  12:20:22,120 - #51 ]
+INFO  12:20:22,120 - #42 ;
+INFO  12:20:22,120 - #49 }
+INFO  12:20:22,120 - #22 rekord1
+INFO  12:20:22,120 - #22 rek
+INFO  12:20:22,120 - #42 ;
+INFO  12:20:22,120 - #48 {
+INFO  12:20:22,120 - #49 }
+INFO  12:20:22,127 - Program(
   ProgName(
    mojProgram
   ) [ProgName]
   Declarations(
     Declarations(
       Declarations(
-        NoDeclarations(
-        ) [NoDeclarations]
-        DeclConst(
-          ConstListDeclarations(
-            ConstDeclType(
-              Type(
-               int
-              ) [Type]
-            ) [ConstDeclType]
-            MultipleConstDecls(
-              MultipleConstDecls(
-                SingleConstDecl(
+        Declarations(
+          Declarations(
+            NoDeclarations(
+            ) [NoDeclarations]
+            DeclConst(
+              ConstListDeclarations(
+                ConstDeclType(
+                  Type(
+                   int
+                  ) [Type]
+                ) [ConstDeclType]
+                MultipleConstDecls(
+                  MultipleConstDecls(
+                    SingleConstDecl(
+                      ConstDecl(
+                       q
+                        NumConst(
+                         1
+                        ) [NumConst]
+                      ) [ConstDecl]
+                    ) [SingleConstDecl]
+                    ConstDecl(
+                     w
+                      CharConst(
+                       c
+                      ) [CharConst]
+                    ) [ConstDecl]
+                  ) [MultipleConstDecls]
                   ConstDecl(
-                   q
-                    NumConst(
-                     1
-                    ) [NumConst]
+                   e
+                    BoolConst(
+                     true
+                    ) [BoolConst]
                   ) [ConstDecl]
-                ) [SingleConstDecl]
-                ConstDecl(
-                 w
-                  CharConst(
-                   c
-                  ) [CharConst]
-                ) [ConstDecl]
-              ) [MultipleConstDecls]
-              ConstDecl(
-               e
-                BoolConst(
-                 true
-                ) [BoolConst]
-              ) [ConstDecl]
-            ) [MultipleConstDecls]
-          ) [ConstListDeclarations]
-        ) [DeclConst]
-      ) [Declarations]
-      DeclVar(
-        VarListDeclarations(
-          VarListDeclsType(
-            Type(
-             int
-            ) [Type]
-          ) [VarListDeclsType]
-          MultipleVarDecls(
+                ) [MultipleConstDecls]
+              ) [ConstListDeclarations]
+            ) [DeclConst]
+          ) [Declarations]
+          DeclVar(
+            VarListDeclarations(
+              VarListDeclsType(
+                Type(
+                 int
+                ) [Type]
+              ) [VarListDeclsType]
+              MultipleVarDecls(
+                SingleVarDecl(
+                  VarDeclNoBrackets(
+                   r
+                  ) [VarDeclNoBrackets]
+                ) [SingleVarDecl]
+                VarDeclBrackets(
+                 t
+                ) [VarDeclBrackets]
+              ) [MultipleVarDecls]
+            ) [VarListDeclarations]
+          ) [DeclVar]
+        ) [Declarations]
+        DeclVar(
+          VarListDeclarations(
+            VarListDeclsType(
+              Type(
+               bool
+              ) [Type]
+            ) [VarListDeclsType]
             SingleVarDecl(
               VarDeclNoBrackets(
-               r
+               y
               ) [VarDeclNoBrackets]
             ) [SingleVarDecl]
-            VarDeclBrackets(
-             t
-            ) [VarDeclBrackets]
-          ) [MultipleVarDecls]
-        ) [VarListDeclarations]
-      ) [DeclVar]
+          ) [VarListDeclarations]
+        ) [DeclVar]
+      ) [Declarations]
+      DeclRecord(
+        RecordDeclaration(
+          RecordName(
+           rekord1
+          ) [RecordName]
+          VarListDeclarationList(
+            NoVarListDeclarationList(
+            ) [NoVarListDeclarationList]
+            VarListDeclarations(
+              VarListDeclsType(
+                Type(
+                 int
+                ) [Type]
+              ) [VarListDeclsType]
+              MultipleVarDecls(
+                SingleVarDecl(
+                  VarDeclNoBrackets(
+                   z
+                  ) [VarDeclNoBrackets]
+                ) [SingleVarDecl]
+                VarDeclBrackets(
+                 y
+                ) [VarDeclBrackets]
+              ) [MultipleVarDecls]
+            ) [VarListDeclarations]
+          ) [VarListDeclarationList]
+        ) [RecordDeclaration]
+      ) [DeclRecord]
     ) [Declarations]
     DeclVar(
       VarListDeclarations(
         VarListDeclsType(
           Type(
-           bool
+           rekord1
           ) [Type]
         ) [VarListDeclsType]
         SingleVarDecl(
           VarDeclNoBrackets(
-           y
+           rek
           ) [VarDeclNoBrackets]
         ) [SingleVarDecl]
       ) [VarListDeclarations]
@@ -108,5 +168,5 @@ INFO  13:56:42,057 - Program(
   NoMethodDeclarations(
   ) [NoMethodDeclarations]
 ) [Program]
-INFO  13:56:42,057 - ===================================
-INFO  13:56:42,059 - ===================================
+INFO  12:20:22,127 - ===================================
+INFO  12:20:22,129 - ===================================

@@ -3,11 +3,13 @@ package rs.ac.bg.etf.pp1;
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
+import rs.etf.pp1.symboltable.structure.HashTableDataStructure;
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 
 	Struct currentDeclType = null;				// Contains type, when declaring multiple variables/constants in one line
-	
+	int currentVarObjType = Obj.Var;			// If variable is global(default), or field of a class/structure
+
 	Logger log = Logger.getLogger(getClass());
 
 	public void report_error(String message, SyntaxNode info) {
@@ -61,18 +63,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* Constants Declaration */
-	public void visit(NumConst numConst) {
-		numConst.obj = new Obj(Obj.Con, null, TabExtended.intType);
-	}
-	
-	public void visit(CharConst charConst) {
-		charConst.obj = new Obj(Obj.Con, null, TabExtended.charType);
-	}
-	
-	public void visit(BoolConst boolConst) {
-		boolConst.obj = new Obj(Obj.Con, null, TabExtended.boolType);
-	}
-	
 	public void visit(ConstDeclType constDeclType) {
 		this.currentDeclType = constDeclType.getType().struct;
 	}
@@ -91,14 +81,31 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(VarDeclNoBrackets varDeclNoBrackets) {
-		TabExtended.insert(Obj.Var, varDeclNoBrackets.getVarName(), currentDeclType);
+		TabExtended.insert(this.currentVarObjType, varDeclNoBrackets.getVarName(), currentDeclType);
 	}
 	
 	public void visit(VarDeclBrackets varDeclBrackets) {
-		TabExtended.insert(Obj.Var, varDeclBrackets.getVarName(), new Struct(Struct.Array, currentDeclType));
+		TabExtended.insert(this.currentVarObjType, varDeclBrackets.getVarName(), new StructExtended(StructExtended.Array, currentDeclType));
 	}
 	
 	public void visit(VarListDeclarations varListDeclarations) {
 		this.currentDeclType = null;
+		this.currentVarObjType = Obj.Var;
+	}
+	
+	/* Record Declaration */
+	public void visit(RecordName recordName) {
+		recordName.struct = new StructExtended(StructExtended.Record, new HashTableDataStructure());
+		TabExtended.insert(Obj.Type, recordName.getName(), recordName.struct);
+		TabExtended.openScope();
+		
+		this.currentVarObjType = Obj.Fld;
+	}
+	
+	public void visit(RecordDeclaration recordDeclaration) {
+		TabExtended.chainLocalSymbols(recordDeclaration.getRecordName().struct);
+		TabExtended.closeScope();
+		
+		this.currentVarObjType = Obj.Var;
 	}
 }

@@ -70,6 +70,7 @@ nonterminal ConstDeclType ConstDeclType;
 nonterminal					ReturnType ReturnType;
 nonterminal OptionalBrackets OptionalBrackets;
 nonterminal Label Label;
+nonterminal					RecordDecl RecordDecl;
 nonterminal					VarListDeclList VarListDeclList;
 nonterminal VarListDecls VarListDecls;
 nonterminal VarDeclList VarDeclList;
@@ -80,7 +81,6 @@ nonterminal ClassMethodDecls ClassMethodDecls;
 nonterminal MethodDeclList MethodDeclList;
 nonterminal MethodDecl MethodDecl;
 nonterminal ExtendsClause ExtendsClause;
-nonterminal					RecordDecl RecordDecl;
 nonterminal					FormPars FormPars;
 nonterminal FormParamList FormParamList;
 nonterminal FormParam FormParam;
@@ -109,6 +109,7 @@ nonterminal CondFact CondFact;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Const;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -176,7 +177,9 @@ VarListDeclList		::=		(VarListDeclarationList) VarListDeclList:V1 VarListDecls:V
 							|
 							(NoVarListDeclarationList) {: RESULT=new NoVarListDeclarationList(); :} /* epsilon */;
 							
-RecordDecl			::=		(RecordDeclaration) RECORD IDENT:I1 LBRACE VarListDeclList:V2 RBRACE {: RESULT=new RecordDeclaration(I1, V2); RESULT.setLine(I1left); :};
+RecordDecl			::=		(RecordDeclaration) RECORD RecordName:r LBRACE VarListDeclList:V1 RBRACE {: RESULT=new RecordDeclaration(r, V1); RESULT.setLine(rleft); :};
+
+RecordName			::=		(RecordName) IDENT:name {: RESULT=new RecordName(name); RESULT.setLine(nameleft); :};
 											
 ClassMethodDecls	::=		(ClassMethodDeclarations) LBRACE MethodDeclList:M1 RBRACE {: RESULT=new ClassMethodDeclarations(M1); RESULT.setLine(M1left); :}
 							|

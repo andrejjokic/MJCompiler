@@ -64,9 +64,9 @@ terminal					MINUSMINUS, SEMI, COLON, COMMA, DOT, LPAREN, RPAREN, LBRACE, RBRACE
 nonterminal					DeclList, Decl;
 nonterminal					ConstListDecls, ConstDeclList, ConstDecl, ConstDeclType;
 nonterminal					ReturnType, OptionalBrackets, Label;
+nonterminal					RecordDecl;
 nonterminal					VarListDeclList, VarListDecls, VarDeclList, VarDecl, VarListDeclsType;
 nonterminal					ClassDecl, ClassMethodDecls, MethodDeclList, MethodDecl, ExtendsClause;
-nonterminal					RecordDecl;
 nonterminal					FormPars, FormParamList, FormParam;
 nonterminal					Statements, StatementList, Statement, SingleStatement;
 nonterminal					Expr, Term, Factor;
@@ -78,6 +78,7 @@ nonterminal					Condition, CondTerm, CondFact;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Const;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -145,7 +146,9 @@ VarListDeclList		::=		(VarListDeclarationList) VarListDeclList VarListDecls
 							|
 							(NoVarListDeclarationList) /* epsilon */;
 							
-RecordDecl			::=		(RecordDeclaration) RECORD IDENT LBRACE VarListDeclList RBRACE;
+RecordDecl			::=		(RecordDeclaration) RECORD RecordName:r LBRACE VarListDeclList RBRACE;
+
+RecordName			::=		(RecordName) IDENT:name;
 											
 ClassMethodDecls	::=		(ClassMethodDeclarations) LBRACE MethodDeclList RBRACE
 							|
