@@ -1,0 +1,337 @@
+INFO  15:11:26,944 - Compiling source file: C:\Users\andrej.jokic\OneDrive - Aspire Technology\Desktop\Andrej\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  15:11:26,980 - #2 program
+INFO  15:11:26,980 - #22 mojProgram
+INFO  15:11:26,980 - #7 const
+INFO  15:11:26,980 - #22 int
+INFO  15:11:26,980 - #22 q
+INFO  15:11:26,981 - #39 =
+INFO  15:11:26,981 - #23 1
+INFO  15:11:26,981 - #44 ,
+INFO  15:11:26,982 - #22 w
+INFO  15:11:26,982 - #39 =
+INFO  15:11:26,982 - #24 c
+INFO  15:11:26,982 - #44 ,
+INFO  15:11:26,982 - #22 e
+INFO  15:11:26,982 - #39 =
+INFO  15:11:26,982 - #25 true
+INFO  15:11:26,982 - #42 ;
+INFO  15:11:26,982 - #22 int
+INFO  15:11:26,983 - #22 r
+INFO  15:11:26,983 - #44 ,
+INFO  15:11:26,994 - #22 t
+INFO  15:11:26,994 - #50 [
+INFO  15:11:26,994 - #51 ]
+INFO  15:11:26,994 - #42 ;
+INFO  15:11:26,994 - #22 bool
+INFO  15:11:26,994 - #22 y
+INFO  15:11:26,994 - #42 ;
+INFO  15:11:26,994 - #21 record
+INFO  15:11:26,994 - #22 rekord1
+INFO  15:11:26,994 - #48 {
+INFO  15:11:26,995 - #22 int
+INFO  15:11:26,995 - #22 z
+INFO  15:11:26,995 - #44 ,
+INFO  15:11:26,995 - #22 y
+INFO  15:11:26,995 - #50 [
+INFO  15:11:26,995 - #51 ]
+INFO  15:11:26,996 - #42 ;
+INFO  15:11:26,996 - #22 bool
+INFO  15:11:26,996 - #22 x
+INFO  15:11:26,996 - #42 ;
+INFO  15:11:26,996 - #49 }
+INFO  15:11:26,996 - #22 rekord1
+INFO  15:11:26,996 - #22 rek
+INFO  15:11:26,996 - #42 ;
+INFO  15:11:26,996 - #4 class
+INFO  15:11:26,996 - #22 klasa1
+INFO  15:11:26,996 - #48 {
+INFO  15:11:26,997 - #22 int
+INFO  15:11:26,997 - #22 x
+INFO  15:11:26,997 - #44 ,
+INFO  15:11:26,997 - #22 y
+INFO  15:11:26,997 - #50 [
+INFO  15:11:26,997 - #51 ]
+INFO  15:11:26,997 - #42 ;
+INFO  15:11:26,997 - #22 char
+INFO  15:11:26,997 - #22 c
+INFO  15:11:26,997 - #42 ;
+INFO  15:11:26,997 - #49 }
+INFO  15:11:26,997 - #22 klasa1
+INFO  15:11:26,998 - #22 k
+INFO  15:11:26,998 - #42 ;
+INFO  15:11:26,998 - #4 class
+INFO  15:11:26,998 - #22 klasa2
+INFO  15:11:26,998 - #48 {
+INFO  15:11:26,998 - #48 {
+INFO  15:11:26,998 - #22 int
+INFO  15:11:26,998 - #22 m1
+INFO  15:11:26,999 - #46 (
+INFO  15:11:26,999 - #22 int
+INFO  15:11:26,999 - #22 x
+INFO  15:11:26,999 - #44 ,
+INFO  15:11:26,999 - #22 int
+INFO  15:11:26,999 - #22 y
+INFO  15:11:26,999 - #47 )
+INFO  15:11:27,000 - #48 {
+INFO  15:11:27,000 - #49 }
+INFO  15:11:27,000 - #49 }
+INFO  15:11:27,000 - #49 }
+INFO  15:11:27,001 - #48 {
+INFO  15:11:27,001 - #49 }
+INFO  15:11:27,006 - Program(
+  ProgName(
+   mojProgram
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        Declarations(
+          Declarations(
+            Declarations(
+              Declarations(
+                Declarations(
+                  NoDeclarations(
+                  ) [NoDeclarations]
+                  DeclConst(
+                    ConstListDeclarations(
+                      ConstDeclType(
+                        Type(
+                         int
+                        ) [Type]
+                      ) [ConstDeclType]
+                      MultipleConstDecls(
+                        MultipleConstDecls(
+                          SingleConstDecl(
+                            ConstDecl(
+                             q
+                              NumConst(
+                               1
+                              ) [NumConst]
+                            ) [ConstDecl]
+                          ) [SingleConstDecl]
+                          ConstDecl(
+                           w
+                            CharConst(
+                             c
+                            ) [CharConst]
+                          ) [ConstDecl]
+                        ) [MultipleConstDecls]
+                        ConstDecl(
+                         e
+                          BoolConst(
+                           true
+                          ) [BoolConst]
+                        ) [ConstDecl]
+                      ) [MultipleConstDecls]
+                    ) [ConstListDeclarations]
+                  ) [DeclConst]
+                ) [Declarations]
+                DeclVar(
+                  VarListDeclarations(
+                    VarListDeclsType(
+                      Type(
+                       int
+                      ) [Type]
+                    ) [VarListDeclsType]
+                    MultipleVarDecls(
+                      SingleVarDecl(
+                        VarDeclNoBrackets(
+                         r
+                        ) [VarDeclNoBrackets]
+                      ) [SingleVarDecl]
+                      VarDeclBrackets(
+                       t
+                      ) [VarDeclBrackets]
+                    ) [MultipleVarDecls]
+                  ) [VarListDeclarations]
+                ) [DeclVar]
+              ) [Declarations]
+              DeclVar(
+                VarListDeclarations(
+                  VarListDeclsType(
+                    Type(
+                     bool
+                    ) [Type]
+                  ) [VarListDeclsType]
+                  SingleVarDecl(
+                    VarDeclNoBrackets(
+                     y
+                    ) [VarDeclNoBrackets]
+                  ) [SingleVarDecl]
+                ) [VarListDeclarations]
+              ) [DeclVar]
+            ) [Declarations]
+            DeclRecord(
+              RecordDeclaration(
+                RecordName(
+                 rekord1
+                ) [RecordName]
+                VarListDeclarationList(
+                  VarListDeclarationList(
+                    NoVarListDeclarationList(
+                    ) [NoVarListDeclarationList]
+                    VarListDeclarations(
+                      VarListDeclsType(
+                        Type(
+                         int
+                        ) [Type]
+                      ) [VarListDeclsType]
+                      MultipleVarDecls(
+                        SingleVarDecl(
+                          VarDeclNoBrackets(
+                           z
+                          ) [VarDeclNoBrackets]
+                        ) [SingleVarDecl]
+                        VarDeclBrackets(
+                         y
+                        ) [VarDeclBrackets]
+                      ) [MultipleVarDecls]
+                    ) [VarListDeclarations]
+                  ) [VarListDeclarationList]
+                  VarListDeclarations(
+                    VarListDeclsType(
+                      Type(
+                       bool
+                      ) [Type]
+                    ) [VarListDeclsType]
+                    SingleVarDecl(
+                      VarDeclNoBrackets(
+                       x
+                      ) [VarDeclNoBrackets]
+                    ) [SingleVarDecl]
+                  ) [VarListDeclarations]
+                ) [VarListDeclarationList]
+              ) [RecordDeclaration]
+            ) [DeclRecord]
+          ) [Declarations]
+          DeclVar(
+            VarListDeclarations(
+              VarListDeclsType(
+                Type(
+                 rekord1
+                ) [Type]
+              ) [VarListDeclsType]
+              SingleVarDecl(
+                VarDeclNoBrackets(
+                 rek
+                ) [VarDeclNoBrackets]
+              ) [SingleVarDecl]
+            ) [VarListDeclarations]
+          ) [DeclVar]
+        ) [Declarations]
+        DeclClass(
+          ClassDeclaration(
+            ClassIdent(
+             klasa1
+              NoExtends(
+              ) [NoExtends]
+            ) [ClassIdent]
+            VarListDeclarationList(
+              VarListDeclarationList(
+                NoVarListDeclarationList(
+                ) [NoVarListDeclarationList]
+                VarListDeclarations(
+                  VarListDeclsType(
+                    Type(
+                     int
+                    ) [Type]
+                  ) [VarListDeclsType]
+                  MultipleVarDecls(
+                    SingleVarDecl(
+                      VarDeclNoBrackets(
+                       x
+                      ) [VarDeclNoBrackets]
+                    ) [SingleVarDecl]
+                    VarDeclBrackets(
+                     y
+                    ) [VarDeclBrackets]
+                  ) [MultipleVarDecls]
+                ) [VarListDeclarations]
+              ) [VarListDeclarationList]
+              VarListDeclarations(
+                VarListDeclsType(
+                  Type(
+                   char
+                  ) [Type]
+                ) [VarListDeclsType]
+                SingleVarDecl(
+                  VarDeclNoBrackets(
+                   c
+                  ) [VarDeclNoBrackets]
+                ) [SingleVarDecl]
+              ) [VarListDeclarations]
+            ) [VarListDeclarationList]
+            NoClassMethodDeclarations(
+            ) [NoClassMethodDeclarations]
+          ) [ClassDeclaration]
+        ) [DeclClass]
+      ) [Declarations]
+      DeclVar(
+        VarListDeclarations(
+          VarListDeclsType(
+            Type(
+             klasa1
+            ) [Type]
+          ) [VarListDeclsType]
+          SingleVarDecl(
+            VarDeclNoBrackets(
+             k
+            ) [VarDeclNoBrackets]
+          ) [SingleVarDecl]
+        ) [VarListDeclarations]
+      ) [DeclVar]
+    ) [Declarations]
+    DeclClass(
+      ClassDeclaration(
+        ClassIdent(
+         klasa2
+          NoExtends(
+          ) [NoExtends]
+        ) [ClassIdent]
+        NoVarListDeclarationList(
+        ) [NoVarListDeclarationList]
+        ClassMethodDeclarations(
+          MethodDeclarations(
+            NoMethodDeclarations(
+            ) [NoMethodDeclarations]
+            MethodDecl(
+              MethodIdent(
+                RetType(
+                  Type(
+                   int
+                  ) [Type]
+                ) [RetType]
+               m1
+              ) [MethodIdent]
+              FormParams(
+                MultipleFormParams(
+                  SingleFormParam(
+                    FormalParameterNoBrackets(
+                      Type(
+                       int
+                      ) [Type]
+                     x
+                    ) [FormalParameterNoBrackets]
+                  ) [SingleFormParam]
+                  FormalParameterNoBrackets(
+                    Type(
+                     int
+                    ) [Type]
+                   y
+                  ) [FormalParameterNoBrackets]
+                ) [MultipleFormParams]
+              ) [FormParams]
+              NoVarListDeclarationList(
+              ) [NoVarListDeclarationList]
+              NoStmt(
+              ) [NoStmt]
+            ) [MethodDecl]
+          ) [MethodDeclarations]
+        ) [ClassMethodDeclarations]
+      ) [ClassDeclaration]
+    ) [DeclClass]
+  ) [Declarations]
+  NoMethodDeclarations(
+  ) [NoMethodDeclarations]
+) [Program]
+INFO  15:11:27,007 - ===================================

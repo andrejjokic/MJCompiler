@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2021 12:41:4
+// 30/11/2021 15:6:13
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -12,7 +12,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Mulop Mulop) { }
     public void visit(Indexing Indexing) { }
     public void visit(Relop Relop) { }
-    public void visit(OptionalBrackets OptionalBrackets) { }
     public void visit(StatementList StatementList) { }
     public void visit(Addop Addop) { }
     public void visit(ExtendsClause ExtendsClause) { }
@@ -22,8 +21,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DeclList DeclList) { }
     public void visit(Term Term) { }
     public void visit(Condition Condition) { }
-    public void visit(PrintPars PrintPars) { }
     public void visit(ConstDeclList ConstDeclList) { }
+    public void visit(PrintPars PrintPars) { }
     public void visit(VarDeclList VarDeclList) { }
     public void visit(Expr Expr) { }
     public void visit(IndexingList IndexingList) { }
@@ -108,13 +107,15 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NoStmt NoStmt) { visit(); }
     public void visit(Stmts Stmts) { visit(); }
     public void visit(FormParamDerived1 FormParamDerived1) { visit(); }
-    public void visit(FormalParameter FormalParameter) { visit(); }
+    public void visit(FormalParameterNoBrackets FormalParameterNoBrackets) { visit(); }
+    public void visit(FormalParameterBrackets FormalParameterBrackets) { visit(); }
     public void visit(SingleFormParam SingleFormParam) { visit(); }
     public void visit(MultipleFormParams MultipleFormParams) { visit(); }
     public void visit(NoFormParams NoFormParams) { visit(); }
     public void visit(FormParams FormParams) { visit(); }
     public void visit(RetVoid RetVoid) { visit(); }
     public void visit(RetType RetType) { visit(); }
+    public void visit(MethodIdent MethodIdent) { visit(); }
     public void visit(MethodDecl MethodDecl) { visit(); }
     public void visit(NoMethodDeclarations NoMethodDeclarations) { visit(); }
     public void visit(MethodDeclarations MethodDeclarations) { visit(); }

@@ -16,5 +16,13 @@ program mojProgram
 	}
 	
 	klasa1 k;
+		
+	class klasa2 {
+		{
+			int m1 (int x, int y, char z) {}
+		}
+	}
+
 {
+	void m2() {}
 }

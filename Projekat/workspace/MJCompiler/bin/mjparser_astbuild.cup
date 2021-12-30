@@ -67,9 +67,7 @@ nonterminal					ConstListDecls ConstListDecls;
 nonterminal ConstDeclList ConstDeclList;
 nonterminal ConstDecl ConstDecl;
 nonterminal ConstDeclType ConstDeclType;
-nonterminal					ReturnType ReturnType;
-nonterminal OptionalBrackets OptionalBrackets;
-nonterminal Label Label;
+nonterminal					Label Label;
 nonterminal					RecordDecl RecordDecl;
 nonterminal					VarListDeclList VarListDeclList;
 nonterminal VarListDecls VarListDecls;
@@ -107,8 +105,9 @@ nonterminal CondFact CondFact;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Const;
-nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		MethodIdent;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -190,9 +189,11 @@ MethodDeclList		::=		(MethodDeclarations) MethodDeclList:M1 MethodDecl:M2 {: RES
 							|
 							(NoMethodDeclarations) {: RESULT=new NoMethodDeclarations(); :} /* epsilon */;
 							
-MethodDecl			::=		(MethodDecl) ReturnType:R1 IDENT:I2 LPAREN FormPars:F3 RPAREN VarListDeclList:V4 LBRACE StatementList:S5 RBRACE {: RESULT=new MethodDecl(R1, I2, F3, V4, S5); RESULT.setLine(R1left); :};
+MethodDecl			::=		(MethodDecl) MethodIdent:m LPAREN FormPars:F1 RPAREN VarListDeclList:V2 LBRACE StatementList:S3 RBRACE {: RESULT=new MethodDecl(m, F1, V2, S3); RESULT.setLine(mleft); :};
 
-ReturnType			::=		(RetType) Type:T1 {: RESULT=new RetType(T1); RESULT.setLine(T1left); :}
+MethodIdent			::=		(MethodIdent) ReturnType:r IDENT:name {: RESULT=new MethodIdent(r, name); RESULT.setLine(rleft); :};
+
+ReturnType			::=		(RetType) Type:t {: RESULT=new RetType(t); RESULT.setLine(tleft); :}
 							|
 							(RetVoid) VOID {: RESULT=new RetVoid(); :};
 							
@@ -204,7 +205,9 @@ FormParamList		::=		(MultipleFormParams) FormParamList:F1 COMMA FormParam:F2 {: 
 							|
 							(SingleFormParam) FormParam:F1 {: RESULT=new SingleFormParam(F1); RESULT.setLine(F1left); :};
 
-FormParam			::=		(FormalParameter) Type:T1 IDENT:I2 OptionalBrackets:O3 {: RESULT=new FormalParameter(T1, I2, O3); RESULT.setLine(T1left); :}
+FormParam			::=		(FormalParameterBrackets) Type:T1 IDENT:name LBRACKET RBRACKET {: RESULT=new FormalParameterBrackets(T1, name); RESULT.setLine(T1left); :}
+							|
+							(FormalParameterNoBrackets) Type:T1 IDENT:name {: RESULT=new FormalParameterNoBrackets(T1, name); RESULT.setLine(T1left); :}
 							|
 							error {: RESULT=new FormParamDerived1(); :};
 						

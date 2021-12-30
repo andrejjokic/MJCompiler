@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
+import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 import rs.etf.pp1.symboltable.structure.HashTableDataStructure;
 
@@ -134,5 +135,33 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		TabExtended.closeScope();
 		
 		this.currentVarObjType = Obj.Var;
+	}
+	
+	/* Method Declaration */
+	public void visit(RetType retType) {
+		retType.struct = retType.getType().struct;
+	}
+	
+	public void visit(RetVoid retVoid) {
+		retVoid.struct = TabExtended.noType;
+	}
+	
+	public void visit(FormalParameterNoBrackets formalParam) {
+		TabExtended.insert(Obj.Var, formalParam.getName(), formalParam.getType().struct);
+	}
+	
+	public void visit(FormalParameterBrackets formalParam) {
+		TabExtended.insert(Obj.Var, formalParam.getName(), new StructExtended(StructExtended.Array, formalParam.getType().struct));
+	}
+	
+	public void visit(MethodIdent methodIdent) {
+		methodIdent.obj = TabExtended.insert(Obj.Meth, methodIdent.getName(), methodIdent.getReturnType().struct);
+		TabExtended.openScope();
+	}
+	
+	public void visit(MethodDecl methodDecl) {
+		methodDecl.getMethodIdent().obj.setLevel(TabExtended.currentScope().getnVars());
+		TabExtended.chainLocalSymbols(methodDecl.getMethodIdent().obj);
+		TabExtended.closeScope();
 	}
 }
