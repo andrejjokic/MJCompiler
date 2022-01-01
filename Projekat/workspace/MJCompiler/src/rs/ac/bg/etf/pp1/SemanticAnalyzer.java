@@ -91,7 +91,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(VarListDeclarations varListDeclarations) {
 		this.currentDeclType = null;
-		this.currentVarObjType = Obj.Var;
 	}
 	
 	/* Record Declaration */

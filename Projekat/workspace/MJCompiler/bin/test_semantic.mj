@@ -1,7 +1,6 @@
 program mojProgram
-	const int q = 1, w = 'c', e = true;
-	int r, t[];
-	bool y;
+	const int q = 1;
+	bool r, t[];
 	
 	record rekord1 {
 		int z, y[];
@@ -18,11 +17,12 @@ program mojProgram
 	klasa1 k;
 		
 	class klasa2 {
+		bool c;
 		{
 			int m1 (int x, int y, char z) {}
 		}
 	}
 
 {
-	void m2() {}
+	void m2(int m2_x, char m2_y) {}
 }
