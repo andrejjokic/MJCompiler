@@ -1,90 +1,95 @@
-INFO  16:03:08,925 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
-INFO  16:03:08,969 - #2 program
-INFO  16:03:08,969 - #22 mojProgram
-INFO  16:03:08,969 - #7 const
-INFO  16:03:08,970 - #22 int
-INFO  16:03:08,970 - #22 q
-INFO  16:03:08,971 - #39 =
-INFO  16:03:08,971 - #23 1
-INFO  16:03:08,971 - #42 ;
-INFO  16:03:08,972 - #22 bool
-INFO  16:03:08,972 - #22 r
-INFO  16:03:08,972 - #44 ,
-INFO  16:03:08,972 - #22 t
-INFO  16:03:08,972 - #50 [
-INFO  16:03:08,973 - #51 ]
-INFO  16:03:08,973 - #42 ;
-INFO  16:03:08,973 - #21 record
-INFO  16:03:08,973 - #22 rekord1
-INFO  16:03:08,973 - #48 {
-INFO  16:03:08,973 - #22 int
-INFO  16:03:08,974 - #22 z
-INFO  16:03:08,974 - #44 ,
-INFO  16:03:08,976 - #22 y
-INFO  16:03:08,976 - #50 [
-INFO  16:03:08,976 - #51 ]
-INFO  16:03:08,976 - #42 ;
-INFO  16:03:08,976 - #22 bool
-INFO  16:03:08,976 - #22 x
-INFO  16:03:08,976 - #42 ;
-INFO  16:03:08,976 - #49 }
-INFO  16:03:08,976 - #22 rekord1
-INFO  16:03:08,976 - #22 rek
-INFO  16:03:08,976 - #42 ;
-INFO  16:03:08,976 - #4 class
-INFO  16:03:08,977 - #22 klasa1
-INFO  16:03:08,977 - #48 {
-INFO  16:03:08,979 - #22 int
-INFO  16:03:08,979 - #22 x
-INFO  16:03:08,979 - #44 ,
-INFO  16:03:08,979 - #22 y
-INFO  16:03:08,979 - #50 [
-INFO  16:03:08,979 - #51 ]
-INFO  16:03:08,979 - #42 ;
-INFO  16:03:08,979 - #22 char
-INFO  16:03:08,979 - #22 c
-INFO  16:03:08,979 - #42 ;
-INFO  16:03:08,979 - #49 }
-INFO  16:03:08,979 - #22 klasa1
-INFO  16:03:08,979 - #22 k
-INFO  16:03:08,979 - #42 ;
-INFO  16:03:08,979 - #4 class
-INFO  16:03:08,979 - #22 klasa2
-INFO  16:03:08,979 - #48 {
-INFO  16:03:08,979 - #22 bool
-INFO  16:03:08,979 - #22 c
-INFO  16:03:08,979 - #42 ;
-INFO  16:03:08,979 - #48 {
-INFO  16:03:08,979 - #22 int
-INFO  16:03:08,980 - #22 m1
-INFO  16:03:08,980 - #46 (
-INFO  16:03:08,981 - #22 int
-INFO  16:03:08,981 - #22 x
-INFO  16:03:08,981 - #44 ,
-INFO  16:03:08,981 - #22 int
-INFO  16:03:08,981 - #22 y
-INFO  16:03:08,981 - #44 ,
-INFO  16:03:08,981 - #22 char
-INFO  16:03:08,981 - #22 z
-INFO  16:03:08,981 - #47 )
-INFO  16:03:08,981 - #48 {
-INFO  16:03:08,982 - #49 }
-INFO  16:03:08,982 - #49 }
-INFO  16:03:08,983 - #49 }
-INFO  16:03:08,983 - #48 {
-INFO  16:03:08,983 - #15 void
-INFO  16:03:08,983 - #22 m2
-INFO  16:03:08,984 - #46 (
-INFO  16:03:08,984 - #22 int
-INFO  16:03:08,984 - #22 m2_x
-INFO  16:03:08,984 - #44 ,
-INFO  16:03:08,984 - #22 char
-INFO  16:03:08,984 - #22 m2_y
-INFO  16:03:08,984 - #47 )
-INFO  16:03:08,984 - #48 {
-INFO  16:03:08,984 - #49 }
-INFO  16:03:08,984 - #49 }
-INFO  16:03:08,991 - Program(
+INFO  19:38:53,211 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  19:38:53,248 - #2 program
+INFO  19:38:53,248 - #22 mojProgram
+INFO  19:38:53,249 - #7 const
+INFO  19:38:53,249 - #22 int
+INFO  19:38:53,249 - #22 q
+INFO  19:38:53,250 - #39 =
+INFO  19:38:53,250 - #23 1
+INFO  19:38:53,250 - #42 ;
+INFO  19:38:53,251 - #22 bool
+INFO  19:38:53,251 - #22 r
+INFO  19:38:53,251 - #44 ,
+INFO  19:38:53,252 - #22 t
+INFO  19:38:53,252 - #50 [
+INFO  19:38:53,252 - #51 ]
+INFO  19:38:53,252 - #42 ;
+INFO  19:38:53,252 - #21 record
+INFO  19:38:53,252 - #22 rekord1
+INFO  19:38:53,252 - #48 {
+INFO  19:38:53,252 - #22 int
+INFO  19:38:53,253 - #22 z
+INFO  19:38:53,253 - #44 ,
+INFO  19:38:53,254 - #22 y
+INFO  19:38:53,254 - #50 [
+INFO  19:38:53,254 - #51 ]
+INFO  19:38:53,254 - #42 ;
+INFO  19:38:53,254 - #22 bool
+INFO  19:38:53,254 - #22 x
+INFO  19:38:53,254 - #42 ;
+INFO  19:38:53,254 - #49 }
+INFO  19:38:53,254 - #22 rekord1
+INFO  19:38:53,254 - #22 rek
+INFO  19:38:53,254 - #42 ;
+INFO  19:38:53,254 - #4 class
+INFO  19:38:53,254 - #22 klasa1
+INFO  19:38:53,254 - #48 {
+INFO  19:38:53,255 - #22 int
+INFO  19:38:53,255 - #22 x
+INFO  19:38:53,255 - #44 ,
+INFO  19:38:53,255 - #22 y
+INFO  19:38:53,255 - #50 [
+INFO  19:38:53,255 - #51 ]
+INFO  19:38:53,255 - #42 ;
+INFO  19:38:53,256 - #22 char
+INFO  19:38:53,256 - #22 c
+INFO  19:38:53,256 - #42 ;
+INFO  19:38:53,256 - #49 }
+INFO  19:38:53,256 - #22 klasa1
+INFO  19:38:53,256 - #22 k
+INFO  19:38:53,256 - #42 ;
+INFO  19:38:53,256 - #4 class
+INFO  19:38:53,256 - #22 klasa2
+INFO  19:38:53,256 - #48 {
+INFO  19:38:53,257 - #22 bool
+INFO  19:38:53,257 - #22 c
+INFO  19:38:53,257 - #42 ;
+INFO  19:38:53,257 - #48 {
+INFO  19:38:53,257 - #22 int
+INFO  19:38:53,257 - #22 m1
+INFO  19:38:53,257 - #46 (
+INFO  19:38:53,258 - #22 int
+INFO  19:38:53,258 - #22 x
+INFO  19:38:53,258 - #44 ,
+INFO  19:38:53,258 - #22 int
+INFO  19:38:53,258 - #22 y
+INFO  19:38:53,258 - #44 ,
+INFO  19:38:53,258 - #22 char
+INFO  19:38:53,258 - #22 z
+INFO  19:38:53,258 - #47 )
+INFO  19:38:53,258 - #48 {
+INFO  19:38:53,259 - #14 return
+INFO  19:38:53,259 - #23 1
+INFO  19:38:53,259 - #42 ;
+INFO  19:38:53,259 - #49 }
+INFO  19:38:53,260 - #49 }
+INFO  19:38:53,260 - #49 }
+INFO  19:38:53,260 - #48 {
+INFO  19:38:53,260 - #15 void
+INFO  19:38:53,260 - #22 m2
+INFO  19:38:53,261 - #46 (
+INFO  19:38:53,261 - #22 int
+INFO  19:38:53,261 - #22 m2_x
+INFO  19:38:53,261 - #44 ,
+INFO  19:38:53,261 - #22 char
+INFO  19:38:53,261 - #22 m2_y
+INFO  19:38:53,261 - #47 )
+INFO  19:38:53,261 - #48 {
+INFO  19:38:53,261 - #14 return
+INFO  19:38:53,261 - #42 ;
+INFO  19:38:53,261 - #49 }
+INFO  19:38:53,261 - #49 }
+INFO  19:38:53,266 - Program(
   ProgName(
    mojProgram
   ) [ProgName]
@@ -319,8 +324,23 @@ INFO  16:03:08,991 - Program(
               ) [FormParams]
               NoVarListDeclarationList(
               ) [NoVarListDeclarationList]
-              NoStmt(
-              ) [NoStmt]
+              Stmts(
+                NoStmt(
+                ) [NoStmt]
+                SingleStmtNoLabel(
+                  ReturnExprStmt(
+                    SingleExpr(
+                      SingleTerm(
+                        FactorWithConst(
+                          NumConst(
+                           1
+                          ) [NumConst]
+                        ) [FactorWithConst]
+                      ) [SingleTerm]
+                    ) [SingleExpr]
+                  ) [ReturnExprStmt]
+                ) [SingleStmtNoLabel]
+              ) [Stmts]
             ) [MethodDecl]
           ) [MethodDeclarations]
         ) [ClassMethodDeclarations]
@@ -356,10 +376,16 @@ INFO  16:03:08,991 - Program(
       ) [FormParams]
       NoVarListDeclarationList(
       ) [NoVarListDeclarationList]
-      NoStmt(
-      ) [NoStmt]
+      Stmts(
+        NoStmt(
+        ) [NoStmt]
+        SingleStmtNoLabel(
+          ReturnNoExprStmt(
+          ) [ReturnNoExprStmt]
+        ) [SingleStmtNoLabel]
+      ) [Stmts]
     ) [MethodDecl]
   ) [MethodDeclarations]
 ) [Program]
-INFO  16:03:08,992 - ===================================
-INFO  16:03:08,994 - ===================================
+INFO  19:38:53,266 - ===================================
+INFO  19:38:53,268 - ===================================

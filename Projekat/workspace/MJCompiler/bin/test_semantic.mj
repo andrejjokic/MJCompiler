@@ -19,7 +19,9 @@ program mojProgram
 	class klasa2 {
 		bool c;
 		{
-			int m1 (int x, int y, char z) {}
+			int m1 (int x, int y, char z) {
+				return 1;
+			}
 		}
 	}
 
