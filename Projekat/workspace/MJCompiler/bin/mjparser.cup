@@ -72,7 +72,7 @@ nonterminal					DesignatorName, IndexingList, Indexing;
 nonterminal					Statements, StatementList, Statement, SingleStatement, DoStatementStart;
 nonterminal					DesignatorStatement;
 nonterminal					OptActPars, ActPars, PrintPars;
-nonterminal					Mulop, Addop, Assignop, Relop;
+nonterminal					Mulop, Addop, Assignop;
 nonterminal					Condition, CondTerm, CondFact;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
@@ -81,6 +81,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
+
 /* Priorities */
 precedence		left		ELSE;
 
@@ -272,18 +273,6 @@ Addop				::=		(Add) PLUS
 							(Minus) MINUS;
 							
 Assignop			::=		(Assignop) EQUAL;
-	
-Relop				::=		(EqualTo) EQ
-							|
-							(NotEqualTo) NEQ
-							|
-							(GreaterThen) GT
-							|
-							(GreaterOrEqualThen) GTE
-							|
-							(LessThen) LT
-							|
-							(LessOrEqualThen) LTE;
 					
 PrintPars			::=		(PrintParameters) Expr
 							|
@@ -303,7 +292,6 @@ Condition			::=		(MultipleConditions) Condition OR CondTerm
 							|
 							(SingleCondition) CondTerm
 							|
-							
 							error;
 							
 CondTerm			::=		(MultipleCondTerms) CondTerm AND CondFact
@@ -312,4 +300,14 @@ CondTerm			::=		(MultipleCondTerms) CondTerm AND CondFact
 							
 CondFact			::=		(SingleCondFact) Expr
 							|
-							(DoubleCondFact) Expr Relop Expr;
+							(EQCondFact) Expr:e1 EQ Expr:e2
+							|
+							(NEQCondFact) Expr:e1 NEQ Expr:e2
+							|
+							(GTCondFact) Expr:e1 GT Expr:e2
+							|
+							(GTECondFact) Expr:e1 GTE Expr:e2
+							|
+							(LTCondFact) Expr:e1 LT Expr:e2
+							|
+							(LTECondFact) Expr:e1 LTE Expr:e2;

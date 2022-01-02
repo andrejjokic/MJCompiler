@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/0/2022 17:17:31
+// 2/0/2022 20:41:12
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -11,7 +11,6 @@ public interface Visitor {
     public void visit(VarListDecls VarListDecls);
     public void visit(Mulop Mulop);
     public void visit(Indexing Indexing);
-    public void visit(Relop Relop);
     public void visit(StatementList StatementList);
     public void visit(Addop Addop);
     public void visit(ExtendsClause ExtendsClause);
@@ -43,7 +42,12 @@ public interface Visitor {
     public void visit(ConstListDecls ConstListDecls);
     public void visit(FormPars FormPars);
     public void visit(FormParam FormParam);
-    public void visit(DoubleCondFact DoubleCondFact);
+    public void visit(LTECondFact LTECondFact);
+    public void visit(LTCondFact LTCondFact);
+    public void visit(GTECondFact GTECondFact);
+    public void visit(GTCondFact GTCondFact);
+    public void visit(NEQCondFact NEQCondFact);
+    public void visit(EQCondFact EQCondFact);
     public void visit(SingleCondFact SingleCondFact);
     public void visit(SingleCondTerm SingleCondTerm);
     public void visit(MultipleCondTerms MultipleCondTerms);
@@ -57,12 +61,6 @@ public interface Visitor {
     public void visit(DesignatorStmtAssign DesignatorStmtAssign);
     public void visit(PrintParametersWithConst PrintParametersWithConst);
     public void visit(PrintParameters PrintParameters);
-    public void visit(LessOrEqualThen LessOrEqualThen);
-    public void visit(LessThen LessThen);
-    public void visit(GreaterOrEqualThen GreaterOrEqualThen);
-    public void visit(GreaterThen GreaterThen);
-    public void visit(NotEqualTo NotEqualTo);
-    public void visit(EqualTo EqualTo);
     public void visit(Assignop Assignop);
     public void visit(Minus Minus);
     public void visit(Add Add);

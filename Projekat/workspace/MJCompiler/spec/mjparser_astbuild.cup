@@ -96,7 +96,6 @@ nonterminal PrintPars PrintPars;
 nonterminal					Mulop Mulop;
 nonterminal Addop Addop;
 nonterminal Assignop Assignop;
-nonterminal Relop Relop;
 nonterminal					Condition Condition;
 nonterminal CondTerm CondTerm;
 nonterminal CondFact CondFact;
@@ -107,6 +106,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
+
 /* Priorities */
 precedence		left		ELSE;
 
@@ -298,18 +298,6 @@ Addop				::=		(Add) PLUS {: RESULT=new Add(); :}
 							(Minus) MINUS {: RESULT=new Minus(); :};
 							
 Assignop			::=		(Assignop) EQUAL {: RESULT=new Assignop(); :};
-	
-Relop				::=		(EqualTo) EQ {: RESULT=new EqualTo(); :}
-							|
-							(NotEqualTo) NEQ {: RESULT=new NotEqualTo(); :}
-							|
-							(GreaterThen) GT {: RESULT=new GreaterThen(); :}
-							|
-							(GreaterOrEqualThen) GTE {: RESULT=new GreaterOrEqualThen(); :}
-							|
-							(LessThen) LT {: RESULT=new LessThen(); :}
-							|
-							(LessOrEqualThen) LTE {: RESULT=new LessOrEqualThen(); :};
 					
 PrintPars			::=		(PrintParameters) Expr:E1 {: RESULT=new PrintParameters(E1); RESULT.setLine(E1left); :}
 							|
@@ -329,7 +317,6 @@ Condition			::=		(MultipleConditions) Condition:C1 OR CondTerm:C2 {: RESULT=new 
 							|
 							(SingleCondition) CondTerm:C1 {: RESULT=new SingleCondition(C1); RESULT.setLine(C1left); :}
 							|
-							
 							error {: RESULT=new ConditionDerived1(); :};
 							
 CondTerm			::=		(MultipleCondTerms) CondTerm:C1 AND CondFact:C2 {: RESULT=new MultipleCondTerms(C1, C2); RESULT.setLine(C1left); :}
@@ -338,4 +325,14 @@ CondTerm			::=		(MultipleCondTerms) CondTerm:C1 AND CondFact:C2 {: RESULT=new Mu
 							
 CondFact			::=		(SingleCondFact) Expr:E1 {: RESULT=new SingleCondFact(E1); RESULT.setLine(E1left); :}
 							|
-							(DoubleCondFact) Expr:E1 Relop:R2 Expr:E3 {: RESULT=new DoubleCondFact(E1, R2, E3); RESULT.setLine(E1left); :};
+							(EQCondFact) Expr:e1 EQ Expr:e2 {: RESULT=new EQCondFact(e1, e2); RESULT.setLine(e1left); :}
+							|
+							(NEQCondFact) Expr:e1 NEQ Expr:e2 {: RESULT=new NEQCondFact(e1, e2); RESULT.setLine(e1left); :}
+							|
+							(GTCondFact) Expr:e1 GT Expr:e2 {: RESULT=new GTCondFact(e1, e2); RESULT.setLine(e1left); :}
+							|
+							(GTECondFact) Expr:e1 GTE Expr:e2 {: RESULT=new GTECondFact(e1, e2); RESULT.setLine(e1left); :}
+							|
+							(LTCondFact) Expr:e1 LT Expr:e2 {: RESULT=new LTCondFact(e1, e2); RESULT.setLine(e1left); :}
+							|
+							(LTECondFact) Expr:e1 LTE Expr:e2 {: RESULT=new LTECondFact(e1, e2); RESULT.setLine(e1left); :};

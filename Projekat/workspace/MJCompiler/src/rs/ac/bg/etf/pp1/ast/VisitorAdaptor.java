@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/0/2022 17:17:31
+// 2/0/2022 20:41:12
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -11,7 +11,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(VarListDecls VarListDecls) { }
     public void visit(Mulop Mulop) { }
     public void visit(Indexing Indexing) { }
-    public void visit(Relop Relop) { }
     public void visit(StatementList StatementList) { }
     public void visit(Addop Addop) { }
     public void visit(ExtendsClause ExtendsClause) { }
@@ -43,7 +42,12 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ConstListDecls ConstListDecls) { }
     public void visit(FormPars FormPars) { }
     public void visit(FormParam FormParam) { }
-    public void visit(DoubleCondFact DoubleCondFact) { visit(); }
+    public void visit(LTECondFact LTECondFact) { visit(); }
+    public void visit(LTCondFact LTCondFact) { visit(); }
+    public void visit(GTECondFact GTECondFact) { visit(); }
+    public void visit(GTCondFact GTCondFact) { visit(); }
+    public void visit(NEQCondFact NEQCondFact) { visit(); }
+    public void visit(EQCondFact EQCondFact) { visit(); }
     public void visit(SingleCondFact SingleCondFact) { visit(); }
     public void visit(SingleCondTerm SingleCondTerm) { visit(); }
     public void visit(MultipleCondTerms MultipleCondTerms) { visit(); }
@@ -57,12 +61,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorStmtAssign DesignatorStmtAssign) { visit(); }
     public void visit(PrintParametersWithConst PrintParametersWithConst) { visit(); }
     public void visit(PrintParameters PrintParameters) { visit(); }
-    public void visit(LessOrEqualThen LessOrEqualThen) { visit(); }
-    public void visit(LessThen LessThen) { visit(); }
-    public void visit(GreaterOrEqualThen GreaterOrEqualThen) { visit(); }
-    public void visit(GreaterThen GreaterThen) { visit(); }
-    public void visit(NotEqualTo NotEqualTo) { visit(); }
-    public void visit(EqualTo EqualTo) { visit(); }
     public void visit(Assignop Assignop) { visit(); }
     public void visit(Minus Minus) { visit(); }
     public void visit(Add Add) { visit(); }
