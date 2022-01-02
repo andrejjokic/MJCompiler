@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/0/2022 14:34:13
+// 2/0/2022 15:58:33
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class IndexingField extends Indexing {
 
-    private String I1;
+    private String identName;
 
-    public IndexingField (String I1) {
-        this.I1=I1;
+    public IndexingField (String identName) {
+        this.identName=identName;
     }
 
-    public String getI1() {
-        return I1;
+    public String getIdentName() {
+        return identName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setIdentName(String identName) {
+        this.identName=identName;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class IndexingField extends Indexing {
         buffer.append(tab);
         buffer.append("IndexingField(\n");
 
-        buffer.append(" "+tab+I1);
+        buffer.append(" "+tab+identName);
         buffer.append("\n");
 
         buffer.append(tab);

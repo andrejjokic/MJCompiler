@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/0/2022 14:34:13
+// 2/0/2022 15:58:33
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,21 +9,24 @@ public class Designator implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private String I1;
+    public rs.etf.pp1.symboltable.concepts.Struct struct = null;
+
+    private DesignatorName DesignatorName;
     private IndexingList IndexingList;
 
-    public Designator (String I1, IndexingList IndexingList) {
-        this.I1=I1;
+    public Designator (DesignatorName DesignatorName, IndexingList IndexingList) {
+        this.DesignatorName=DesignatorName;
+        if(DesignatorName!=null) DesignatorName.setParent(this);
         this.IndexingList=IndexingList;
         if(IndexingList!=null) IndexingList.setParent(this);
     }
 
-    public String getI1() {
-        return I1;
+    public DesignatorName getDesignatorName() {
+        return DesignatorName;
     }
 
-    public void setI1(String I1) {
-        this.I1=I1;
+    public void setDesignatorName(DesignatorName DesignatorName) {
+        this.DesignatorName=DesignatorName;
     }
 
     public IndexingList getIndexingList() {
@@ -55,15 +58,18 @@ public class Designator implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(DesignatorName!=null) DesignatorName.accept(visitor);
         if(IndexingList!=null) IndexingList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(DesignatorName!=null) DesignatorName.traverseTopDown(visitor);
         if(IndexingList!=null) IndexingList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(DesignatorName!=null) DesignatorName.traverseBottomUp(visitor);
         if(IndexingList!=null) IndexingList.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -73,7 +79,10 @@ public class Designator implements SyntaxNode {
         buffer.append(tab);
         buffer.append("Designator(\n");
 
-        buffer.append(" "+tab+I1);
+        if(DesignatorName!=null)
+            buffer.append(DesignatorName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(IndexingList!=null)

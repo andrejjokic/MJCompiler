@@ -19,13 +19,16 @@ program mojProgram
 	class klasa2 {
 		bool c;
 		{
-			int m1 (int x, int y, char z) {
-				return 1;
+			int m1 (int x, int y[], char z) {
+				return k.y[1];
 			}
 		}
 	}
 {
-	void m2(int m2_x, char m2_y) {
+	void m2(int m2_x, klasa1 kn[]) {
+	
+		read(kn[1].v);
+		
 		do {
 			break;
 		} while (true);

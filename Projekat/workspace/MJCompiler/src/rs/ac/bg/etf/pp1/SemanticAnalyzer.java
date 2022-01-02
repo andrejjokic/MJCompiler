@@ -2,9 +2,8 @@ package rs.ac.bg.etf.pp1;
 
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
-import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
-import rs.etf.pp1.symboltable.structure.HashTableDataStructure;
+import rs.etf.pp1.symboltable.structure.*;
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 
@@ -13,7 +12,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean errorDetected = false;							// If any semantic/context error is detected
 	Struct currentMethodRetType = TabExtended.noType;		// Contains return type of a expression for a current method
 	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
-
+	Obj currentDesignatorObj= null;							// Object of a current designator
+	
 	Logger log = Logger.getLogger(getClass());
 
 	public void report_error(String message, SyntaxNode info) {
@@ -240,6 +240,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		factorWithNewArray.struct = new StructExtended(StructExtended.Array, factorWithNewArray.getType().struct);
 	}
 	
+	public void visit(FactorDesignator factorDesignator) {
+		factorDesignator.struct = factorDesignator.getDesignator().struct;
+	}
+	
 	/* ==================================================================>
 	 *  Term type propagation 
 	 * <================================================================== */
@@ -274,6 +278,52 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(SingleExprWithMinus singleExprWithMinus) {
 		singleExprWithMinus.struct = singleExprWithMinus.getTerm().struct;
+	}
+	
+	/* ==================================================================>
+	 *  Designator type propagation 
+	 * <================================================================== */
+	public void visit(DesignatorName designatorName) {
+		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
+	}
+	
+	public void visit(IndexingField indexingField) {
+		if (this.currentDesignatorObj.getType().getKind() != StructExtended.Class) {
+			report_error("Greska na liniji " + indexingField.getLine() + " : Tip ne predstavlja unutrasnju klasu! ", null);
+			this.errorDetected = true;
+			return;
+		}
+		
+		Obj member = this.currentDesignatorObj.getType().getMembersTable().searchKey(indexingField.getIdentName());
+		
+		if (member == null || (member.getKind() != Obj.Meth && member.getKind() != Obj.Fld)) {
+			report_error("Greska na liniji " + indexingField.getLine() + " : " + indexingField.getIdentName() + " ne predstavlja ni metodu ni polje klase! ", null);
+			this.errorDetected = true;
+			return;
+		}
+		
+		this.currentDesignatorObj = member;
+	}
+	
+	public void visit(IndexingArray indexingArray) {
+		if (this.currentDesignatorObj.getType().getKind() != StructExtended.Array) {
+			report_error("Greska na liniji " + indexingArray.getLine() + " : " + this.currentDesignatorObj.getName() + " nije niz!", null);
+			this.errorDetected = true;
+			return;
+		}
+		
+		if (indexingArray.getExpr().struct != TabExtended.intType) {
+			report_error("Greska na liniji " + indexingArray.getLine() + " : Izraz za indeksiranje nije tipa int!", null);
+			this.errorDetected = true;
+			return;
+		}
+		
+		this.currentDesignatorObj = new Obj(Obj.Elem, currentDesignatorObj.getName(), this.currentDesignatorObj.getType().getElemType());
+	}
+	
+	public void visit(Designator designator) {
+		designator.struct = this.currentDesignatorObj.getType();
+		this.currentDesignatorObj = null;
 	}
 	
 	/* ==================================================================>

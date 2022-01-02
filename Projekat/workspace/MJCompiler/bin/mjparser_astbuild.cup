@@ -81,15 +81,15 @@ nonterminal MethodDecl MethodDecl;
 nonterminal					FormPars FormPars;
 nonterminal FormParamList FormParamList;
 nonterminal FormParam FormParam;
+nonterminal					DesignatorName DesignatorName;
+nonterminal IndexingList IndexingList;
+nonterminal Indexing Indexing;
 nonterminal					Statements Statements;
 nonterminal StatementList StatementList;
 nonterminal Statement Statement;
 nonterminal SingleStatement SingleStatement;
 nonterminal DoStatementStart DoStatementStart;
-nonterminal					Designator Designator;
-nonterminal DesignatorStatement DesignatorStatement;
-nonterminal IndexingList IndexingList;
-nonterminal Indexing Indexing;
+nonterminal					DesignatorStatement DesignatorStatement;
 nonterminal					OptActPars OptActPars;
 nonterminal ActPars ActPars;
 nonterminal PrintPars PrintPars;
@@ -106,6 +106,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Obj		MethodIdent;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Designator;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -263,19 +264,21 @@ Factor				::=		(FactorWithConst) Const:c {: RESULT=new FactorWithConst(c); RESUL
 							|
 							(FactorWithNewArray) NEW Type:t LBRACKET Expr:e RBRACKET {: RESULT=new FactorWithNewArray(t, e); RESULT.setLine(tleft); :}
 							|
-							(FactorDesignator) Designator:D1 {: RESULT=new FactorDesignator(D1); RESULT.setLine(D1left); :}
+							(FactorDesignator) Designator:d {: RESULT=new FactorDesignator(d); RESULT.setLine(dleft); :}
 							|
-							(FactorDesignatorFuncCall) Designator:D1 LPAREN OptActPars:O2 RPAREN {: RESULT=new FactorDesignatorFuncCall(D1, O2); RESULT.setLine(D1left); :};
+							(FactorDesignatorFuncCall) Designator:d LPAREN OptActPars:O1 RPAREN {: RESULT=new FactorDesignatorFuncCall(d, O1); RESULT.setLine(dleft); :};
 							
-Designator			::=		(Designator) IDENT:I1 IndexingList:I2 {: RESULT=new Designator(I1, I2); RESULT.setLine(I1left); :};
+Designator			::=		(Designator) DesignatorName:D1 IndexingList:I2 {: RESULT=new Designator(D1, I2); RESULT.setLine(D1left); :};
+
+DesignatorName		::=		(DesignatorName) IDENT:name {: RESULT=new DesignatorName(name); RESULT.setLine(nameleft); :};
 
 IndexingList		::=		(MultipleIndexing) IndexingList:I1 Indexing:I2 {: RESULT=new MultipleIndexing(I1, I2); RESULT.setLine(I1left); :}
 							|
 							(NoIndexing) {: RESULT=new NoIndexing(); :} /* epsilon */;
 							
-Indexing			::=		(IndexingField) DOT IDENT:I1 {: RESULT=new IndexingField(I1); RESULT.setLine(I1left); :}
+Indexing			::=		(IndexingField) DOT IDENT:identName {: RESULT=new IndexingField(identName); RESULT.setLine(identNameleft); :}
 							|
-							(IndexingArray) LBRACKET Expr:E1 RBRACKET {: RESULT=new IndexingArray(E1); RESULT.setLine(E1left); :};
+							(IndexingArray) LBRACKET Expr:e RBRACKET {: RESULT=new IndexingArray(e); RESULT.setLine(eleft); :};
 							
 OptActPars			::=		(WithOptActPars) ActPars:A1 {: RESULT=new WithOptActPars(A1); RESULT.setLine(A1left); :}
 							|

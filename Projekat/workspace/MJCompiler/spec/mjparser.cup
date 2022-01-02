@@ -68,8 +68,9 @@ nonterminal					RecordDecl;
 nonterminal					VarListDeclList, VarListDecls, VarDeclList, VarDecl, VarListDeclsType;
 nonterminal					ClassDecl, ClassMethodDecls, MethodDeclList, MethodDecl;
 nonterminal					FormPars, FormParamList, FormParam;
+nonterminal					DesignatorName, IndexingList, Indexing;
 nonterminal					Statements, StatementList, Statement, SingleStatement, DoStatementStart;
-nonterminal					Designator, DesignatorStatement, IndexingList, Indexing;
+nonterminal					DesignatorStatement;
 nonterminal					OptActPars, ActPars, PrintPars;
 nonterminal					Mulop, Addop, Assignop, Relop;
 nonterminal					Condition, CondTerm, CondFact;
@@ -79,6 +80,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Obj		MethodIdent;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Designator;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -236,19 +238,21 @@ Factor				::=		(FactorWithConst) Const:c
 							|
 							(FactorWithNewArray) NEW Type:t LBRACKET Expr:e RBRACKET
 							|
-							(FactorDesignator) Designator
+							(FactorDesignator) Designator:d
 							|
-							(FactorDesignatorFuncCall) Designator LPAREN OptActPars RPAREN;
+							(FactorDesignatorFuncCall) Designator:d LPAREN OptActPars RPAREN;
 							
-Designator			::=		(Designator) IDENT IndexingList;
+Designator			::=		(Designator) DesignatorName IndexingList;
+
+DesignatorName		::=		(DesignatorName) IDENT:name;
 
 IndexingList		::=		(MultipleIndexing) IndexingList Indexing
 							|
 							(NoIndexing) /* epsilon */;
 							
-Indexing			::=		(IndexingField) DOT IDENT
+Indexing			::=		(IndexingField) DOT IDENT:identName
 							|
-							(IndexingArray) LBRACKET Expr RBRACKET;
+							(IndexingArray) LBRACKET Expr:e RBRACKET;
 							
 OptActPars			::=		(WithOptActPars) ActPars
 							|
