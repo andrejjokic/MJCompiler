@@ -241,7 +241,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(FactorDesignator factorDesignator) {
-		factorDesignator.struct = factorDesignator.getDesignator().struct;
+		factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
+	}
+	
+	public void visit(FactorDesignatorFuncCall factorDesignator) {
+		factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
 	}
 	
 	/* ==================================================================>
@@ -322,7 +326,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(Designator designator) {
-		designator.struct = this.currentDesignatorObj.getType();
+		designator.obj = this.currentDesignatorObj;
 		this.currentDesignatorObj = null;
 	}
 	

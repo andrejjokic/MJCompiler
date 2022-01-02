@@ -26,8 +26,7 @@ program mojProgram
 	}
 {
 	void m2(int m2_x, klasa1 kn[]) {
-	
-		read(kn[1].v);
+		read(kn[1].c);
 		
 		do {
 			break;

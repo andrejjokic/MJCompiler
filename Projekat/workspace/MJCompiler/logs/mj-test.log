@@ -1,122 +1,127 @@
-INFO  16:29:43,284 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
-INFO  16:29:43,355 - #2 program
-INFO  16:29:43,355 - #22 mojProgram
-INFO  16:29:43,356 - #7 const
-INFO  16:29:43,357 - #22 int
-INFO  16:29:43,357 - #22 q
-INFO  16:29:43,359 - #39 =
-INFO  16:29:43,359 - #23 1
-INFO  16:29:43,359 - #42 ;
-INFO  16:29:43,360 - #22 bool
-INFO  16:29:43,360 - #22 r
-INFO  16:29:43,361 - #44 ,
-INFO  16:29:43,362 - #22 t
-INFO  16:29:43,362 - #50 [
-INFO  16:29:43,362 - #51 ]
-INFO  16:29:43,362 - #42 ;
-INFO  16:29:43,362 - #21 record
-INFO  16:29:43,362 - #22 rekord1
-INFO  16:29:43,363 - #48 {
-INFO  16:29:43,364 - #22 int
-INFO  16:29:43,365 - #22 z
-INFO  16:29:43,365 - #44 ,
-INFO  16:29:43,367 - #22 y
-INFO  16:29:43,367 - #50 [
-INFO  16:29:43,367 - #51 ]
-INFO  16:29:43,367 - #42 ;
-INFO  16:29:43,367 - #22 bool
-INFO  16:29:43,367 - #22 x
-INFO  16:29:43,367 - #42 ;
-INFO  16:29:43,367 - #49 }
-INFO  16:29:43,368 - #22 rekord1
-INFO  16:29:43,368 - #22 rek
-INFO  16:29:43,368 - #42 ;
-INFO  16:29:43,368 - #4 class
-INFO  16:29:43,368 - #22 klasa1
-INFO  16:29:43,368 - #48 {
-INFO  16:29:43,369 - #22 int
-INFO  16:29:43,370 - #22 x
-INFO  16:29:43,370 - #44 ,
-INFO  16:29:43,370 - #22 y
-INFO  16:29:43,370 - #50 [
-INFO  16:29:43,370 - #51 ]
-INFO  16:29:43,370 - #42 ;
-INFO  16:29:43,370 - #22 char
-INFO  16:29:43,370 - #22 c
-INFO  16:29:43,370 - #42 ;
-INFO  16:29:43,370 - #49 }
-INFO  16:29:43,371 - #22 klasa1
-INFO  16:29:43,371 - #22 k
-INFO  16:29:43,371 - #42 ;
-INFO  16:29:43,371 - #4 class
-INFO  16:29:43,372 - #22 klasa2
-INFO  16:29:43,372 - #48 {
-INFO  16:29:43,372 - #22 bool
-INFO  16:29:43,372 - #22 c
-INFO  16:29:43,372 - #42 ;
-INFO  16:29:43,372 - #48 {
-INFO  16:29:43,372 - #22 int
-INFO  16:29:43,373 - #22 m1
-INFO  16:29:43,373 - #46 (
-INFO  16:29:43,374 - #22 int
-INFO  16:29:43,374 - #22 x
-INFO  16:29:43,374 - #44 ,
-INFO  16:29:43,374 - #22 int
-INFO  16:29:43,374 - #22 y
-INFO  16:29:43,374 - #50 [
-INFO  16:29:43,374 - #51 ]
-INFO  16:29:43,375 - #44 ,
-INFO  16:29:43,375 - #22 char
-INFO  16:29:43,375 - #22 z
-INFO  16:29:43,376 - #47 )
-INFO  16:29:43,376 - #48 {
-INFO  16:29:43,376 - #14 return
-INFO  16:29:43,377 - #22 k
-INFO  16:29:43,377 - #45 .
-INFO  16:29:43,378 - #22 y
-INFO  16:29:43,379 - #50 [
-INFO  16:29:43,379 - #23 1
-INFO  16:29:43,379 - #51 ]
-INFO  16:29:43,379 - #42 ;
-INFO  16:29:43,380 - #49 }
-INFO  16:29:43,380 - #49 }
-INFO  16:29:43,381 - #49 }
-INFO  16:29:43,382 - #48 {
-INFO  16:29:43,382 - #15 void
-INFO  16:29:43,382 - #22 m2
-INFO  16:29:43,382 - #46 (
-INFO  16:29:43,383 - #22 int
-INFO  16:29:43,383 - #22 m2_x
-INFO  16:29:43,383 - #44 ,
-INFO  16:29:43,383 - #22 klasa1
-INFO  16:29:43,383 - #22 kn
-INFO  16:29:43,383 - #50 [
-INFO  16:29:43,383 - #51 ]
-INFO  16:29:43,383 - #47 )
-INFO  16:29:43,383 - #48 {
-INFO  16:29:43,383 - #13 read
-INFO  16:29:43,383 - #46 (
-INFO  16:29:43,383 - #22 kn
-INFO  16:29:43,383 - #50 [
-INFO  16:29:43,383 - #23 1
-INFO  16:29:43,383 - #51 ]
-INFO  16:29:43,383 - #45 .
-INFO  16:29:43,383 - #22 v
-INFO  16:29:43,384 - #47 )
-INFO  16:29:43,384 - #42 ;
-INFO  16:29:43,384 - #9 do
-INFO  16:29:43,384 - #48 {
-INFO  16:29:43,385 - #3 break
-INFO  16:29:43,385 - #42 ;
-INFO  16:29:43,385 - #49 }
-INFO  16:29:43,385 - #10 while
-INFO  16:29:43,386 - #46 (
-INFO  16:29:43,386 - #25 true
-INFO  16:29:43,386 - #47 )
-INFO  16:29:43,387 - #42 ;
-INFO  16:29:43,387 - #49 }
-INFO  16:29:43,387 - #49 }
-INFO  16:29:43,395 - Program(
+INFO  17:25:37,169 - Compiling source file: D:\Live\PP1\MJCompiler\Projekat\workspace\MJCompiler\test\test_semantic.mj
+INFO  17:25:37,205 - #2 program
+INFO  17:25:37,205 - #22 mojProgram
+INFO  17:25:37,205 - #7 const
+INFO  17:25:37,205 - #22 int
+INFO  17:25:37,206 - #22 q
+INFO  17:25:37,206 - #39 =
+INFO  17:25:37,206 - #23 1
+INFO  17:25:37,206 - #42 ;
+INFO  17:25:37,207 - #22 bool
+INFO  17:25:37,207 - #22 r
+INFO  17:25:37,208 - #44 ,
+INFO  17:25:37,208 - #22 t
+INFO  17:25:37,208 - #50 [
+INFO  17:25:37,208 - #51 ]
+INFO  17:25:37,208 - #42 ;
+INFO  17:25:37,208 - #21 record
+INFO  17:25:37,208 - #22 rekord1
+INFO  17:25:37,208 - #48 {
+INFO  17:25:37,209 - #22 int
+INFO  17:25:37,209 - #22 z
+INFO  17:25:37,209 - #44 ,
+INFO  17:25:37,211 - #22 y
+INFO  17:25:37,211 - #50 [
+INFO  17:25:37,211 - #51 ]
+INFO  17:25:37,211 - #42 ;
+INFO  17:25:37,211 - #22 bool
+INFO  17:25:37,211 - #22 x
+INFO  17:25:37,211 - #42 ;
+INFO  17:25:37,211 - #49 }
+INFO  17:25:37,211 - #22 rekord1
+INFO  17:25:37,212 - #22 rek
+INFO  17:25:37,212 - #42 ;
+INFO  17:25:37,212 - #4 class
+INFO  17:25:37,212 - #22 klasa1
+INFO  17:25:37,212 - #48 {
+INFO  17:25:37,213 - #22 int
+INFO  17:25:37,213 - #22 x
+INFO  17:25:37,213 - #44 ,
+INFO  17:25:37,213 - #22 y
+INFO  17:25:37,213 - #50 [
+INFO  17:25:37,213 - #51 ]
+INFO  17:25:37,213 - #42 ;
+INFO  17:25:37,213 - #22 char
+INFO  17:25:37,213 - #22 c
+INFO  17:25:37,213 - #42 ;
+INFO  17:25:37,213 - #49 }
+INFO  17:25:37,213 - #22 klasa1
+INFO  17:25:37,214 - #22 k
+INFO  17:25:37,214 - #42 ;
+INFO  17:25:37,214 - #4 class
+INFO  17:25:37,214 - #22 klasa2
+INFO  17:25:37,214 - #48 {
+INFO  17:25:37,214 - #22 bool
+INFO  17:25:37,214 - #22 c
+INFO  17:25:37,214 - #42 ;
+INFO  17:25:37,214 - #48 {
+INFO  17:25:37,214 - #22 int
+INFO  17:25:37,214 - #22 m1
+INFO  17:25:37,215 - #46 (
+INFO  17:25:37,215 - #22 int
+INFO  17:25:37,215 - #22 x
+INFO  17:25:37,215 - #44 ,
+INFO  17:25:37,215 - #22 int
+INFO  17:25:37,215 - #22 y
+INFO  17:25:37,215 - #50 [
+INFO  17:25:37,215 - #51 ]
+INFO  17:25:37,215 - #44 ,
+INFO  17:25:37,216 - #22 char
+INFO  17:25:37,216 - #22 z
+INFO  17:25:37,216 - #47 )
+INFO  17:25:37,216 - #48 {
+INFO  17:25:37,216 - #14 return
+INFO  17:25:37,217 - #22 k
+INFO  17:25:37,217 - #45 .
+INFO  17:25:37,218 - #22 y
+INFO  17:25:37,218 - #50 [
+INFO  17:25:37,218 - #23 1
+INFO  17:25:37,218 - #51 ]
+INFO  17:25:37,218 - #42 ;
+INFO  17:25:37,218 - #14 return
+INFO  17:25:37,219 - #22 m2
+INFO  17:25:37,219 - #46 (
+INFO  17:25:37,219 - #47 )
+INFO  17:25:37,219 - #42 ;
+INFO  17:25:37,219 - #49 }
+INFO  17:25:37,219 - #49 }
+INFO  17:25:37,220 - #49 }
+INFO  17:25:37,220 - #48 {
+INFO  17:25:37,220 - #15 void
+INFO  17:25:37,220 - #22 m2
+INFO  17:25:37,220 - #46 (
+INFO  17:25:37,220 - #22 int
+INFO  17:25:37,221 - #22 m2_x
+INFO  17:25:37,221 - #44 ,
+INFO  17:25:37,221 - #22 klasa1
+INFO  17:25:37,221 - #22 kn
+INFO  17:25:37,221 - #50 [
+INFO  17:25:37,221 - #51 ]
+INFO  17:25:37,221 - #47 )
+INFO  17:25:37,221 - #48 {
+INFO  17:25:37,221 - #13 read
+INFO  17:25:37,221 - #46 (
+INFO  17:25:37,221 - #22 kn
+INFO  17:25:37,221 - #50 [
+INFO  17:25:37,221 - #23 1
+INFO  17:25:37,221 - #51 ]
+INFO  17:25:37,221 - #45 .
+INFO  17:25:37,221 - #22 c
+INFO  17:25:37,221 - #47 )
+INFO  17:25:37,221 - #42 ;
+INFO  17:25:37,221 - #9 do
+INFO  17:25:37,221 - #48 {
+INFO  17:25:37,222 - #3 break
+INFO  17:25:37,222 - #42 ;
+INFO  17:25:37,222 - #49 }
+INFO  17:25:37,222 - #10 while
+INFO  17:25:37,223 - #46 (
+INFO  17:25:37,223 - #25 true
+INFO  17:25:37,223 - #47 )
+INFO  17:25:37,223 - #42 ;
+INFO  17:25:37,223 - #49 }
+INFO  17:25:37,223 - #49 }
+INFO  17:25:37,228 - Program(
   ProgName(
    mojProgram
   ) [ProgName]
@@ -352,39 +357,60 @@ INFO  16:29:43,395 - Program(
               NoVarListDeclarationList(
               ) [NoVarListDeclarationList]
               Stmts(
-                NoStmt(
-                ) [NoStmt]
+                Stmts(
+                  NoStmt(
+                  ) [NoStmt]
+                  SingleStmtNoLabel(
+                    ReturnExprStmt(
+                      SingleExpr(
+                        SingleTerm(
+                          FactorDesignator(
+                            Designator(
+                              DesignatorName(
+                               k
+                              ) [DesignatorName]
+                              MultipleIndexing(
+                                MultipleIndexing(
+                                  NoIndexing(
+                                  ) [NoIndexing]
+                                  IndexingField(
+                                   y
+                                  ) [IndexingField]
+                                ) [MultipleIndexing]
+                                IndexingArray(
+                                  SingleExpr(
+                                    SingleTerm(
+                                      FactorWithConst(
+                                        NumConst(
+                                         1
+                                        ) [NumConst]
+                                      ) [FactorWithConst]
+                                    ) [SingleTerm]
+                                  ) [SingleExpr]
+                                ) [IndexingArray]
+                              ) [MultipleIndexing]
+                            ) [Designator]
+                          ) [FactorDesignator]
+                        ) [SingleTerm]
+                      ) [SingleExpr]
+                    ) [ReturnExprStmt]
+                  ) [SingleStmtNoLabel]
+                ) [Stmts]
                 SingleStmtNoLabel(
                   ReturnExprStmt(
                     SingleExpr(
                       SingleTerm(
-                        FactorDesignator(
+                        FactorDesignatorFuncCall(
                           Designator(
                             DesignatorName(
-                             k
+                             m2
                             ) [DesignatorName]
-                            MultipleIndexing(
-                              MultipleIndexing(
-                                NoIndexing(
-                                ) [NoIndexing]
-                                IndexingField(
-                                 y
-                                ) [IndexingField]
-                              ) [MultipleIndexing]
-                              IndexingArray(
-                                SingleExpr(
-                                  SingleTerm(
-                                    FactorWithConst(
-                                      NumConst(
-                                       1
-                                      ) [NumConst]
-                                    ) [FactorWithConst]
-                                  ) [SingleTerm]
-                                ) [SingleExpr]
-                              ) [IndexingArray]
-                            ) [MultipleIndexing]
+                            NoIndexing(
+                            ) [NoIndexing]
                           ) [Designator]
-                        ) [FactorDesignator]
+                          NoOptActPars(
+                          ) [NoOptActPars]
+                        ) [FactorDesignatorFuncCall]
                       ) [SingleTerm]
                     ) [SingleExpr]
                   ) [ReturnExprStmt]
@@ -452,7 +478,7 @@ INFO  16:29:43,395 - Program(
                     ) [IndexingArray]
                   ) [MultipleIndexing]
                   IndexingField(
-                   v
+                   c
                   ) [IndexingField]
                 ) [MultipleIndexing]
               ) [Designator]
@@ -496,6 +522,6 @@ INFO  16:29:43,395 - Program(
     ) [MethodDecl]
   ) [MethodDeclarations]
 ) [Program]
-INFO  16:29:43,395 - ===================================
-ERROR 16:29:43,400 - Greska na liniji 30 : v ne predstavlja ni metodu ni polje klase! 
-INFO  16:29:43,400 - ===================================
+INFO  17:25:37,228 - ===================================
+ERROR 17:25:37,231 - Greska na liniji 22 : nekompatibilan tip return iskaza! 
+INFO  17:25:37,231 - ===================================
