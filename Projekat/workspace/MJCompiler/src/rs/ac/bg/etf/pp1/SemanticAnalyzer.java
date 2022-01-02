@@ -384,87 +384,139 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 * Condition expressions compatibility check
+	 * Condition expressions compatibility check and propagation
 	 * <================================================================== */
+	public void visit(SingleCondFact condFact) {
+		if (!condFact.getExpr().struct.equals(TabExtended.boolType)) {
+			condFact.struct = TabExtended.noType;
+		} else {
+			condFact.struct = TabExtended.boolType;
+		}
+	}
+	
 	public void visit(EQCondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
+		
+		condFact.struct = TabExtended.boolType;
 	}
 	
 	public void visit(NEQCondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
+		
+		condFact.struct = TabExtended.boolType;
 	}
 	
 	public void visit(GTCondFact condFact) {		
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator > se ne moze koristi za operande tipa Class! ", null);
+		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
+				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
+			
+			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '>' se ne moze koristi za operande tipa Class/Array! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator > se ne moze koristi za operande tipa Array! ", null);
-			this.errorDetected = true;
-		}
+		condFact.struct = TabExtended.boolType;
 	}
 	
 	public void visit(GTECondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator >= se ne moze koristi za operande tipa Class! ", null);
+		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
+				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
+			
+			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '>=' se ne moze koristi za operande tipa Class/Array! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator >= se ne moze koristi za operande tipa Array! ", null);
-			this.errorDetected = true;
-		}
+		condFact.struct = TabExtended.boolType;
 	}
 	
 	public void visit(LTCondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator < se ne moze koristi za operande tipa Class! ", null);
+		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
+				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
+			
+			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '<' se ne moze koristi za operande tipa Class/Array! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator < se ne moze koristi za operande tipa Array! ", null);
-			this.errorDetected = true;
-		}
+		condFact.struct = TabExtended.boolType;
 	}
 	
 	public void visit(LTECondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator <= se ne moze koristi za operande tipa Class! ", null);
+		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
+				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
+			
+			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '<=' se ne moze koristi za operande tipa Class/Array! ", null);
 			this.errorDetected = true;
+			condFact.struct = TabExtended.noType;
+			return;
 		}
 		
-		if (condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator <= se ne moze koristi za operande tipa Array! ", null);
-			this.errorDetected = true;
+		condFact.struct = TabExtended.boolType;
+	}
+	
+	public void visit(SingleCondTerm condTerm) {
+		condTerm.struct = condTerm.getCondFact().struct;
+	}
+	
+	public void visit(MultipleCondTerms condTerm) {
+		if (!condTerm.getCondTerm().struct.equals(TabExtended.boolType) || !condTerm.getCondFact().struct.equals(TabExtended.boolType)) {
+			condTerm.struct = TabExtended.noType;
+		} else {
+			condTerm.struct = TabExtended.boolType;
+		}
+	}
+	
+	public void visit(SingleCondition condition) {
+		condition.struct = condition.getCondTerm().struct;
+	}
+	
+	public void visit(MultipleConditions conditions) {
+		if (!conditions.getCondition().struct.equals(TabExtended.boolType) || !conditions.getCondTerm().struct.equals(TabExtended.boolType)) {
+			conditions.struct = TabExtended.noType;
+		} else {
+			conditions.struct = TabExtended.boolType;
 		}
 	}
 }

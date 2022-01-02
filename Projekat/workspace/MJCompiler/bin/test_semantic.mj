@@ -30,6 +30,6 @@ program mojProgram
 		
 		do {
 			break;
-		} while (true);
+		} while (rek || 1 < 2 && 5 == 3 || kn);
 	}
 }

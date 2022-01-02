@@ -96,9 +96,6 @@ nonterminal PrintPars PrintPars;
 nonterminal					Mulop Mulop;
 nonterminal Addop Addop;
 nonterminal Assignop Assignop;
-nonterminal					Condition Condition;
-nonterminal CondTerm CondTerm;
-nonterminal CondFact CondFact;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		MethodIdent;
@@ -106,6 +103,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Condition, CondTerm, CondFact;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -313,15 +311,15 @@ DesignatorStatement	::=		(DesignatorStmtAssign) Designator:D1 Assignop:A2 Expr:E
 							|
 							(DesignatorStmtDec) Designator:D1 MINUSMINUS {: RESULT=new DesignatorStmtDec(D1); RESULT.setLine(D1left); :};
 							
-Condition			::=		(MultipleConditions) Condition:C1 OR CondTerm:C2 {: RESULT=new MultipleConditions(C1, C2); RESULT.setLine(C1left); :}
+Condition			::=		(MultipleConditions) Condition:c OR CondTerm:ct {: RESULT=new MultipleConditions(c, ct); RESULT.setLine(cleft); :}
 							|
-							(SingleCondition) CondTerm:C1 {: RESULT=new SingleCondition(C1); RESULT.setLine(C1left); :}
+							(SingleCondition) CondTerm:ct {: RESULT=new SingleCondition(ct); RESULT.setLine(ctleft); :}
 							|
 							error {: RESULT=new ConditionDerived1(); :};
 							
-CondTerm			::=		(MultipleCondTerms) CondTerm:C1 AND CondFact:C2 {: RESULT=new MultipleCondTerms(C1, C2); RESULT.setLine(C1left); :}
+CondTerm			::=		(MultipleCondTerms) CondTerm:ct AND CondFact:cf {: RESULT=new MultipleCondTerms(ct, cf); RESULT.setLine(ctleft); :}
 							|
-							(SingleCondTerm) CondFact:C1 {: RESULT=new SingleCondTerm(C1); RESULT.setLine(C1left); :};
+							(SingleCondTerm) CondFact:ct {: RESULT=new SingleCondTerm(ct); RESULT.setLine(ctleft); :};
 							
 CondFact			::=		(SingleCondFact) Expr:E1 {: RESULT=new SingleCondFact(E1); RESULT.setLine(E1left); :}
 							|
