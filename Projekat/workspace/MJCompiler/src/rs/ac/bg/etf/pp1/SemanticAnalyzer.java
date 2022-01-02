@@ -12,6 +12,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int currentVarObjType = Obj.Var;						// If variable is global(default), or field of a class/structure
 	boolean errorDetected = false;							// If any semantic/context error is detected
 	Struct currentMethodRetType = TabExtended.noType;		// Contains return type of a expression for a current method
+	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
 
 	Logger log = Logger.getLogger(getClass());
 
@@ -62,10 +63,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			} else {
 				// Symbol found, but it is not a type 
 				type.struct = TabExtended.noType;
+				report_error("Greska na liniji " + type.getLine() + " : " + type.getTypeName() + " ne predstavlja tip!", null);
 			}
 		} else {
 			// Type not found in symbol table
 			type.struct = TabExtended.noType;
+			report_error("Greska na liniji " + type.getLine() + " : " + type.getTypeName() + " nije pronadjen u tabeli simbola!", null);
 		}
 	}
 	
@@ -278,5 +281,30 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	 * <================================================================== */	
 	public void visit(ReturnExprStmt retStmt) {
 		this.currentMethodRetType = retStmt.getExpr().struct;
+	}
+	
+	/* ==================================================================>
+	 * Loop statements context check
+	 * <================================================================== */
+	public void visit(DoStatementStart doStmtStart) {
+		this.insideLoop = true;
+	}
+	
+	public void visit(DoWhileStmt doWhileStmt) {
+		this.insideLoop = false;
+	}
+	
+	public void visit(BreakStmt breakStmt) {
+		if (!this.insideLoop) {
+			this.errorDetected = true;
+			report_error("Greska na liniji " + breakStmt.getLine() + " : " + "Iskaz break se moze koristiti samo unutar do-while petlje! ", null);
+		}
+	}
+	
+	public void visit(ContinueStmt continueStmt) {
+		if (!this.insideLoop) {
+			this.errorDetected = true;
+			report_error("Greska na liniji " + continueStmt.getLine() + " : " + "Iskaz continue se moze koristiti samo unutar do-while petlje! ", null);
+		}
 	}
 }

@@ -85,6 +85,7 @@ nonterminal					Statements Statements;
 nonterminal StatementList StatementList;
 nonterminal Statement Statement;
 nonterminal SingleStatement SingleStatement;
+nonterminal DoStatementStart DoStatementStart;
 nonterminal					Designator Designator;
 nonterminal DesignatorStatement DesignatorStatement;
 nonterminal IndexingList IndexingList;
@@ -224,7 +225,7 @@ SingleStatement		::=		(IfStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RES
 							|
 							(IfElseStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 ELSE Statement:S3 {: RESULT=new IfElseStmt(C1, S2, S3); RESULT.setLine(C1left); :}
 							|
-							(DoWhileStmt) DO Statement:S1 WHILE LPAREN Condition:C2 RPAREN SEMI {: RESULT=new DoWhileStmt(S1, C2); RESULT.setLine(S1left); :}
+							(DoWhileStmt) DoStatementStart:D1 Statement:S2 WHILE LPAREN Condition:C3 RPAREN SEMI {: RESULT=new DoWhileStmt(D1, S2, C3); RESULT.setLine(D1left); :}
 							|
 							(DesignatorStmt) DesignatorStatement:D1 SEMI {: RESULT=new DesignatorStmt(D1); RESULT.setLine(D1left); :}
 							|
@@ -241,6 +242,8 @@ SingleStatement		::=		(IfStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RES
 							(ReadStmt) READ LPAREN Designator:D1 RPAREN SEMI {: RESULT=new ReadStmt(D1); RESULT.setLine(D1left); :}
 							|
 							(PrintStmt) PRINT LPAREN PrintPars:P1 RPAREN SEMI {: RESULT=new PrintStmt(P1); RESULT.setLine(P1left); :};
+							
+DoStatementStart	::=		(DoStatementStart) DO {: RESULT=new DoStatementStart(); :};
 
 Expr				::=		(MultipleExpr) Expr:e Addop:A1 Term:t {: RESULT=new MultipleExpr(e, A1, t); RESULT.setLine(eleft); :}
 							|

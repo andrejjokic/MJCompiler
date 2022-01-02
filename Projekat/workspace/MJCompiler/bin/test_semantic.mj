@@ -24,7 +24,10 @@ program mojProgram
 			}
 		}
 	}
-
 {
-	void m2(int m2_x, char m2_y) {}
+	void m2(int m2_x, char m2_y) {
+		do {
+			break;
+		} while (true);
+	}
 }
