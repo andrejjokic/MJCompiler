@@ -22,8 +22,23 @@ program mojProgram
 			int m1 (int x, int y[], char z) {
 				return k.y[1];
 			}
+			
+			void m2(char klasa2_c) {}
 		}
 	}
+	
+	class klasa3 extends klasa2 {
+		int z;
+		{
+			// override
+			void m2(char klasa3_c) {
+				print(klasa3_c);
+			}
+		}
+	}
+	
+	klasa3 k3;
+	
 {
 	void m2(int m2_x, klasa1 kn[]) {
 		read(kn[1].c);

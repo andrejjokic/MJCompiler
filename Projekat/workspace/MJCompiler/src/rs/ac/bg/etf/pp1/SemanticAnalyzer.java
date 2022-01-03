@@ -13,9 +13,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Struct currentMethodRetType = TabExtended.noType;		// Contains return type of a expression for a current method
 	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
 	Obj currentDesignatorObj= null;							// Object of a current designator
+	Struct currentClassDeclaration = null;					// If current method declaration is part of a class
 	
 	Logger log = Logger.getLogger(getClass());
 
+	
+	/* <=========================================================================================
+	 *  		Reports
+	 * =========================================================================================> */
+	
 	public void report_error(String message, SyntaxNode info) {
 		StringBuilder msg = new StringBuilder(message);
 		int line = (info == null) ? 0: info.getLine();
@@ -37,8 +43,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* <=========================================================================================
-	 *  Program recognition 
+	 *  		Program recognition 
 	 * =========================================================================================> */
+	
 	public void visit(ProgName progName) {
 		progName.obj = TabExtended.insert(Obj.Prog, progName.getProgName(), TabExtended.noType);
 		TabExtended.openScope();
@@ -50,8 +57,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 * Check if type is valid
+	 * 			Check if type is valid
 	 * <================================================================== */
+	
 	public void visit(Type type) {
 		// Look for type in symbol table
 		Obj typeNode = TabExtended.find(type.getTypeName());
@@ -73,8 +81,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Constants Declaration
+	 *  		Constants Declaration
 	 * <================================================================== */
+	
 	public void visit(ConstDeclType constDeclType) {
 		this.currentDeclType = constDeclType.getType().struct;
 	}
@@ -88,8 +97,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Variable Declaration
+	 *  		Variable Declaration
 	 * <================================================================== */
+	
 	public void visit(VarListDeclsType varListDeclsType) {
 		this.currentDeclType = varListDeclsType.getType().struct;
 	}
@@ -107,8 +117,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Record Declaration
+	 *  		Record Declaration
 	 * <================================================================== */
+	
 	public void visit(RecordName recordName) {
 		recordName.struct = new StructExtended(StructExtended.Record, new HashTableDataStructure());
 		
@@ -126,14 +137,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Class Declaration
+	 *  		Class Declaration
 	 * <================================================================== */
+	
 	public void visit(Extends ext) {
 		ext.struct = ext.getType().struct;
 	}
 	
 	public void visit(NoExtends ext) {
-		ext.struct = null;
+		ext.struct = TabExtended.noType;
 	}
 	
 	public void visit(ClassIdent classIdent) {
@@ -143,7 +155,27 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		TabExtended.insert(Obj.Type, classIdent.getName(), classIdent.struct);
 		TabExtended.openScope();
 		
+		// If class is derived, add all the parent's fields/methods to the child class
+		if (classIdent.struct.getElemType() != TabExtended.noType) {
+			classIdent.struct.getElemType().getMembers().forEach(o -> {
+				Obj inherited = TabExtended.insert(o.getKind(), o.getName(), o.getType());
+				inherited.setAdr(o.getAdr());
+				inherited.setLevel(o.getLevel());
+				
+				// If it is a method, add it's local parameters to the locals field
+				if (o.getKind() == Obj.Meth) {
+					TabExtended.openScope();
+					o.getLocalSymbols().forEach(l -> {
+						TabExtended.insert(l.getKind(), l.getName(), l.getType());
+					});
+					TabExtended.chainLocalSymbols(inherited);
+					TabExtended.closeScope();
+				}
+			});
+		}
+		
 		this.currentVarObjType = Obj.Fld;
+		this.currentClassDeclaration = classIdent.struct;
 	}
 	
 	public void visit(ClassDeclaration classDeclaration) {
@@ -151,11 +183,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		TabExtended.closeScope();
 		
 		this.currentVarObjType = Obj.Var;
+		this.currentClassDeclaration = null;
 	}
 	
 	/* ==================================================================>
-	 *  Method Declaration
+	 *  		Method Declaration
 	 * <================================================================== */
+	
 	public void visit(RetType retType) {
 		retType.struct = retType.getType().struct;
 	}
@@ -175,6 +209,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(MethodIdent methodIdent) {
 		methodIdent.obj = TabExtended.insert(Obj.Meth, methodIdent.getName(), methodIdent.getReturnType().struct);
 		TabExtended.openScope();
+		
+		// Add implicit first argument => this if it is a class method
+		if (this.currentClassDeclaration != null) {
+			TabExtended.insert(Obj.Var, "this", this.currentClassDeclaration);
+		}
 	}
 	
 	public void visit(MethodDecl methodDecl) {
@@ -192,8 +231,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Check constant declaration type compatibility
+	 *  		Check constant declaration type compatibility
 	 * <================================================================== */
+	
 	public void visit(NumConst numConst) {
 		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.intType)) {
 			this.errorDetected = true;
@@ -222,8 +262,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Factor type propagation 
+	 *  		Factor type propagation 
 	 * <================================================================== */
+	
 	public void visit(FactorWithConst factorWithConst) {
 		factorWithConst.struct = factorWithConst.getConst().struct;
 	}
@@ -259,8 +300,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Term type propagation 
+	 *  		Term type propagation 
 	 * <================================================================== */
+	
 	public void visit(MultipleTerm multipleTerm) {
 		if (!multipleTerm.getTerm().struct.equals(TabExtended.intType) || !multipleTerm.getFactor().struct.equals(TabExtended.intType)) {
 			report_error("Greska na liniji " + multipleTerm.getLine() + " : Mnozioci moraju biti tipa int! ", null);
@@ -277,8 +319,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Expression type propagation 
+	 *  		Expression type propagation 
 	 * <================================================================== */
+	
 	public void visit(MultipleExpr multipleExpr) {
 		if (!multipleExpr.getExpr().struct.equals(TabExtended.intType) || !multipleExpr.getTerm().struct.equals(TabExtended.intType)) {
 			report_error("Greska na liniji " + multipleExpr.getLine() + " : Sabirci moraju biti tipa int! ", null);
@@ -306,8 +349,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 *  Designator type propagation 
+	 *  		Designator type propagation 
 	 * <================================================================== */
+	
 	public void visit(DesignatorName designatorName) {
 		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
 	}
@@ -352,15 +396,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 * Statement type propagation
+	 * 		Statement type propagation
 	 * <================================================================== */	
+	
 	public void visit(ReturnExprStmt retStmt) {
 		this.currentMethodRetType = retStmt.getExpr().struct;
 	}
 	
 	/* ==================================================================>
-	 * Loop statements context check
+	 * 		Loop statements context check
 	 * <================================================================== */
+	
 	public void visit(DoStatementStart doStmtStart) {
 		this.insideLoop = true;
 	}
@@ -384,8 +430,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	/* ==================================================================>
-	 * Condition expressions compatibility check and propagation
+	 * 		Condition expressions compatibility check and propagation
 	 * <================================================================== */
+	
 	public void visit(SingleCondFact condFact) {
 		if (!condFact.getExpr().struct.equals(TabExtended.boolType)) {
 			condFact.struct = TabExtended.noType;
