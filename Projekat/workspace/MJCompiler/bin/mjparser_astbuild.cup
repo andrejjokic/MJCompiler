@@ -281,9 +281,9 @@ OptActPars			::=		(WithOptActPars) ActPars:A1 {: RESULT=new WithOptActPars(A1); 
 							|
 							(NoOptActPars) {: RESULT=new NoOptActPars(); :} /* epsilon */; 
 							
-ActPars				::=		(MultipleActPars) ActPars:A1 COMMA Expr:E2 {: RESULT=new MultipleActPars(A1, E2); RESULT.setLine(A1left); :}
+ActPars				::=		(MultipleActPars) ActPars:A1 COMMA Expr:e {: RESULT=new MultipleActPars(A1, e); RESULT.setLine(A1left); :}
 							|
-							(SingleActPars) Expr:E1 {: RESULT=new SingleActPars(E1); RESULT.setLine(E1left); :};
+							(SingleActPars) Expr:e {: RESULT=new SingleActPars(e); RESULT.setLine(eleft); :};
 							
 Mulop				::=		(Mul) MUL {: RESULT=new Mul(); :}
 							|

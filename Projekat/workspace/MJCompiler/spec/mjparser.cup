@@ -258,9 +258,9 @@ OptActPars			::=		(WithOptActPars) ActPars
 							|
 							(NoOptActPars) /* epsilon */; 
 							
-ActPars				::=		(MultipleActPars) ActPars COMMA Expr
+ActPars				::=		(MultipleActPars) ActPars COMMA Expr:e
 							|
-							(SingleActPars) Expr;
+							(SingleActPars) Expr:e;
 							
 Mulop				::=		(Mul) MUL
 							|

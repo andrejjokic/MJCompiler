@@ -2,6 +2,8 @@ program mojProgram
 	const int q = 1;
 	bool r, t[];
 	
+	idegas h;
+	
 	record rekord1 {
 		int z, y[];
 		bool x;
@@ -46,5 +48,11 @@ program mojProgram
 		do {
 			break;
 		} while (rek || 1 < 2 && 5 == 3 || kn);
+	}
+	
+	void main() 
+		klasa2 k2;
+	{
+		print(k2.m1(1, 'c', true));
 	}
 }

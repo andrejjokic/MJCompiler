@@ -1,5 +1,9 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
@@ -14,37 +18,50 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
 	Obj currentDesignatorObj= null;							// Object of a current designator
 	Struct currentClassDeclaration = null;					// If current method declaration is part of a class
+	List<Struct> actualParamList = new ArrayList<>();		// List containing actual parameters for a function call
 	
 	Logger log = Logger.getLogger(getClass());
 
+
+	//====================================================================================
+	//  			Helpers
+	//====================================================================================
 	
-	/* <=========================================================================================
-	 *  		Reports
-	 * =========================================================================================> */
+	
+	//====================================================================================
+	//  			Reports
+	//====================================================================================
 	
 	public void report_error(String message, SyntaxNode info) {
-		StringBuilder msg = new StringBuilder(message);
+		StringBuilder msg = new StringBuilder();
 		int line = (info == null) ? 0: info.getLine();
 		
 		if (line != 0)
-			msg.append (" na liniji ").append(line);
+			msg.append ("Greska na liniji ").append(line).append(" : ");
+		
+		msg.append(message);
 		
 		log.error(msg.toString());
+		this.errorDetected = true;
 	}
 
 	public void report_info(String message, SyntaxNode info) {
-		StringBuilder msg = new StringBuilder(message); 
+		StringBuilder msg = new StringBuilder(); 
 		int line = (info == null) ? 0: info.getLine();
 		
 		if (line != 0)
-			msg.append (" na liniji ").append(line);
+			msg.append ("Upozorenje na liniji ").append(line).append(" : ");
+		
+		msg.append(message);
 		
 		log.info(msg.toString());
 	}
+		 	
+	//====================================================================================
+	//  			Visit Methods
+	//====================================================================================
 	
-	/* <=========================================================================================
-	 *  		Program recognition 
-	 * =========================================================================================> */
+	//--------------PROGRAM---------------------------------------------------------------
 	
 	public void visit(ProgName progName) {
 		progName.obj = TabExtended.insert(Obj.Prog, progName.getProgName(), TabExtended.noType);
@@ -56,12 +73,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		TabExtended.closeScope();
 	}
 	
-	/* ==================================================================>
-	 * 			Check if type is valid
-	 * <================================================================== */
+	//--------------TYPE------------------------------------------------------------------
 	
 	public void visit(Type type) {
-		// Look for type in symbol table
 		Obj typeNode = TabExtended.find(type.getTypeName());
 		
 		if (typeNode != TabExtended.noObj) {
@@ -70,19 +84,41 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 				type.struct = typeNode.getType();
 			} else {
 				// Symbol found, but it is not a type 
+				report_error(type.getTypeName() + " ne predstavlja tip!", type);
 				type.struct = TabExtended.noType;
-				report_error("Greska na liniji " + type.getLine() + " : " + type.getTypeName() + " ne predstavlja tip!", null);
 			}
 		} else {
 			// Type not found in symbol table
+			report_error(type.getTypeName() + " nije pronadjen u tabeli simbola!", type);
 			type.struct = TabExtended.noType;
-			report_error("Greska na liniji " + type.getLine() + " : " + type.getTypeName() + " nije pronadjen u tabeli simbola!", null);
 		}
 	}
 	
-	/* ==================================================================>
-	 *  		Constants Declaration
-	 * <================================================================== */
+	//--------------CONSTANT----------------------------------------------------------------
+	
+	public void visit(NumConst numConst) {
+		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.intType)) {
+			report_error("Nekompatibilan tip konstante! ", numConst);
+		}
+		
+		numConst.struct = TabExtended.intType;
+	}
+	
+	public void visit(CharConst charConst) {
+		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.charType)) {
+			report_error("Nekompatibilan tip konstante! ", charConst);
+		}
+		
+		charConst.struct = TabExtended.charType;
+	}
+	
+	public void visit(BoolConst boolConst) {
+		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.boolType)) {
+			report_error("Nekompatibilan tip konstante! ", boolConst);
+		}
+		
+		boolConst.struct = TabExtended.boolType;
+	}
 	
 	public void visit(ConstDeclType constDeclType) {
 		this.currentDeclType = constDeclType.getType().struct;
@@ -96,9 +132,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.currentDeclType = null;
 	}
 	
-	/* ==================================================================>
-	 *  		Variable Declaration
-	 * <================================================================== */
+	//--------------VARIABLE--------------------------------------------------------------
 	
 	public void visit(VarListDeclsType varListDeclsType) {
 		this.currentDeclType = varListDeclsType.getType().struct;
@@ -116,9 +150,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.currentDeclType = null;
 	}
 	
-	/* ==================================================================>
-	 *  		Record Declaration
-	 * <================================================================== */
+	//--------------RECORD--------------------------------------------------------------
 	
 	public void visit(RecordName recordName) {
 		recordName.struct = new StructExtended(StructExtended.Record, new HashTableDataStructure());
@@ -136,9 +168,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.currentVarObjType = Obj.Var;
 	}
 	
-	/* ==================================================================>
-	 *  		Class Declaration
-	 * <================================================================== */
+	//--------------CLASS----------------------------------------------------------------
 	
 	public void visit(Extends ext) {
 		ext.struct = ext.getType().struct;
@@ -186,9 +216,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.currentClassDeclaration = null;
 	}
 	
-	/* ==================================================================>
-	 *  		Method Declaration
-	 * <================================================================== */
+	//--------------METHOD--------------------------------------------------------------
 	
 	public void visit(RetType retType) {
 		retType.struct = retType.getType().struct;
@@ -223,47 +251,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		// Check return type compatibility
 		if (!methodDecl.getMethodIdent().getReturnType().struct.equals(this.currentMethodRetType)) {
-			this.errorDetected = true;
-			report_error("Greska na liniji " + methodDecl.getLine() + " : " + "nekompatibilan tip return iskaza! ", null);
+			report_error("Nekompatibilan tip return iskaza! ", methodDecl);
 		}
 		
 		this.currentMethodRetType = TabExtended.noType;
 	}
 	
-	/* ==================================================================>
-	 *  		Check constant declaration type compatibility
-	 * <================================================================== */
-	
-	public void visit(NumConst numConst) {
-		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.intType)) {
-			this.errorDetected = true;
-			report_error("Greska na liniji " + numConst.getLine() + " : " + "nekompatibilan tip konstante! ", null);
-		}
-		
-		numConst.struct = TabExtended.intType;
-	}
-	
-	public void visit(CharConst charConst) {
-		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.charType)) {
-			this.errorDetected = true;
-			report_error("Greska na liniji " + charConst.getLine() + " : " + "nekompatibilan tip konstante! ", null);
-		}
-		
-		charConst.struct = TabExtended.charType;
-	}
-	
-	public void visit(BoolConst boolConst) {
-		if (this.currentDeclType != null && !this.currentDeclType.equals(TabExtended.boolType)) {
-			this.errorDetected = true;
-			report_error("Greska na liniji " + boolConst.getLine() + " : " + "nekompatibilan tip konstante! ", null);
-		}
-		
-		boolConst.struct = TabExtended.boolType;
-	}
-	
-	/* ==================================================================>
-	 *  		Factor type propagation 
-	 * <================================================================== */
+	//--------------FACTOR--------------------------------------------------------------
 	
 	public void visit(FactorWithConst factorWithConst) {
 		factorWithConst.struct = factorWithConst.getConst().struct;
@@ -275,8 +269,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(FactorWithNew factorWithNew) {
 		if (factorWithNew.getType().struct.getKind() != StructExtended.Class) {
-			report_error("Greska na liniji " + factorWithNew.getLine() + " : Tip " + factorWithNew.getType().getTypeName() + " nije klasa! ", null);
-			this.errorDetected = true;
+			report_error("Tip " + factorWithNew.getType().getTypeName() + " nije klasa! ", factorWithNew);
 		}
 		
 		factorWithNew.struct = factorWithNew.getType().struct;
@@ -284,8 +277,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(FactorWithNewArray factorWithNewArray) {
 		if (!factorWithNewArray.getExpr().struct.equals(TabExtended.intType)) {
-			report_error("Greska na liniji " + factorWithNewArray.getLine() + " : Izraz za indeksiranje mora biti tipa int!", null);
-			this.errorDetected = true;
+			report_error("Izraz za indeksiranje mora biti tipa int!", factorWithNewArray);
 		}
 		
 		factorWithNewArray.struct = new StructExtended(StructExtended.Array, factorWithNewArray.getType().struct);
@@ -296,17 +288,49 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(FactorDesignatorFuncCall factorDesignator) {
-		factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
+		Obj designObj = factorDesignator.getDesignator().obj;
+		
+		factorDesignator.struct = designObj.getType();
+			
+		// Check symbol exists
+		if (designObj == TabExtended.noObj) {
+			report_error("Simbol ne postoji u tabeli simbola!", factorDesignator);
+			return;
+		}
+		
+		// Check if symbol is a method
+		if (designObj.getKind() != Obj.Meth) {
+			report_error("Simbol " + designObj.getName() + " ne predstavlja funkciju!", factorDesignator);
+			return;
+		}
+
+		// Check formal and actual parameters compatibility
+		if (this.actualParamList.size() != designObj.getLevel()) {
+			report_error("Broj stvarnih i formalnih parametara se ne poklapa!", factorDesignator);
+		} else {
+			Iterator<Obj> formalPars = designObj.getLocalSymbols().iterator();
+			boolean compatible = true;
+			
+			for (int i = 0; i < this.actualParamList.size(); i++) {
+				if (!this.actualParamList.get(i).compatibleWith(formalPars.next().getType())) {
+					compatible = false;
+					break;
+				}
+			}
+			
+			if (!compatible) {
+				report_error("Tipovi stvarnih i formalnih parametara nisu kompatibilni!", factorDesignator);
+			}
+		}
+		
+		this.actualParamList.clear();
 	}
 	
-	/* ==================================================================>
-	 *  		Term type propagation 
-	 * <================================================================== */
+	//--------------TERM--------------------------------------------------------------
 	
 	public void visit(MultipleTerm multipleTerm) {
 		if (!multipleTerm.getTerm().struct.equals(TabExtended.intType) || !multipleTerm.getFactor().struct.equals(TabExtended.intType)) {
-			report_error("Greska na liniji " + multipleTerm.getLine() + " : Mnozioci moraju biti tipa int! ", null);
-			this.errorDetected = true;
+			report_error("Mnozioci moraju biti tipa int! ", multipleTerm);
 			multipleTerm.struct = TabExtended.noType;
 			return;
 		}
@@ -318,14 +342,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		singleTerm.struct = singleTerm.getFactor().struct;
 	}
 	
-	/* ==================================================================>
-	 *  		Expression type propagation 
-	 * <================================================================== */
+	//--------------EXPRESSION--------------------------------------------------------------
 	
 	public void visit(MultipleExpr multipleExpr) {
 		if (!multipleExpr.getExpr().struct.equals(TabExtended.intType) || !multipleExpr.getTerm().struct.equals(TabExtended.intType)) {
-			report_error("Greska na liniji " + multipleExpr.getLine() + " : Sabirci moraju biti tipa int! ", null);
-			this.errorDetected = true;
+			report_error("Sabirci moraju biti tipa int! ", multipleExpr);
 			multipleExpr.struct = TabExtended.noType;
 			return;
 		}
@@ -339,8 +360,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(SingleExprWithMinus singleExprWithMinus) {
 		if (!singleExprWithMinus.getTerm().struct.equals(TabExtended.intType)) {
-			report_error("Greska na liniji " + singleExprWithMinus.getLine() + " : Operand mora biti tipa int! ", null);
-			this.errorDetected = true;
+			report_error("Operand mora biti tipa int! ", singleExprWithMinus);
 			singleExprWithMinus.struct = TabExtended.noType;
 			return;
 		}
@@ -348,9 +368,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		singleExprWithMinus.struct = TabExtended.intType;
 	}
 	
-	/* ==================================================================>
-	 *  		Designator type propagation 
-	 * <================================================================== */
+	//--------------DESIGNATOR--------------------------------------------------------------
 	
 	public void visit(DesignatorName designatorName) {
 		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
@@ -358,16 +376,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(IndexingField indexingField) {
 		if (this.currentDesignatorObj.getType().getKind() != StructExtended.Class) {
-			report_error("Greska na liniji " + indexingField.getLine() + " : Tip ne predstavlja unutrasnju klasu! ", null);
-			this.errorDetected = true;
+			report_error("Tip ne predstavlja unutrasnju klasu! ", indexingField);
 			return;
 		}
 		
 		Obj member = this.currentDesignatorObj.getType().getMembersTable().searchKey(indexingField.getIdentName());
 		
 		if (member == null || (member.getKind() != Obj.Meth && member.getKind() != Obj.Fld)) {
-			report_error("Greska na liniji " + indexingField.getLine() + " : " + indexingField.getIdentName() + " ne predstavlja ni metodu ni polje klase! ", null);
-			this.errorDetected = true;
+			report_error(indexingField.getIdentName() + " ne predstavlja ni metodu ni polje klase!", indexingField);
 			return;
 		}
 		
@@ -376,14 +392,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(IndexingArray indexingArray) {
 		if (this.currentDesignatorObj.getType().getKind() != StructExtended.Array) {
-			report_error("Greska na liniji " + indexingArray.getLine() + " : " + this.currentDesignatorObj.getName() + " nije niz!", null);
-			this.errorDetected = true;
+			report_error(this.currentDesignatorObj.getName() + " nije niz!", indexingArray);
 			return;
 		}
 		
 		if (indexingArray.getExpr().struct != TabExtended.intType) {
-			report_error("Greska na liniji " + indexingArray.getLine() + " : Izraz za indeksiranje nije tipa int!", null);
-			this.errorDetected = true;
+			report_error("Izraz za indeksiranje nije tipa int!", indexingArray);
 			return;
 		}
 		
@@ -395,9 +409,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.currentDesignatorObj = null;
 	}
 	
-	/* ==================================================================>
-	 * 		Statement type propagation
-	 * <================================================================== */	
+	//--------------STATEMENT--------------------------------------------------------------
 	
 	public void visit(ReturnExprStmt retStmt) {
 		this.currentMethodRetType = retStmt.getExpr().struct;
@@ -417,21 +429,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(BreakStmt breakStmt) {
 		if (!this.insideLoop) {
-			this.errorDetected = true;
-			report_error("Greska na liniji " + breakStmt.getLine() + " : " + "Iskaz break se moze koristiti samo unutar do-while petlje! ", null);
+			report_error("Iskaz break se moze koristiti samo unutar do-while petlje!", breakStmt);
 		}
 	}
 	
 	public void visit(ContinueStmt continueStmt) {
 		if (!this.insideLoop) {
-			this.errorDetected = true;
-			report_error("Greska na liniji " + continueStmt.getLine() + " : " + "Iskaz continue se moze koristiti samo unutar do-while petlje! ", null);
+			report_error("Iskaz continue se moze koristiti samo unutar do-while petlje! ", continueStmt);
 		}
 	}
 	
-	/* ==================================================================>
-	 * 		Condition expressions compatibility check and propagation
-	 * <================================================================== */
+	//--------------CONDITION--------------------------------------------------------------
 	
 	public void visit(SingleCondFact condFact) {
 		if (!condFact.getExpr().struct.equals(TabExtended.boolType)) {
@@ -443,8 +451,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(EQCondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
-			this.errorDetected = true;
+			report_error("Tipovi moraju biti kompatibilni! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -454,8 +461,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(NEQCondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
-			this.errorDetected = true;
+			report_error("Tipovi moraju biti kompatibilni! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -465,8 +471,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(GTCondFact condFact) {		
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
-			this.errorDetected = true;
+			report_error("Tipovi moraju biti kompatibilni! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -474,8 +479,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
 				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
 			
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '>' se ne moze koristi za operande tipa Class/Array! ", null);
-			this.errorDetected = true;
+			report_error("Relacioni operator '>' se ne moze koristi za operande tipa Class/Array! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -485,8 +489,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(GTECondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
-			this.errorDetected = true;
+			report_error("Tipovi moraju biti kompatibilni! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -494,8 +497,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
 				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
 			
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '>=' se ne moze koristi za operande tipa Class/Array! ", null);
-			this.errorDetected = true;
+			report_error("Relacioni operator '>=' se ne moze koristi za operande tipa Class/Array! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -505,8 +507,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(LTCondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
-			this.errorDetected = true;
+			report_error("Tipovi moraju biti kompatibilni! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -514,8 +515,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
 				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
 			
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '<' se ne moze koristi za operande tipa Class/Array! ", null);
-			this.errorDetected = true;
+			report_error("Relacioni operator '<' se ne moze koristi za operande tipa Class/Array! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -525,8 +525,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(LTECondFact condFact) {
 		if (!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Tipovi moraju biti kompatibilni! ", null);
-			this.errorDetected = true;
+			report_error("Tipovi moraju biti kompatibilni! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -534,8 +533,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (condFact.getExpr().struct.getKind() == StructExtended.Class || condFact.getExpr1().struct.getKind() == StructExtended.Class 
 				|| condFact.getExpr().struct.getKind() == StructExtended.Array || condFact.getExpr1().struct.getKind() == StructExtended.Array) {
 			
-			report_error("Greska na liniji " + condFact.getLine() + " : " + "Relacioni operator '<=' se ne moze koristi za operande tipa Class/Array! ", null);
-			this.errorDetected = true;
+			report_error("Relacioni operator '<=' se ne moze koristi za operande tipa Class/Array! ", condFact);
 			condFact.struct = TabExtended.noType;
 			return;
 		}
@@ -565,5 +563,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		} else {
 			conditions.struct = TabExtended.boolType;
 		}
+	}
+	
+	//--------------ACTUAL PARAMETERS----------------------------------------------------
+	public void visit(MultipleActPars actPars) {
+		this.actualParamList.add(actPars.getExpr().struct);
+	}
+	
+	public void visit(SingleActPars actPars) {
+		this.actualParamList.add(0, actPars.getExpr().struct);
 	}
 }
