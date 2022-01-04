@@ -283,11 +283,11 @@ DesignatorStatement	::=		(DesignatorStmtAssign) Designator Assignop Expr
 							|
 							Designator Assignop error
 							|
-							(DesignatorStmtFuncCall) Designator LPAREN OptActPars RPAREN
+							(DesignatorStmtFuncCall) Designator:d LPAREN OptActPars RPAREN
 							|
-							(DesignatorStmtInc) Designator PLUSPLUS
+							(DesignatorStmtInc) Designator:d PLUSPLUS
 							|
-							(DesignatorStmtDec) Designator MINUSMINUS;
+							(DesignatorStmtDec) Designator:d MINUSMINUS;
 							
 Condition			::=		(MultipleConditions) Condition:c OR CondTerm:ct
 							|

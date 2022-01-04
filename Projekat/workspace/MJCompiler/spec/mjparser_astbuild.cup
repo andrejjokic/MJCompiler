@@ -305,11 +305,11 @@ DesignatorStatement	::=		(DesignatorStmtAssign) Designator:D1 Assignop:A2 Expr:E
 							|
 							Designator:D1 Assignop:A2 error {: RESULT=new DesignatorStatementDerived1(D1, A2); RESULT.setLine(D1left); :}
 							|
-							(DesignatorStmtFuncCall) Designator:D1 LPAREN OptActPars:O2 RPAREN {: RESULT=new DesignatorStmtFuncCall(D1, O2); RESULT.setLine(D1left); :}
+							(DesignatorStmtFuncCall) Designator:d LPAREN OptActPars:O1 RPAREN {: RESULT=new DesignatorStmtFuncCall(d, O1); RESULT.setLine(dleft); :}
 							|
-							(DesignatorStmtInc) Designator:D1 PLUSPLUS {: RESULT=new DesignatorStmtInc(D1); RESULT.setLine(D1left); :}
+							(DesignatorStmtInc) Designator:d PLUSPLUS {: RESULT=new DesignatorStmtInc(d); RESULT.setLine(dleft); :}
 							|
-							(DesignatorStmtDec) Designator:D1 MINUSMINUS {: RESULT=new DesignatorStmtDec(D1); RESULT.setLine(D1left); :};
+							(DesignatorStmtDec) Designator:d MINUSMINUS {: RESULT=new DesignatorStmtDec(d); RESULT.setLine(dleft); :};
 							
 Condition			::=		(MultipleConditions) Condition:c OR CondTerm:ct {: RESULT=new MultipleConditions(c, ct); RESULT.setLine(cleft); :}
 							|

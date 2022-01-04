@@ -50,8 +50,17 @@ program mojProgram
 	
 	void main() 
 		klasa2 k2;
+		int niz_int[];
 	{
 		print(k2.c);
+		k2.m1(1, niz_int, 'c');
+		
+		niz_int[1]++;
+		
+		niz_int[1] = 2;
+		niz_int = null;
+		k2 = k3;
+		k3 = null;
 	}
 	
 }

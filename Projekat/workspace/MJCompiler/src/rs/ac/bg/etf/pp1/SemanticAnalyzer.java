@@ -33,6 +33,53 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	//  			Helpers
 	//====================================================================================
 	
+	private boolean checkDesignatorIsFunction(Obj designObj, int line) {
+		// Check symbol exists
+		if (designObj == TabExtended.noObj) {
+			report_error("Greska na liniji " + line + " : Simbol ne postoji u tabeli simbola!", null);
+			return false;
+		}
+		
+		// Check if symbol is a method
+		if (designObj.getKind() != Obj.Meth) {
+			report_error("Greska na liniji " + line + " : Simbol " + designObj.getName() + " ne predstavlja funkciju!", null);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private void checkFormalAndActualParams(Obj designObj, int line) {
+		// Add implicit this parameter if it is a class method
+		if (designObj.getLevel() > 0) {
+			Obj firstParam = designObj.getLocalSymbols().iterator().next();
+			
+			if (firstParam.getType().getKind() == StructExtended.Class && firstParam.getName().equals("this")) {
+				this.actualParamList.add(0, firstParam.getType());
+			}
+		}
+
+		// Check formal and actual parameters compatibility
+		if (this.actualParamList.size() != designObj.getLevel()) {
+			report_error("Greska na liniji " + line +" : Broj stvarnih i formalnih parametara se ne poklapa!", null);
+		} else {
+			Iterator<Obj> formalPars = designObj.getLocalSymbols().iterator();
+			boolean compatible = true;
+			
+			for (int i = 0; i < this.actualParamList.size(); i++) {
+				if (!this.actualParamList.get(i).assignableTo(formalPars.next().getType())) {
+					compatible = false;
+					break;
+				}
+			}
+			
+			if (!compatible) {
+				report_error("Greska na liniji " + line + " : Tipovi stvarnih i formalnih parametara nisu kompatibilni!", null);
+			}
+		}
+		
+		this.actualParamList.clear();
+	}
 	
 	//====================================================================================
 	//  			Reports
@@ -300,50 +347,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(FactorDesignatorFuncCall factorDesignator) {
 		Obj designObj = factorDesignator.getDesignator().obj;
+			
+		if (checkDesignatorIsFunction(designObj, factorDesignator.getLine())) {
+			checkFormalAndActualParams(designObj, factorDesignator.getLine());
+		}
 		
 		factorDesignator.struct = designObj.getType();
-			
-		// Check symbol exists
-		if (designObj == TabExtended.noObj) {
-			report_error("Simbol ne postoji u tabeli simbola!", factorDesignator);
-			return;
-		}
-		
-		// Check if symbol is a method
-		if (designObj.getKind() != Obj.Meth) {
-			report_error("Simbol " + designObj.getName() + " ne predstavlja funkciju!", factorDesignator);
-			return;
-		}
-		
-		// Add implicit this parameter if it is a class method
-		if (designObj.getLevel() > 0) {
-			Obj firstParam = designObj.getLocalSymbols().iterator().next();
-			
-			if (firstParam.getType().getKind() == StructExtended.Class && firstParam.getName().equals("this")) {
-				this.actualParamList.add(0, firstParam.getType());
-			}
-		}
-
-		// Check formal and actual parameters compatibility
-		if (this.actualParamList.size() != designObj.getLevel()) {
-			report_error("Broj stvarnih i formalnih parametara se ne poklapa!", factorDesignator);
-		} else {
-			Iterator<Obj> formalPars = designObj.getLocalSymbols().iterator();
-			boolean compatible = true;
-			
-			for (int i = 0; i < this.actualParamList.size(); i++) {
-				if (!this.actualParamList.get(i).compatibleWith(formalPars.next().getType())) {
-					compatible = false;
-					break;
-				}
-			}
-			
-			if (!compatible) {
-				report_error("Tipovi stvarnih i formalnih parametara nisu kompatibilni!", factorDesignator);
-			}
-		}
-		
-		this.actualParamList.clear();
 	}
 	
 	//--------------TERM--------------------------------------------------------------
@@ -495,6 +504,53 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (!paramStruct.equals(TabExtended.intType) && !paramStruct.equals(TabExtended.charType) && !paramStruct.equals(TabExtended.boolType)) {
 			report_error("Izraz unutar print iskaza mora biti tipa int/char/bool! ", printStmt);
+		}
+	}
+	
+	//--------------DESIGNATOR STATEMENT---------------------------------------------------
+	
+	public void visit(DesignatorStmtFuncCall designStmt) {
+		if (checkDesignatorIsFunction(designStmt.getDesignator().obj, designStmt.getLine())) {
+			checkFormalAndActualParams(designStmt.getDesignator().obj, designStmt.getLine());
+		}
+	}
+	
+	public void visit(DesignatorStmtInc designStmt) {
+		Obj designObj = designStmt.getDesignator().obj;
+		
+		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
+			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
+			return;
+		}
+		
+		if (!designObj.getType().equals(TabExtended.intType)) {
+			report_error("Simbol " + designObj.getName() + " mora biti tipa int!", designStmt);
+		}
+	}
+	
+	public void visit(DesignatorStmtDec designStmt) {
+		Obj designObj = designStmt.getDesignator().obj;
+		
+		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
+			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
+			return;
+		}
+		
+		if (!designObj.getType().equals(TabExtended.intType)) {
+			report_error("Simbol " + designObj.getName() + " mora biti tipa int!", designStmt);
+		}
+	}
+	
+	public void visit(DesignatorStmtAssign designStmt) {
+		Obj designObj = designStmt.getDesignator().obj;
+		
+		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
+			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
+			return;
+		}
+		
+		if (!designStmt.getExpr().struct.assignableTo(designObj.getType())) {
+			report_error("Izrazi nisu kompatibilni pri dodeli!", designStmt);
 		}
 	}
 	

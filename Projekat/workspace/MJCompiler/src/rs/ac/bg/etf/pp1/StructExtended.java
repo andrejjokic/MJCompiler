@@ -31,4 +31,20 @@ public class StructExtended extends Struct {
 		
 		return super.equals(other);
 	}
+	
+	public boolean assignableTo(Struct dest) {
+		if (this.getKind() == Class && dest.getKind() == Class) {
+			// Check in hierarchy if destination is source's base class
+			for (Struct curr = this; !curr.equals(TabExtended.noType); curr = curr.getElemType()) {
+				if (curr.equals(dest)) {
+					return true;
+				}
+			}
+
+			return false;
+			
+		} else {
+			return super.assignableTo(dest);
+		}
+	}
 }
