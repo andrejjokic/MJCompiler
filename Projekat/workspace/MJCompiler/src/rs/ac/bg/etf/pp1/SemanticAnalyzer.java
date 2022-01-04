@@ -17,7 +17,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Struct currentClassDeclaration = null;					// If current method declaration is part of a class
 	int currentVarObjType = Obj.Var;						// If variable is global(default), or field of a class/record
 	
-	Struct currentMethodRetType = TabExtended.noType;		// Contains return type of a expression for a current method
+	Obj currentMethodDeclaration = null;					// Contains object of a current method declaration
+	boolean currentMethodReturned = false;					// If there has been a return statement in a current method declaration
 	
 	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
 	
@@ -249,6 +250,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (this.currentClassDeclaration != null) {
 			TabExtended.insert(Obj.Var, "this", this.currentClassDeclaration);
 		}
+		
+		this.currentMethodDeclaration = methodIdent.obj;
 	}
 	
 	public void visit(MethodDecl methodDecl) {
@@ -257,11 +260,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		TabExtended.closeScope();
 		
 		// Check return type compatibility
-		if (!methodDecl.getMethodIdent().getReturnType().struct.equals(this.currentMethodRetType)) {
-			report_error("Nekompatibilan tip return iskaza! ", methodDecl);
+		if (!methodDecl.getMethodIdent().getReturnType().struct.equals(TabExtended.noType) && !this.currentMethodReturned) {
+			report_error("Metod ne sadrzi return iskaz!", methodDecl);
 		}
 		
-		this.currentMethodRetType = TabExtended.noType;
+		this.currentMethodReturned = false;
+		this.currentMethodDeclaration = null;
 	}
 	
 	//--------------FACTOR--------------------------------------------------------------
@@ -427,8 +431,20 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	//--------------STATEMENT--------------------------------------------------------------
 	
-	public void visit(ReturnExprStmt retStmt) {
-		this.currentMethodRetType = retStmt.getExpr().struct;
+	public void visit(ReturnExprStmt retStmt) {	
+		if (!retStmt.getExpr().struct.equals(this.currentMethodDeclaration.getType())) {
+			report_error("Nekompatibilan izraz u return iskazu!", retStmt);
+		}
+		
+		this.currentMethodReturned = true;
+	}
+	
+	public void visit(ReturnNoExprStmt retStmt) {
+		if (!this.currentMethodDeclaration.getType().equals(TabExtended.noType)) {
+			report_error("Nekompatibilan izraz u return iskazu!", retStmt);
+		}
+		
+		this.currentMethodReturned = true;
 	}
 	
 	public void visit(DoStatementStart doStmtStart) {
