@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 4/0/2022 12:42:13
+// 4/0/2022 15:40:57
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,12 +8,12 @@ package rs.ac.bg.etf.pp1.ast;
 public class PrintParametersWithConst extends PrintPars {
 
     private Expr Expr;
-    private Integer N2;
+    private Integer N1;
 
-    public PrintParametersWithConst (Expr Expr, Integer N2) {
+    public PrintParametersWithConst (Expr Expr, Integer N1) {
         this.Expr=Expr;
         if(Expr!=null) Expr.setParent(this);
-        this.N2=N2;
+        this.N1=N1;
     }
 
     public Expr getExpr() {
@@ -24,12 +24,12 @@ public class PrintParametersWithConst extends PrintPars {
         this.Expr=Expr;
     }
 
-    public Integer getN2() {
-        return N2;
+    public Integer getN1() {
+        return N1;
     }
 
-    public void setN2(Integer N2) {
-        this.N2=N2;
+    public void setN1(Integer N1) {
+        this.N1=N1;
     }
 
     public void accept(Visitor visitor) {
@@ -61,7 +61,7 @@ public class PrintParametersWithConst extends PrintPars {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+N2);
+        buffer.append(" "+tab+N1);
         buffer.append("\n");
 
         buffer.append(tab);

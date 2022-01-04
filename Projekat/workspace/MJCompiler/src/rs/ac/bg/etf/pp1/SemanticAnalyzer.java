@@ -477,6 +477,37 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 	}
 	
+	public void visit(ReadStmt readStmt) {
+		Obj designObj = readStmt.getDesignator().obj;
+		
+		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
+			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", readStmt);
+			return;
+		}
+		
+		if (!designObj.getType().equals(TabExtended.intType) && !designObj.getType().equals(TabExtended.charType) && !designObj.getType().equals(TabExtended.boolType)) {
+			report_error("Simbol " + designObj.getName() + " mora biti tipa int/char/bool!", readStmt);
+		}
+	}
+	
+	public void visit(PrintStmt printStmt) {
+		Struct paramStruct = printStmt.getPrintPars().struct;
+		
+		if (!paramStruct.equals(TabExtended.intType) && !paramStruct.equals(TabExtended.charType) && !paramStruct.equals(TabExtended.boolType)) {
+			report_error("Izraz unutar print iskaza mora biti tipa int/char/bool! ", printStmt);
+		}
+	}
+	
+	//--------------PRINT PARAMETERS-------------------------------------------------------
+	
+	public void visit(PrintParameters printParam) {
+		printParam.struct = printParam.getExpr().struct;
+	}
+	
+	public void visit(PrintParametersWithConst printParam) {
+		printParam.struct = printParam.getExpr().struct;
+	}
+	
 	//--------------CONDITION--------------------------------------------------------------
 	
 	public void visit(SingleCondFact condFact) {

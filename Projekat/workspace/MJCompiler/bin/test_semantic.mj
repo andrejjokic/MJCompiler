@@ -42,7 +42,7 @@ program mojProgram
 {
 	void m2(int m2_x, klasa1 kn[]) {
 		read(kn[1].c);
-		
+
 		do {
 			break;
 		} while (1 < 2 && 5 == 3 || 'a' < 'z');
@@ -51,7 +51,7 @@ program mojProgram
 	void main() 
 		klasa2 k2;
 	{
-		print(k2.m2('c'));
+		print(k2.c);
 	}
 	
 }

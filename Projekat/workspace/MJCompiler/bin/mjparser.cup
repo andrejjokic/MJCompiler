@@ -71,7 +71,7 @@ nonterminal					FormPars, FormParamList, FormParam;
 nonterminal					DesignatorName, IndexingList, Indexing;
 nonterminal					Statements, StatementList, Statement, SingleStatement, DoStatementStart;
 nonterminal					DesignatorStatement;
-nonterminal					OptActPars, ActPars, PrintPars;
+nonterminal					OptActPars, ActPars;
 nonterminal					Mulop, Addop, Assignop;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
@@ -81,6 +81,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Condition, CondTerm, CondFact;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	PrintPars;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -214,9 +215,9 @@ SingleStatement		::=		(IfStmt) IF LPAREN Condition RPAREN Statement
 							|
 							(ReturnExprStmt) RETURN Expr:e SEMI
 							|
-							(ReadStmt) READ LPAREN Designator RPAREN SEMI
+							(ReadStmt) READ LPAREN Designator:d RPAREN SEMI
 							|
-							(PrintStmt) PRINT LPAREN PrintPars RPAREN SEMI;
+							(PrintStmt) PRINT LPAREN PrintPars:p RPAREN SEMI;
 							
 DoStatementStart	::=		(DoStatementStart) DO;
 
@@ -274,9 +275,9 @@ Addop				::=		(Add) PLUS
 							
 Assignop			::=		(Assignop) EQUAL;
 					
-PrintPars			::=		(PrintParameters) Expr
+PrintPars			::=		(PrintParameters) Expr:e
 							|
-							(PrintParametersWithConst) Expr COMMA NUMBER;
+							(PrintParametersWithConst) Expr:e COMMA NUMBER;
 							
 DesignatorStatement	::=		(DesignatorStmtAssign) Designator Assignop Expr
 							|

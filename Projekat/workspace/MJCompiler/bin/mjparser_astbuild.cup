@@ -92,7 +92,6 @@ nonterminal DoStatementStart DoStatementStart;
 nonterminal					DesignatorStatement DesignatorStatement;
 nonterminal					OptActPars OptActPars;
 nonterminal ActPars ActPars;
-nonterminal PrintPars PrintPars;
 nonterminal					Mulop Mulop;
 nonterminal Addop Addop;
 nonterminal Assignop Assignop;
@@ -104,6 +103,7 @@ nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName, ClassIdent, ExtendsClause;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Condition, CondTerm, CondFact;
+nonterminal		rs.etf.pp1.symboltable.concepts.Struct	PrintPars;
 
 /* Priorities */
 precedence		left		ELSE;
@@ -237,9 +237,9 @@ SingleStatement		::=		(IfStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RES
 							|
 							(ReturnExprStmt) RETURN Expr:e SEMI {: RESULT=new ReturnExprStmt(e); RESULT.setLine(eleft); :}
 							|
-							(ReadStmt) READ LPAREN Designator:D1 RPAREN SEMI {: RESULT=new ReadStmt(D1); RESULT.setLine(D1left); :}
+							(ReadStmt) READ LPAREN Designator:d RPAREN SEMI {: RESULT=new ReadStmt(d); RESULT.setLine(dleft); :}
 							|
-							(PrintStmt) PRINT LPAREN PrintPars:P1 RPAREN SEMI {: RESULT=new PrintStmt(P1); RESULT.setLine(P1left); :};
+							(PrintStmt) PRINT LPAREN PrintPars:p RPAREN SEMI {: RESULT=new PrintStmt(p); RESULT.setLine(pleft); :};
 							
 DoStatementStart	::=		(DoStatementStart) DO {: RESULT=new DoStatementStart(); :};
 
@@ -297,9 +297,9 @@ Addop				::=		(Add) PLUS {: RESULT=new Add(); :}
 							
 Assignop			::=		(Assignop) EQUAL {: RESULT=new Assignop(); :};
 					
-PrintPars			::=		(PrintParameters) Expr:E1 {: RESULT=new PrintParameters(E1); RESULT.setLine(E1left); :}
+PrintPars			::=		(PrintParameters) Expr:e {: RESULT=new PrintParameters(e); RESULT.setLine(eleft); :}
 							|
-							(PrintParametersWithConst) Expr:E1 COMMA NUMBER:N2 {: RESULT=new PrintParametersWithConst(E1, N2); RESULT.setLine(E1left); :};
+							(PrintParametersWithConst) Expr:e COMMA NUMBER:N1 {: RESULT=new PrintParametersWithConst(e, N1); RESULT.setLine(eleft); :};
 							
 DesignatorStatement	::=		(DesignatorStmtAssign) Designator:D1 Assignop:A2 Expr:E3 {: RESULT=new DesignatorStmtAssign(D1, A2, E3); RESULT.setLine(D1left); :}
 							|
