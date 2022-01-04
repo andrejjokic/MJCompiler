@@ -139,11 +139,11 @@ ConstDeclList		::=		(MultipleConstDecls) ConstDeclList:C1 COMMA ConstDecl:C2 {: 
 							
 ConstDecl			::=		(ConstDecl) IDENT:constName EQUAL Const:c {: RESULT=new ConstDecl(constName, c); RESULT.setLine(constNameleft); :};
 
-Const				::=		(NumConst) NUMBER:numVal {: RESULT=new NumConst(numVal); RESULT.setLine(numValleft); :}
+Const				::=		(NumConst) NUMBER:val {: RESULT=new NumConst(val); RESULT.setLine(valleft); :}
 							|
-							(CharConst) CHAR:charVal {: RESULT=new CharConst(charVal); RESULT.setLine(charValleft); :}
+							(CharConst) CHAR:val {: RESULT=new CharConst(val); RESULT.setLine(valleft); :}
 							|
-							(BoolConst) BOOL:boolVal {: RESULT=new BoolConst(boolVal); RESULT.setLine(boolValleft); :};		
+							(BoolConst) BOOL:val {: RESULT=new BoolConst(val); RESULT.setLine(valleft); :};		
 							
 Type				::=		(Type) IDENT:typeName {: RESULT=new Type(typeName); RESULT.setLine(typeNameleft); :};
 

@@ -116,11 +116,11 @@ ConstDeclList		::=		(MultipleConstDecls) ConstDeclList COMMA ConstDecl
 							
 ConstDecl			::=		(ConstDecl) IDENT:constName EQUAL Const:c;
 
-Const				::=		(NumConst) NUMBER:numVal
+Const				::=		(NumConst) NUMBER:val
 							|
-							(CharConst) CHAR:charVal
+							(CharConst) CHAR:val
 							|
-							(BoolConst) BOOL:boolVal;		
+							(BoolConst) BOOL:val;		
 							
 Type				::=		(Type) IDENT:typeName;
 

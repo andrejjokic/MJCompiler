@@ -11,13 +11,18 @@ import rs.etf.pp1.symboltable.structure.*;
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 
-	Struct currentDeclType = null;							// Contains type, when declaring multiple variables/constants in one line
-	int currentVarObjType = Obj.Var;						// If variable is global(default), or field of a class/structure
 	boolean errorDetected = false;							// If any semantic/context error is detected
-	Struct currentMethodRetType = TabExtended.noType;		// Contains return type of a expression for a current method
-	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
-	Obj currentDesignatorObj= null;							// Object of a current designator
+	
+	Struct currentDeclType = null;							// Contains type, when declaring multiple variables/constants in one line
 	Struct currentClassDeclaration = null;					// If current method declaration is part of a class
+	int currentVarObjType = Obj.Var;						// If variable is global(default), or field of a class/record
+	
+	Struct currentMethodRetType = TabExtended.noType;		// Contains return type of a expression for a current method
+	
+	boolean insideLoop = false;								// If current parsing point is in between DO ... WHILE
+	
+	Obj currentDesignatorObj= null;							// Object of a current designator
+	
 	List<Struct> actualParamList = new ArrayList<>();		// List containing actual parameters for a function call
 	
 	Logger log = Logger.getLogger(getClass());
@@ -187,8 +192,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		// If class is derived, add all the parent's fields/methods to the child class
 		if (classIdent.struct.getElemType() != TabExtended.noType) {
-			classIdent.struct.getElemType().getMembers().forEach(o -> {
+			
+			classIdent.struct.getElemType().getMembers().forEach(o -> {		
 				Obj inherited = TabExtended.insert(o.getKind(), o.getName(), o.getType());
+				
 				inherited.setAdr(o.getAdr());
 				inherited.setLevel(o.getLevel());
 				
@@ -196,7 +203,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 				if (o.getKind() == Obj.Meth) {
 					TabExtended.openScope();
 					o.getLocalSymbols().forEach(l -> {
-						TabExtended.insert(l.getKind(), l.getName(), l.getType());
+						TabExtended.insert(l.getKind(), l.getName(), l.getType());	
 					});
 					TabExtended.chainLocalSymbols(inherited);
 					TabExtended.closeScope();
@@ -302,6 +309,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (designObj.getKind() != Obj.Meth) {
 			report_error("Simbol " + designObj.getName() + " ne predstavlja funkciju!", factorDesignator);
 			return;
+		}
+		
+		// Add implicit this parameter if it is a class method
+		if (designObj.getLevel() > 0) {
+			Obj firstParam = designObj.getLocalSymbols().iterator().next();
+			
+			if (firstParam.getType().getKind() == StructExtended.Class && firstParam.getName().equals("this")) {
+				this.actualParamList.add(0, firstParam.getType());
+			}
 		}
 
 		// Check formal and actual parameters compatibility
@@ -414,10 +430,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(ReturnExprStmt retStmt) {
 		this.currentMethodRetType = retStmt.getExpr().struct;
 	}
-	
-	/* ==================================================================>
-	 * 		Loop statements context check
-	 * <================================================================== */
 	
 	public void visit(DoStatementStart doStmtStart) {
 		this.insideLoop = true;

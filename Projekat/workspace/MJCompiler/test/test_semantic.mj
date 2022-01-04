@@ -2,8 +2,6 @@ program mojProgram
 	const int q = 1;
 	bool r, t[];
 	
-	idegas h;
-	
 	record rekord1 {
 		int z, y[];
 		bool x;
@@ -53,6 +51,6 @@ program mojProgram
 	void main() 
 		klasa2 k2;
 	{
-		print(k2.m1(1, 'c', true));
+		print(k2.m2('c'));
 	}
 }
