@@ -431,7 +431,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	//--------------STATEMENT--------------------------------------------------------------
 	
-	public void visit(ReturnExprStmt retStmt) {	
+	public void visit(ReturnExprStmt retStmt) {
+		if (this.currentMethodDeclaration == null) { 
+			report_error("Return iskaz ne moze postojati van tela metode!", retStmt);
+			return;
+		}
+		
 		if (!retStmt.getExpr().struct.equals(this.currentMethodDeclaration.getType())) {
 			report_error("Nekompatibilan izraz u return iskazu!", retStmt);
 		}
@@ -440,6 +445,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ReturnNoExprStmt retStmt) {
+		if (this.currentMethodDeclaration == null) { 
+			report_error("Return iskaz ne moze postojati van tela metode!", retStmt);
+			return;
+		}
+		
 		if (!this.currentMethodDeclaration.getType().equals(TabExtended.noType)) {
 			report_error("Nekompatibilan izraz u return iskazu!", retStmt);
 		}
@@ -471,6 +481,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(SingleCondFact condFact) {
 		if (!condFact.getExpr().struct.equals(TabExtended.boolType)) {
+			report_error("Uslovni izraz mora biti tipa bool! ", condFact);
 			condFact.struct = TabExtended.noType;
 		} else {
 			condFact.struct = TabExtended.boolType;

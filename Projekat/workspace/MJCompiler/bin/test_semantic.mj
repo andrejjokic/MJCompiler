@@ -45,7 +45,7 @@ program mojProgram
 		
 		do {
 			break;
-		} while (rek || 1 < 2 && 5 == 3 || kn);
+		} while (1 < 2 && 5 == 3 || 'a' < 'z');
 	}
 	
 	void main() 
@@ -53,4 +53,5 @@ program mojProgram
 	{
 		print(k2.m2('c'));
 	}
+	
 }
