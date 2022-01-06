@@ -178,7 +178,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ConstDecl constDecl) {
-		TabExtended.insert(Obj.Con, constDecl.getConstName(), this.currentDeclType);
+		if (this.currentDeclType != TabExtended.noType) {
+			TabExtended.insert(Obj.Con, constDecl.getConstName(), this.currentDeclType);
+		}
 	}
 	
 	public void visit(ConstListDeclarations constListDeclarations) {
@@ -192,11 +194,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(VarDeclNoBrackets varDeclNoBrackets) {
-		TabExtended.insert(this.currentVarObjType, varDeclNoBrackets.getVarName(), currentDeclType);
+		if (this.currentDeclType != TabExtended.noType) {
+			TabExtended.insert(this.currentVarObjType, varDeclNoBrackets.getVarName(), currentDeclType);
+		}
 	}
 	
 	public void visit(VarDeclBrackets varDeclBrackets) {
-		TabExtended.insert(this.currentVarObjType, varDeclBrackets.getVarName(), new StructExtended(StructExtended.Array, currentDeclType));
+		if (this.currentDeclType != TabExtended.noType) {
+			TabExtended.insert(this.currentVarObjType, varDeclBrackets.getVarName(), new StructExtended(StructExtended.Array, currentDeclType));
+		}
 	}
 	
 	public void visit(VarListDeclarations varListDeclarations) {
@@ -232,6 +238,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ClassIdent classIdent) {
+		if (classIdent.getExtendsClause().struct != TabExtended.noType &&  classIdent.getExtendsClause().struct.getKind() != StructExtended.Class) {
+			report_error("Tip osnovne klase ne predstavlja klasu!", classIdent);
+			return;
+		}
+		
 		classIdent.struct = new StructExtended(StructExtended.Class, new HashTableDataStructure());
 		classIdent.struct.setElementType(classIdent.getExtendsClause().struct);
 				
@@ -264,8 +275,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ClassDeclaration classDeclaration) {
-		TabExtended.chainLocalSymbols(classDeclaration.getClassIdent().struct);
-		TabExtended.closeScope();
+		if (classDeclaration.getClassIdent().struct != null) {
+			TabExtended.chainLocalSymbols(classDeclaration.getClassIdent().struct);
+			TabExtended.closeScope();	
+		}
 		
 		this.currentVarObjType = Obj.Var;
 		this.currentClassDeclaration = null;
@@ -401,6 +414,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(DesignatorName designatorName) {
 		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
+		
+		if (this.currentDesignatorObj == TabExtended.noObj) {
+			report_error("Simbol nije pronadjen u tabeli simbola", designatorName);
+		}
 	}
 	
 	public void visit(IndexingField indexingField) {
@@ -460,7 +477,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		
 		if (!this.currentMethodDeclaration.getType().equals(TabExtended.noType)) {
-			report_error("Nekompatibilan izraz u return iskazu!", retStmt);
+			report_error("Greska na liniji " + retStmt.getParent().getLine() + " : Nekompatibilan izraz u return iskazu!", retStmt);
 		}
 		
 		this.currentMethodReturned = true;
