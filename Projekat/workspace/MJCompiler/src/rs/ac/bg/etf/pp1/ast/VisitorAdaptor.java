@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 6/0/2022 17:18:28
+// 7/0/2022 17:54:55
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -13,7 +13,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Indexing Indexing) { }
     public void visit(StatementList StatementList) { }
     public void visit(Addop Addop) { }
-    public void visit(ExtendsClause ExtendsClause) { }
     public void visit(RecordDecl RecordDecl) { }
     public void visit(Factor Factor) { }
     public void visit(CondTerm CondTerm) { }
@@ -26,7 +25,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Expr Expr) { }
     public void visit(IndexingList IndexingList) { }
     public void visit(ActPars ActPars) { }
-    public void visit(ClassMethodDecls ClassMethodDecls) { }
     public void visit(DesignatorStatement DesignatorStatement) { }
     public void visit(Const Const) { }
     public void visit(VarListDeclList VarListDeclList) { }
@@ -34,7 +32,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Decl Decl) { }
     public void visit(Statement Statement) { }
     public void visit(VarDecl VarDecl) { }
-    public void visit(ClassDecl ClassDecl) { }
     public void visit(CondFact CondFact) { }
     public void visit(OptActPars OptActPars) { }
     public void visit(MethodDeclList MethodDeclList) { }
@@ -93,7 +90,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ReadStmt ReadStmt) { visit(); }
     public void visit(ReturnExprStmt ReturnExprStmt) { visit(); }
     public void visit(ReturnNoExprStmt ReturnNoExprStmt) { visit(); }
-    public void visit(GotoStmt GotoStmt) { visit(); }
     public void visit(ContinueStmt ContinueStmt) { visit(); }
     public void visit(BreakStmt BreakStmt) { visit(); }
     public void visit(DesignatorStmt DesignatorStmt) { visit(); }
@@ -102,8 +98,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(IfStmt IfStmt) { visit(); }
     public void visit(Statements Statements) { visit(); }
     public void visit(MultipleStmts MultipleStmts) { visit(); }
-    public void visit(SingleStmtNoLabel SingleStmtNoLabel) { visit(); }
-    public void visit(SingleStmtWithLabel SingleStmtWithLabel) { visit(); }
+    public void visit(SingleStmt SingleStmt) { visit(); }
     public void visit(NoStmt NoStmt) { visit(); }
     public void visit(Stmts Stmts) { visit(); }
     public void visit(FormParamDerived1 FormParamDerived1) { visit(); }
@@ -119,23 +114,16 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(MethodDecl MethodDecl) { visit(); }
     public void visit(NoMethodDeclarations NoMethodDeclarations) { visit(); }
     public void visit(MethodDeclarations MethodDeclarations) { visit(); }
-    public void visit(NoClassMethodDeclarations NoClassMethodDeclarations) { visit(); }
-    public void visit(ClassMethodDeclarations ClassMethodDeclarations) { visit(); }
     public void visit(RecordName RecordName) { visit(); }
     public void visit(RecordDeclaration RecordDeclaration) { visit(); }
     public void visit(NoVarListDeclarationList NoVarListDeclarationList) { visit(); }
     public void visit(VarListDeclarationList VarListDeclarationList) { visit(); }
-    public void visit(NoExtends NoExtends) { visit(); }
-    public void visit(Extends Extends) { visit(); }
-    public void visit(ClassIdent ClassIdent) { visit(); }
-    public void visit(ClassDeclaration ClassDeclaration) { visit(); }
     public void visit(VarDeclNoBrackets VarDeclNoBrackets) { visit(); }
     public void visit(VarDeclBrackets VarDeclBrackets) { visit(); }
     public void visit(SingleVarDecl SingleVarDecl) { visit(); }
     public void visit(MultipleVarDecls MultipleVarDecls) { visit(); }
     public void visit(VarListDeclsType VarListDeclsType) { visit(); }
     public void visit(VarListDeclarations VarListDeclarations) { visit(); }
-    public void visit(Label Label) { visit(); }
     public void visit(Type Type) { visit(); }
     public void visit(BoolConst BoolConst) { visit(); }
     public void visit(CharConst CharConst) { visit(); }
@@ -148,7 +136,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DeclDerived2 DeclDerived2) { visit(); }
     public void visit(DeclDerived1 DeclDerived1) { visit(); }
     public void visit(DeclRecord DeclRecord) { visit(); }
-    public void visit(DeclClass DeclClass) { visit(); }
     public void visit(DeclVar DeclVar) { visit(); }
     public void visit(DeclConst DeclConst) { visit(); }
     public void visit(NoDeclarations NoDeclarations) { visit(); }

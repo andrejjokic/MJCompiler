@@ -1,66 +1,157 @@
 program mojProgram
-	const int q = 1;
-	bool r, t[];
-	
-	record rekord1 {
-		int z, y[];
-		bool x;
-	}
-	
-	rekord1 rek;
-	
-	class klasa1 {
-		int x, y[];
-		char c;	
-	}
-	
-	klasa1 k;
-		
-	class klasa2 {
-		bool c;
-		{
-			int m1 (int x, int y[], char z) {
-				return k.y[1];
-			}
-			
-			void m2(char klasa2_c) {}
-		}
-	}
-	
-	class klasa3 extends klasa2 {
-		int z;
-		{
-			// override
-			void m2(char klasa3_c) {
-				print(klasa3_c);
-			}
-		}
-	}
-	
-	klasa3 k3;
-	
-{
-	void m2(int m2_x, klasa1 kn[]) {
-		read(kn[1].c);
 
+	// Provera tipa
+	const nepostojim x = 2, y = 'c';
+	null x;
+	int provera_tipa1;
+	
+	// Konstante
+	const nepostojim x = 2;
+	const int x = 'c', y = true;
+	const int const_int1 = 1, const_int2 = 2;
+	const char const_char1 = 'c';
+	const bool const_bool1 = true;
+	
+	// Klase(Rekordi)
+	record rekord_type1 {
+		int fld_int1, fld_int_arr1[];
+		bool fld_bool1;
+	}
+	
+	// Promenjive
+	nepostojim x;
+	int var_int1, var_int_arr1[];
+	bool var_bool1;
+	rekord_type1 var_rekord_type11;
+{	
+	// Metode
+	void void_m1() {}
+	void void_m2() {
+		return;
+		return 1;
+	}
+	int int_m1() {}
+	int int_m2() {
+		return 1;
+		return 'c';
+		return;
+	}
+	void void_m3(nepostojim x) {}
+	void void_m4(int arg_int1, int arg_int_arr1[], rekord_type1 arg_rekord_type11) {}
+	
+	// Provera indeksiranja(Designator)
+	void void_m5() {
+		var_int1.x = 2;
+		var_int_arr1.x = 2;
+		var_rekord_type11.x = 2;
+		var_rekord_type11.fld_int1 = 1;
+		
+		var_int1[2] = 2;
+		var_rekord_type11[3] = 2;
+		var_int_arr1['c'] = 2;
+		var_int_arr1[true] = 2;
+		var_int_arr1[1] = 2;
+		
+		var_rekord_type11.fld_int_arr1[2] = 2;
+	}
+	
+	// Designator Statement
+	void void_m6() {
+		// Provera designator tipa
+		const_int1 = 2;
+		int_m1 = 2;
+		var_int1 = 1;
+		void_m1();
+		
+		// Provera dodele vrednosti
+		var_rekord_type11 = 2;
+		var_int1 = 'c';
+		var_int1 = 2;
+		var_rekord_type11 = var_rekord_type11;
+		var_rekord_type11 = null;
+		
+		// Provera inkrementiranja i dekrementiranja
+		var_bool1++;
+		var_int1++;
+		var_bool1--;
+		var_int1--;
+		
+		// Poziv metode
+		var_int1();
+		void_m1();
+	}
+	
+	// Single statement
+	void void_m7() {
+		// Provera break/continue
+		break;
+		continue;
+		
 		do {
 			break;
-		} while (1 < 2 && 5 == 3 || 'a' < 'z');
+			continue;
+		} while (true);
+		
+		do {
+			do {
+				break;
+				continue;
+			} while (true);
+			break;
+			continue;
+		} while (true);
+		
+		break;
+		continue;
+		
+		// Provera Read
+		read(const_int1);
+		read(var_rekord_type11.fld_int_arr1[2]);
+		
+		read(var_rekord_type11);
+		read(var_int1);
+		
+		// Provera print
+		print(var_rekord_type11.fld_int_arr1);
+		print(const_int1);
+		
+		// Provera Condition je bool
+		if (1 < 2 || 5) return;
+		if (var_rekord_type11 < null) return;
+		if (1 < 2 && var_rekord_type11 == null || 5 >= 5 && var_rekord_type11.fld_int_arr1 != null) return;
 	}
 	
-	void main() 
-		klasa2 k2;
-		int niz_int[];
-	{
-		print(k2.c);
-		k2.m1(1, niz_int, 'c');
+		// Provera argumenata metode
+		void void_m8() {
+			void_m1(2);
+			void_m4(1, 2);
+			void_m4('c', var_int_arr1, var_rekord_type11);
+			void_m4(1, 'c', var_rekord_type11);
+			void_m4(1, var_int_arr1, 'c');
+			
+			void_m1();
+			void_m4(1, var_int_arr1, var_rekord_type11);
+			void_m4(1, null, null);
+		}
 		
-		niz_int[1]++;
-		
-		niz_int[1] = 2;
-		niz_int = null;
-		k2 = k3;
-		k3 = null;
-	}
-	
+		// Provera Expr
+		void void_m8() {
+			// Provera -Term
+			print(-'c');
+			print(1);
+			
+			// Provare Addop/Mulop
+			print(1 + 'c');
+			print('c' + 'c');
+			print(1 + 2);
+			print(1 * 'c');
+			print('c' * 'c');
+			print(1 * 2);
+			
+			// Provera new
+			var_int1 = new int;
+			var_int1 = new int['c'];
+			var_rekord_type11 = new rekord_type1; 
+			var_int_arr1 = new int[2];
+		}
 }
