@@ -23,6 +23,11 @@ program mojProgram
 	int var_int1, var_int_arr1[];
 	bool var_bool1;
 	rekord_type1 var_rekord_type11;
+	
+	// Provera konstanta/rekord vec deklarisan
+	const int const_int1 = 2;
+	record const_int1 {}
+	record rekord_type1 {}
 {	
 	// Metode
 	void void_m1() {}
@@ -154,4 +159,21 @@ program mojProgram
 			var_rekord_type11 = new rekord_type1; 
 			var_int_arr1 = new int[2];
 		}
+		
+		// Provera opstih kontekstnih uslova
+		void void_m9(int x) 
+		// Provera ime ne sme biti vise puta deklarisano unutar istog opsega
+		int var_int1;
+		int x;
+		{
+			// Provera svako ime u programu mora biti deklarisano pre prvog koriscenja
+			nepostojim = 2;
+			var_int1 = 2;
+		}
+		
+		// Provera metoda vec deklarisana
+		void void_m9() {}
+		void var_int1() {}
+		
+		void main() {}  
 }

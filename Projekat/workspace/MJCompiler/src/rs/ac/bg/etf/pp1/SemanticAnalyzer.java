@@ -18,6 +18,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	Obj currentMethodDeclaration = null;					// Contains object of a current method declaration
 	boolean currentMethodReturned = false;					// If there has been a return statement in a current method declaration
+	boolean isCurrentMethodValid = true;					// If declaration of a current method is valid
 	
 	int loopCnt = 0;										// Number of loops currently open
 	
@@ -71,6 +72,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.actualParamList.clear();
 	}
 	
+	private boolean checkNameDeclaredInThisScope(String name) {
+		return TabExtended.currentScope().findSymbol(name) != null;
+	}
+	
 	//====================================================================================
 	//  			Reports
 	//====================================================================================
@@ -112,6 +117,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(Program program) {
+		// Check if main method has been declared
+		Obj mainObj = TabExtended.currentScope().findSymbol("main");
+		if (mainObj == null || mainObj.getKind() != Obj.Meth || mainObj.getLevel() != 0 || !mainObj.getType().equals(TabExtended.noType)) {
+			report_error("Main metoda nije deklarisana!", null);
+		}
+		
 		TabExtended.chainLocalSymbols(program.getProgName().obj);
 		TabExtended.closeScope();
 	}
@@ -171,6 +182,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ConstDecl constDecl) {
+		if (checkNameDeclaredInThisScope(constDecl.getConstName())) {
+			report_error("Ime " + constDecl.getConstName() + " je vec deklarisano unutar istog opsega! ", constDecl);
+			return;
+		}
+		
 		if (constDecl.getConst().struct != TabExtended.noType) {
 			TabExtended.insert(Obj.Con, constDecl.getConstName(), constDecl.getConst().struct);
 		}
@@ -187,12 +203,22 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(VarDeclNoBrackets varDeclNoBrackets) {
+		if (checkNameDeclaredInThisScope(varDeclNoBrackets.getVarName())) {
+			report_error("Ime " + varDeclNoBrackets.getVarName() + " je vec deklarisano unutar istog opsega! ", varDeclNoBrackets);
+			return;
+		}
+		
 		if (this.currentDeclType != TabExtended.noType) {
 			TabExtended.insert(this.currentVarObjType, varDeclNoBrackets.getVarName(), currentDeclType);
 		}
 	}
 	
 	public void visit(VarDeclBrackets varDeclBrackets) {
+		if (checkNameDeclaredInThisScope(varDeclBrackets.getVarName())) {
+			report_error("Ime " + varDeclBrackets.getVarName() + " je vec deklarisano unutar istog opsega! ", varDeclBrackets);
+			return;
+		}
+		
 		if (this.currentDeclType != TabExtended.noType) {
 			TabExtended.insert(this.currentVarObjType, varDeclBrackets.getVarName(), new Struct(Struct.Array, currentDeclType));
 		}
@@ -205,6 +231,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	//--------------RECORD--------------------------------------------------------------
 	
 	public void visit(RecordName recordName) {
+		if (checkNameDeclaredInThisScope(recordName.getName())) {
+			report_error("Ime " + recordName.getName() + " je vec deklarisano unutar istog opsega! ", recordName);
+			recordName.struct = TabExtended.noType;
+			return;
+		}
+		
 		recordName.struct = new Struct(Struct.Class, new HashTableDataStructure());
 		
 		TabExtended.insert(Obj.Type, recordName.getName(), recordName.struct);
@@ -214,10 +246,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(RecordDeclaration recordDeclaration) {
-		TabExtended.chainLocalSymbols(recordDeclaration.getRecordName().struct);
-		TabExtended.closeScope();
-		
-		this.currentVarObjType = Obj.Var;
+		if (recordDeclaration.getRecordName().struct != TabExtended.noType) {
+			TabExtended.chainLocalSymbols(recordDeclaration.getRecordName().struct);
+			TabExtended.closeScope();	
+			
+			this.currentVarObjType = Obj.Var;
+		}
 	}
 	
 	//--------------METHOD--------------------------------------------------------------
@@ -231,14 +265,24 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(FormalParameterNoBrackets formalParam) {
-		TabExtended.insert(Obj.Var, formalParam.getName(), formalParam.getType().struct);
+		if (this.isCurrentMethodValid) {
+			TabExtended.insert(Obj.Var, formalParam.getName(), formalParam.getType().struct);	
+		}
 	}
 	
 	public void visit(FormalParameterBrackets formalParam) {
-		TabExtended.insert(Obj.Var, formalParam.getName(), new Struct(Struct.Array, formalParam.getType().struct));
+		if (this.isCurrentMethodValid) {
+			TabExtended.insert(Obj.Var, formalParam.getName(), new Struct(Struct.Array, formalParam.getType().struct));
+		}
 	}
 	
 	public void visit(MethodIdent methodIdent) {
+		if (checkNameDeclaredInThisScope(methodIdent.getName())) {
+			report_error("Ime " + methodIdent.getName() + " je vec deklarisano unutar istog opsega! ", methodIdent);
+			this.isCurrentMethodValid = false;
+			return;
+		}
+		
 		methodIdent.obj = TabExtended.insert(Obj.Meth, methodIdent.getName(), methodIdent.getReturnType().struct);
 		TabExtended.openScope();
 		
@@ -246,17 +290,20 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(MethodDecl methodDecl) {
-		methodDecl.getMethodIdent().obj.setLevel(TabExtended.currentScope().getnVars());
-		TabExtended.chainLocalSymbols(methodDecl.getMethodIdent().obj);
-		TabExtended.closeScope();
-		
-		// Check return type compatibility
-		if (!methodDecl.getMethodIdent().getReturnType().struct.equals(TabExtended.noType) && !this.currentMethodReturned) {
-			report_error("Metod ne sadrzi return iskaz!", methodDecl);
+		if (this.isCurrentMethodValid) {
+			methodDecl.getMethodIdent().obj.setLevel(TabExtended.currentScope().getnVars());
+			TabExtended.chainLocalSymbols(methodDecl.getMethodIdent().obj);
+			TabExtended.closeScope();
+			
+			// Check return type compatibility
+			if (!methodDecl.getMethodIdent().getReturnType().struct.equals(TabExtended.noType) && !this.currentMethodReturned) {
+				report_error("Metod ne sadrzi return iskaz!", methodDecl);
+			}	
 		}
 		
 		this.currentMethodReturned = false;
 		this.currentMethodDeclaration = null;
+		this.isCurrentMethodValid = true;
 	}
 	
 	//--------------FACTOR--------------------------------------------------------------
