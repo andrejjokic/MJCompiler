@@ -13,6 +13,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 
 	boolean errorDetected = false;							// If any semantic/context error is detected
 	
+	int currentConstVal = 0;								// Value of a current constant declaration(boolean = 1 or 0, char = ASCII code)
+	
 	Struct currentDeclType = null;							// Contains type, when declaring multiple variables/constants in one line
 	int currentVarObjType = Obj.Var;						// If variable is global(default), or field of a class/record
 	
@@ -155,6 +157,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Nekompatibilan tip konstante! ", numConst);
 			numConst.struct = TabExtended.noType;
 		} else {
+			this.currentConstVal = numConst.getVal();
 			numConst.struct = TabExtended.intType;	
 		}
 	}
@@ -164,6 +167,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Nekompatibilan tip konstante! ", charConst);
 			charConst.struct = TabExtended.noType;
 		} else {
+			this.currentConstVal = (int)charConst.getVal().charValue();
 			charConst.struct = TabExtended.charType;	
 		}
 	}
@@ -173,6 +177,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Nekompatibilan tip konstante! ", boolConst);
 			boolConst.struct = TabExtended.noType;
 		} else {
+			this.currentConstVal = boolConst.getVal() ? 1 : 0;
 			boolConst.struct = TabExtended.boolType;
 		}
 	}
@@ -188,7 +193,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		
 		if (constDecl.getConst().struct != TabExtended.noType) {
-			TabExtended.insert(Obj.Con, constDecl.getConstName(), constDecl.getConst().struct);
+			Obj newObj = TabExtended.insert(Obj.Con, constDecl.getConstName(), constDecl.getConst().struct);
+			newObj.setAdr(this.currentConstVal);
 		}
 	}
 	
