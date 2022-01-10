@@ -1,4 +1,12 @@
 program mojProgram
 {
-	void main() {}
+	void m1(int x, char y) 
+		bool z;
+	{
+	
+	}
+
+	void main() {
+		
+	}
 }

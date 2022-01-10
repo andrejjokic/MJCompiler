@@ -60,8 +60,8 @@ public class MJParserTest {
 				
 				CodeGenerator codeGenerator = new CodeGenerator();
 				prog.traverseBottomUp(codeGenerator);
-				// Code.dataSize = v.nVars;
-				// Code.mainPc = codeGenerator.getMainPc();
+				Code.dataSize = v.nVars;
+				Code.mainPc = codeGenerator.getMainPC();
 				Code.write(new FileOutputStream(objFile));
 				
 				log.info("Parsiranje uspesno zavrseno!");

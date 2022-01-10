@@ -28,6 +28,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	List<Struct> actualParamList = new ArrayList<>();		// List containing actual parameters for a function call
 	
+	int nVars = 0;											// Number of global variables
+	int nMethodLocalVars = 0;								// Number of local variables a method has
+	
 	Logger log = Logger.getLogger(getClass());
 
 
@@ -221,6 +224,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (this.currentDeclType != TabExtended.noType) {
 			TabExtended.insert(this.currentVarObjType, varDeclNoBrackets.getVarName(), currentDeclType);
+			
+			// Global variable
+			if (this.currentMethodDeclaration == null)
+				this.nVars++;	
 		}
 	}
 	
@@ -232,6 +239,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		if (this.currentDeclType != TabExtended.noType) {
 			TabExtended.insert(this.currentVarObjType, varDeclBrackets.getVarName(), new Struct(Struct.Array, currentDeclType));
+			
+			// Global variable
+			if (this.currentMethodDeclaration == null)
+				this.nVars++;	
 		}
 	}
 	
@@ -277,13 +288,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(FormalParameterNoBrackets formalParam) {
 		if (this.isCurrentMethodValid) {
-			TabExtended.insert(Obj.Var, formalParam.getName(), formalParam.getType().struct);	
+			TabExtended.insert(Obj.Var, formalParam.getName(), formalParam.getType().struct);
+			this.nMethodLocalVars++;
 		}
 	}
 	
 	public void visit(FormalParameterBrackets formalParam) {
 		if (this.isCurrentMethodValid) {
 			TabExtended.insert(Obj.Var, formalParam.getName(), new Struct(Struct.Array, formalParam.getType().struct));
+			this.nMethodLocalVars++;
 		}
 	}
 	
@@ -302,7 +315,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(MethodDecl methodDecl) {
 		if (this.isCurrentMethodValid) {
-			methodDecl.getMethodIdent().obj.setLevel(TabExtended.currentScope().getnVars());
+			methodDecl.getMethodIdent().obj.setLevel(this.nMethodLocalVars);
 			TabExtended.chainLocalSymbols(methodDecl.getMethodIdent().obj);
 			TabExtended.closeScope();
 			
@@ -315,6 +328,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.currentMethodReturned = false;
 		this.currentMethodDeclaration = null;
 		this.isCurrentMethodValid = true;
+		this.nMethodLocalVars = 0;
 	}
 	
 	//--------------FACTOR--------------------------------------------------------------
