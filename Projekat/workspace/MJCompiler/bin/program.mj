@@ -1,4 +1,11 @@
 program mojProgram
+	
+	const int const_x = 4;
+	const bool const_y = true;
+	const char const_z = 'A';
+	
+	int var_x;
+	
 {
 	void m1(int x, char y) 
 		bool z;
@@ -7,6 +14,6 @@ program mojProgram
 	}
 
 	void main() {
-		
+		var_x = 3;
 	}
 }

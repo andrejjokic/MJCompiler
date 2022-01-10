@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
+import rs.etf.pp1.symboltable.concepts.Obj;
 
 public class CodeGenerator extends VisitorAdaptor {
 	
@@ -9,6 +10,18 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public int getMainPC() {
 		return mainPC;
+	}
+	
+	//====================================================================================
+	//  			Helpers
+	//====================================================================================
+	
+	private void generateConst(Const cnst, int val) {
+		Obj con = TabExtended.insert(Obj.Con, "$", cnst.struct);
+		con.setLevel(0);
+		con.setAdr(val);
+		
+		Code.load(con);
 	}
 	
 	//====================================================================================
@@ -41,4 +54,30 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.exit);
 		Code.put(Code.return_);
 	}
+	
+	//--------------CONST---------------------------------------------------------------
+	
+	public void visit(NumConst cnst) {
+		generateConst(cnst, cnst.getVal());
+	}
+	
+	public void visit(CharConst cnst) {
+		generateConst(cnst, (int)cnst.getVal().charValue());
+	}
+	
+	public void visit(BoolConst cnst) {
+		generateConst(cnst, cnst.getVal() ? 1 : 0);
+	}
+	
+	//--------------DESIGNATOR STATEMENT------------------------------------------------
+	
+	public void visit(DesignatorStmtAssign stmt) {
+		Code.store(stmt.getDesignator().obj);
+	}
+	
+	//--------------EXPRESSION----------------------------------------------------------
+	
+	//--------------TERM----------------------------------------------------------------
+	
+	//--------------FACTOR--------------------------------------------------------------
 }
