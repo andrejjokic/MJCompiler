@@ -31,6 +31,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Logger log = Logger.getLogger(getClass());
 
 
+	public boolean passed() {
+		return !this.errorDetected;
+	}
+	
+	
 	//====================================================================================
 	//  			Helpers
 	//====================================================================================
