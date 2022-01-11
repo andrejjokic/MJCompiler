@@ -1,18 +1,15 @@
 program mojProgram
 
-	record r1 {
-		int x, y;
-		char z;
+	int x;
+
+{
+	int m1(int x, char y, bool z) {
+		return 2;
 	}
 
-	int var_x, var_y;
-	r1 var_r1, var_arr_r1[];
-	char var_arr_z[];
-{
 	void main() {
-		var_r1 = new r1;
-		
-		var_arr_r1 = new r1[5];
-		var_arr_z = new char[10];
+		x = m1(5, 'c', false);
+		x--;
+		print(x);
 	}
 }

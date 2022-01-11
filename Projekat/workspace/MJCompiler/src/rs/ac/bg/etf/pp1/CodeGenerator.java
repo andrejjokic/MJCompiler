@@ -78,25 +78,6 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.return_);
 	}
 	
-	//--------------STATEMENT-----------------------------------------------------------
-	
-	public void visit(PrintStmt stmt) {
-		// Generate instruction
-		if (stmt.getPrintPars().struct == Tab.charType) {	// Print char
-			Code.loadConst(BYTE_PRINT_WIDTH);
-			Code.put(Code.bprint);
-		} else {											// Print integer/boolean
-			Code.loadConst(INT_PRINT_WIDTH);
-			Code.put(Code.print);
-		}
-	}
-	
-	//--------------DESIGNATOR STATEMENT------------------------------------------------
-	
-	public void visit(DesignatorStmtAssign stmt) {
-		Code.store(stmt.getDesignator().obj);
-	}
-	
 	//--------------EXPRESSION----------------------------------------------------------
 	
 	//--------------TERM----------------------------------------------------------------
@@ -116,4 +97,54 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.newarray);
 		Code.put(b);
 	}
+	
+	public void visit(FactorDesignatorFuncCall factor) {
+		int offset = factor.getDesignator().obj.getAdr() - Code.pc;
+		
+		// Generate instruction
+		Code.put(Code.call);
+		Code.put2(offset);
+	}
+	
+	//--------------DESIGNATOR STATEMENT------------------------------------------------
+	
+	public void visit(DesignatorStmtAssign stmt) {
+		Code.store(stmt.getDesignator().obj);
+	}
+	
+	public void visit(DesignatorStmtFuncCall stmt) {
+		int offset = stmt.getDesignator().obj.getAdr() - Code.pc;
+		
+		// Generate instruction
+		Code.put(Code.call);
+		Code.put2(offset);
+	}
+	
+	public void visit(DesignatorStmtInc stmt) {
+		// Generate instruction
+		Code.put(Code.inc);
+		Code.put(stmt.getDesignator().obj.getAdr());
+		Code.put(1);
+	}
+	
+	public void visit(DesignatorStmtDec stmt) {
+		// Generate instruction
+		Code.put(Code.inc);
+		Code.put(stmt.getDesignator().obj.getAdr());
+		Code.put(-1);
+	}
+	
+	//--------------STATEMENT-----------------------------------------------------------
+	
+	public void visit(PrintStmt stmt) {
+		// Generate instruction
+		if (stmt.getPrintPars().struct == Tab.charType) {	// Print char
+			Code.loadConst(BYTE_PRINT_WIDTH);
+			Code.put(Code.bprint);
+		} else {											// Print integer/boolean
+			Code.loadConst(INT_PRINT_WIDTH);
+			Code.put(Code.print);
+		}
+	}
+	
 }
