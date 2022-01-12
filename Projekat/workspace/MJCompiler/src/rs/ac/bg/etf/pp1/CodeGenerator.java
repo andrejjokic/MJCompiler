@@ -15,6 +15,8 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	private int mainPC;
 	
+	private boolean printWidthSpecified = false;			// If the print statement has a NumConst part
+	
 	public int getMainPC() {
 		return mainPC;
 	}
@@ -39,16 +41,6 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(BoolConst cnst) {
 		Code.loadConst(cnst.getVal() ? 1 : 0);
-	}
-	
-	//--------------DESIGNATOR-----------------------------------------------------------
-	
-	public void visit(Designator designator) {
-		SyntaxNode parent = designator.getParent();
-		
-		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
-			Code.load(designator.obj);
-		}
 	}
 	
 	//--------------METHOD---------------------------------------------------------------
@@ -76,6 +68,16 @@ public class CodeGenerator extends VisitorAdaptor {
 		// Generate instruction
 		Code.put(Code.exit);
 		Code.put(Code.return_);
+	}
+	
+	//--------------DESIGNATOR-----------------------------------------------------------
+	
+	public void visit(Designator designator) {
+		SyntaxNode parent = designator.getParent();
+		
+		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
+			Code.load(designator.obj);
+		}
 	}
 	
 	//--------------EXPRESSION----------------------------------------------------------
@@ -122,29 +124,42 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(DesignatorStmtInc stmt) {
 		// Generate instruction
-		Code.put(Code.inc);
-		Code.put(stmt.getDesignator().obj.getAdr());
-		Code.put(1);
+		Code.load(stmt.getDesignator().obj);
+		Code.loadConst(1);
+		Code.put(Code.add);
+		Code.store(stmt.getDesignator().obj);
 	}
 	
 	public void visit(DesignatorStmtDec stmt) {
 		// Generate instruction
-		Code.put(Code.inc);
-		Code.put(stmt.getDesignator().obj.getAdr());
-		Code.put(-1);
+		Code.load(stmt.getDesignator().obj);
+		Code.loadConst(1);
+		Code.put(Code.sub);
+		Code.store(stmt.getDesignator().obj);
 	}
 	
 	//--------------STATEMENT-----------------------------------------------------------
 	
 	public void visit(PrintStmt stmt) {
-		// Generate instruction
-		if (stmt.getPrintPars().struct == Tab.charType) {	// Print char
-			Code.loadConst(BYTE_PRINT_WIDTH);
-			Code.put(Code.bprint);
-		} else {											// Print integer/boolean
-			Code.loadConst(INT_PRINT_WIDTH);
-			Code.put(Code.print);
+		if (!this.printWidthSpecified) {
+			int width = stmt.getPrintPars().struct == Tab.charType ? BYTE_PRINT_WIDTH : INT_PRINT_WIDTH;
+			Code.loadConst(width);
 		}
+		
+		// Generate instruction
+		if (stmt.getPrintPars().struct == Tab.charType)
+			Code.put(Code.bprint);
+		else
+			Code.put(Code.print);
+		
+		this.printWidthSpecified = false;
+	}
+	
+	public void visit(PrintParametersWithConst stmt) {
+		// Push print width to the stack
+		Code.loadConst(stmt.getN1());
+		
+		this.printWidthSpecified = true;
 	}
 	
 }
