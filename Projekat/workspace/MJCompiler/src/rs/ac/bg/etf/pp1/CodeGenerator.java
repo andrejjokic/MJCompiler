@@ -25,6 +25,16 @@ public class CodeGenerator extends VisitorAdaptor {
 	//  			Helpers
 	//====================================================================================
 	
+	private int getOpInstrCode(Class op) {
+		if (op == Mul.class) return Code.mul;
+		if (op == Div.class) return Code.div;
+		if (op == Percent.class) return Code.rem;
+		if (op == Add.class) return Code.add;
+		if (op == Minus.class) return Code.sub;
+		
+		return -1;
+	}
+	
 	//====================================================================================
 	//  			Visit Methods
 	//====================================================================================
@@ -82,7 +92,26 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	//--------------EXPRESSION----------------------------------------------------------
 	
+	public void visit(MultipleExpr expr) {
+		int code = getOpInstrCode(expr.getAddop().getClass());
+		
+		// Generate instruction
+		Code.put(code);
+	}
+	
+	public void visit(SingleExprWithMinus expr) {
+		// Generate instruction
+		Code.put(Code.neg);
+	}
+	
 	//--------------TERM----------------------------------------------------------------
+	
+	public void visit(MultipleTerm term) {
+		int code = getOpInstrCode(term.getMulop().getClass());
+		
+		// Generate instruction
+		Code.put(code);
+	}
 	
 	//--------------FACTOR--------------------------------------------------------------
 	
@@ -160,6 +189,12 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.loadConst(stmt.getN1());
 		
 		this.printWidthSpecified = true;
+	}
+	
+	public void visit(ReadStmt stmt) {
+		// Generate instruction
+		Code.put(Code.read);
+		Code.store(stmt.getDesignator().obj);
 	}
 	
 }
