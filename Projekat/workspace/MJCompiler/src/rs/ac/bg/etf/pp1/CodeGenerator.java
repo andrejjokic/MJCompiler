@@ -3,6 +3,7 @@ package rs.ac.bg.etf.pp1;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
+import rs.etf.pp1.symboltable.concepts.Obj;
 
 public class CodeGenerator extends VisitorAdaptor {
 	
@@ -84,6 +85,14 @@ public class CodeGenerator extends VisitorAdaptor {
 		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
 			Code.load(designator.obj);
 		}
+	}
+	
+	public void visit(DesignatorName designatorName) {
+		Designator d = (Designator)designatorName.getParent();
+	}
+	
+	public void visit(IndexingArray indexing) {		
+		
 	}
 	
 	//--------------EXPRESSION----------------------------------------------------------

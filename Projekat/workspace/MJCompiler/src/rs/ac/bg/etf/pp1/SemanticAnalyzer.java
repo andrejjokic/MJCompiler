@@ -358,12 +358,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(FactorDesignator factorDesignator) {
-		factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
+		// factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
+		factorDesignator.struct = this.currentDesignatorObj.getType();
 	}
 	
 	public void visit(FactorDesignatorFuncCall factorDesignator) {
-		Obj designObj = factorDesignator.getDesignator().obj;
-			
+		// Obj designObj = factorDesignator.getDesignator().obj;
+		Obj designObj = this.currentDesignatorObj;	
+		
 		if (checkDesignatorIsFunction(designObj, factorDesignator.getLine())) {
 			checkFormalAndActualParams(designObj, factorDesignator.getLine());
 		}
@@ -454,8 +456,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(Designator designator) {
-		designator.obj = this.currentDesignatorObj;
-		this.currentDesignatorObj = null;
+		// designator.obj = this.currentDesignatorObj;
+		// this.currentDesignatorObj = null;
 	}
 	
 	//--------------STATEMENT--------------------------------------------------------------
@@ -507,7 +509,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ReadStmt readStmt) {
-		Obj designObj = readStmt.getDesignator().obj;
+		// Obj designObj = readStmt.getDesignator().obj;
+		Obj designObj = this.currentDesignatorObj;
 		
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", readStmt);
@@ -530,13 +533,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	//--------------DESIGNATOR STATEMENT---------------------------------------------------
 	
 	public void visit(DesignatorStmtFuncCall designStmt) {
-		if (checkDesignatorIsFunction(designStmt.getDesignator().obj, designStmt.getLine())) {
-			checkFormalAndActualParams(designStmt.getDesignator().obj, designStmt.getLine());
+//		if (checkDesignatorIsFunction(designStmt.getDesignator().obj, designStmt.getLine())) {
+//			checkFormalAndActualParams(designStmt.getDesignator().obj, designStmt.getLine());
+//		}
+		if (checkDesignatorIsFunction(this.currentDesignatorObj, designStmt.getLine())) {
+			checkFormalAndActualParams(this.currentDesignatorObj, designStmt.getLine());
 		}
 	}
 	
 	public void visit(DesignatorStmtInc designStmt) {
-		Obj designObj = designStmt.getDesignator().obj;
+		// Obj designObj = designStmt.getDesignator().obj;
+		Obj designObj = this.currentDesignatorObj;
 		
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
@@ -549,7 +556,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorStmtDec designStmt) {
-		Obj designObj = designStmt.getDesignator().obj;
+		// Obj designObj = designStmt.getDesignator().obj;
+		Obj designObj = this.currentDesignatorObj;
 		
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
@@ -562,7 +570,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorStmtAssign designStmt) {
-		Obj designObj = designStmt.getDesignator().obj;
+		// Obj designObj = designStmt.getDesignator().obj;
+		Obj designObj = this.currentDesignatorObj;
 		
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
