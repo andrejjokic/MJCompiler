@@ -3,12 +3,8 @@ package rs.ac.bg.etf.pp1;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
-import rs.etf.pp1.symboltable.concepts.Obj;
 
 public class CodeGenerator extends VisitorAdaptor {
-	
-	private final static int BYTE_LENGTH = 1;
-	private final static int WORD_LENGTH = 4;
 	
 	private final static int INT_PRINT_WIDTH = 5;
 	private final static int BYTE_PRINT_WIDTH = 1;
@@ -118,7 +114,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(FactorWithNew factor) {
 		// Generate instruction
 		Code.put(Code.new_);
-		Code.put2(WORD_LENGTH * factor.getType().struct.getNumberOfFields());
+		Code.put2(4 * factor.getType().struct.getNumberOfFields());
 	}
 	
 	public void visit(FactorWithNewArray factor) {
