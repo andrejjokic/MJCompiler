@@ -419,6 +419,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(DesignatorName designatorName) {
 		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
+		designatorName.obj = this.currentDesignatorObj;
 		
 		if (this.currentDesignatorObj == TabExtended.noObj) {
 			report_error("Simbol nije pronadjen u tabeli simbola", designatorName);
@@ -456,7 +457,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(Designator designator) {
-		// designator.obj = this.currentDesignatorObj;
+		designator.obj = designator.getDesignatorName().obj;
 		// this.currentDesignatorObj = null;
 	}
 	

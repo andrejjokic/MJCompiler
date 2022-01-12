@@ -78,8 +78,7 @@ nonterminal MethodDecl MethodDecl;
 nonterminal					FormPars FormPars;
 nonterminal FormParamList FormParamList;
 nonterminal FormParam FormParam;
-nonterminal					DesignatorName DesignatorName;
-nonterminal IndexingList IndexingList;
+nonterminal					IndexingList IndexingList;
 nonterminal Indexing Indexing;
 nonterminal					Statements Statements;
 nonterminal StatementList StatementList;
@@ -95,7 +94,7 @@ nonterminal Assignop Assignop;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		MethodIdent;
-nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator;
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator, DesignatorName;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;

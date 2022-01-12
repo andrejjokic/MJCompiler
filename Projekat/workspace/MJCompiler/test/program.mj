@@ -10,7 +10,7 @@ program mojProgram
 	void main() {
 		x = new int[5];
 		
-		x[2] = 4;
+		//x[2] = 4;
 		
 		//x[2] = 4;
 		// getstatic 0 - FALI
