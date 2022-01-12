@@ -1,6 +1,7 @@
 program mojProgram
 
 	int x[], y, z;
+	char v[], k;
 	
 {
 	int m1(int x, char y, bool z) {
@@ -8,9 +9,10 @@ program mojProgram
 	}
 
 	void main() {
-		x = new int[5];
+		// x = new int[5];
 		
-		//x[2] = 4;
+		// x[1] = 4;
+		// x[3] = x[1];
 		
 		//x[2] = 4;
 		// getstatic 0 - FALI

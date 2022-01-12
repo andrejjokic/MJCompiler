@@ -13,6 +13,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	private int mainPC;
 	
 	private boolean printWidthSpecified = false;			// If the print statement has a NumConst part
+	private Obj currentDesignatorObj = null;				// Object of a current designator in array/class indexing
 	
 	public int getMainPC() {
 		return mainPC;
@@ -83,16 +84,24 @@ public class CodeGenerator extends VisitorAdaptor {
 		SyntaxNode parent = designator.getParent();
 		
 		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
-			Code.load(designator.obj);
+			Code.load(this.currentDesignatorObj);
 		}
+		
+		designator.obj = this.currentDesignatorObj;
+		this.currentDesignatorObj = null;
 	}
 	
 	public void visit(DesignatorName designatorName) {
-		Designator d = (Designator)designatorName.getParent();
+		this.currentDesignatorObj = designatorName.obj;
 	}
 	
-	public void visit(IndexingArray indexing) {		
+	public void visit(IndexingArray indexing) {	
+		// Generate instruction
+		Code.load(this.currentDesignatorObj);
+		Code.put(Code.dup_x1);
+		Code.put(Code.pop);
 		
+		this.currentDesignatorObj = new Obj(Obj.Elem, currentDesignatorObj.getName(), this.currentDesignatorObj.getType().getElemType());
 	}
 	
 	//--------------EXPRESSION----------------------------------------------------------
