@@ -1,29 +1,21 @@
 program mojProgram
 
 	record rek1 {
-		int x[], y;
+		int x, y[];
 	}
 
-	int x[], y, z;
-	char v[], k;
-	rek1 r1;
-	
+	int x, y[];
+	rek1 r1, r_arr[];
 {
-	int m1(int x, char y, bool z) {
-		return 2;
-	}
-
 	void main() {
-		x = new int[10];
-		r1 = new rek1;
-		r1.x = new int[6];
+		r_arr = new rek1[3];
+		r_arr[0] = new rek1;
+		r_arr[0].x = 4;
+		r_arr[0].y = new int[10];
+		r_arr[0].y[0] = 8;
 		
-		x[1] = 4;
-		x[3] = x[1];
-		x[2] = 4;
-		y = x[2];
-				
-		r1.y = 4;
-		r1.x[3] = 7;
+		x = r_arr[0].y[0];
+		
+		print(x);
 	}
 }

@@ -33,6 +33,11 @@ public class CodeGenerator extends VisitorAdaptor {
 		return -1;
 	}
 	
+	private void swapTop2ValuesOnStack() {
+		Code.put(Code.dup_x1);
+		Code.put(Code.pop);
+	}
+	
 	//====================================================================================
 	//  			Visit Methods
 	//====================================================================================
@@ -92,28 +97,31 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorName designatorName) {
+		// Save designator object
 		this.currentDesignatorObj = designatorName.obj;
 	}
 	
-	public void visit(IndexingArray indexing) {	
-		// If it is a class field, loading address of array is getfield command,
-		// which takes 1 argument, which is now before indexing constant on stack, so swap the 2 values on stack
+	public void visit(IndexingArray indexing) {
+		/*
+		 *  If it is a class field, getfield instruction takes 1 argument from stack,
+		 *  which is now under the array size constant on stack, so swap them
+		 */
 		if (this.currentDesignatorObj.getKind() == Obj.Fld) {
-			Code.put(Code.dup_x1);
-			Code.put(Code.pop);
+			swapTop2ValuesOnStack();
 		}
 		
-		// Generate instruction
+		// Load designator's value (if it is a reference, it will be the pointer's value)
 		Code.load(this.currentDesignatorObj);
-		Code.put(Code.dup_x1);
-		Code.put(Code.pop);
-
+		
+		// Designator's value will now be on top of array size constant on stack, so swap them
+		swapTop2ValuesOnStack();
+		
 		this.currentDesignatorObj = new Obj(Obj.Elem, currentDesignatorObj.getName(), this.currentDesignatorObj.getType().getElemType());
 	}
 	
 	public void visit(IndexingField indexing) {
-		// Generate instruction
-		Code.loadConst(this.currentDesignatorObj.getAdr());
+		// Load designator's value (if it is a reference, it will be the pointer's value)
+		Code.load(this.currentDesignatorObj);
 		
 		this.currentDesignatorObj = this.currentDesignatorObj.getType().getMembersTable().searchKey(indexing.getIdentName());
 	}
