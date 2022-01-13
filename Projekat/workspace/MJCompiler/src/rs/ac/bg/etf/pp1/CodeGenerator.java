@@ -96,12 +96,26 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(IndexingArray indexing) {	
+		// If it is a class field, loading address of array is getfield command,
+		// which takes 1 argument, which is now before indexing constant on stack, so swap the 2 values on stack
+		if (this.currentDesignatorObj.getKind() == Obj.Fld) {
+			Code.put(Code.dup_x1);
+			Code.put(Code.pop);
+		}
+		
 		// Generate instruction
 		Code.load(this.currentDesignatorObj);
 		Code.put(Code.dup_x1);
 		Code.put(Code.pop);
-		
+
 		this.currentDesignatorObj = new Obj(Obj.Elem, currentDesignatorObj.getName(), this.currentDesignatorObj.getType().getElemType());
+	}
+	
+	public void visit(IndexingField indexing) {
+		// Generate instruction
+		Code.loadConst(this.currentDesignatorObj.getAdr());
+		
+		this.currentDesignatorObj = this.currentDesignatorObj.getType().getMembersTable().searchKey(indexing.getIdentName());
 	}
 	
 	//--------------EXPRESSION----------------------------------------------------------

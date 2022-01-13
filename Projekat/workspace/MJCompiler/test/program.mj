@@ -1,7 +1,12 @@
 program mojProgram
 
+	record rek1 {
+		int x[], y;
+	}
+
 	int x[], y, z;
 	char v[], k;
+	rek1 r1;
 	
 {
 	int m1(int x, char y, bool z) {
@@ -9,29 +14,16 @@ program mojProgram
 	}
 
 	void main() {
-		// x = new int[5];
+		x = new int[10];
+		r1 = new rek1;
+		r1.x = new int[6];
 		
-		// x[1] = 4;
-		// x[3] = x[1];
-		
-		//x[2] = 4;
-		// getstatic 0 - FALI
-		// const 2
-		// const 4
-		// astore
-
-		//y = x[2];
-		// getstatic 0 - FALI
-		// const 2
-		// aload
-		// putstatic 1
-		
-		//print(y);
-		
-		// r1.x[2] = 5;
-		// getstatic 3
-		// const 2
-		// const 5
-		// astore
+		x[1] = 4;
+		x[3] = x[1];
+		x[2] = 4;
+		y = x[2];
+				
+		r1.y = 4;
+		r1.x[3] = 7;
 	}
 }
