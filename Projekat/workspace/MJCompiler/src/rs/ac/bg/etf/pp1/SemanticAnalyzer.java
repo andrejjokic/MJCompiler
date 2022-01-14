@@ -358,19 +358,19 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(FactorDesignator factorDesignator) {
-		// factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
-		factorDesignator.struct = this.currentDesignatorObj.getType();
+		factorDesignator.struct = factorDesignator.getDesignator().obj.getType();
+		factorDesignator.getDesignator().obj = factorDesignator.getDesignator().getDesignatorName().obj;
 	}
 	
 	public void visit(FactorDesignatorFuncCall factorDesignator) {
-		// Obj designObj = factorDesignator.getDesignator().obj;
-		Obj designObj = this.currentDesignatorObj;	
+		Obj designObj = factorDesignator.getDesignator().obj;
 		
 		if (checkDesignatorIsFunction(designObj, factorDesignator.getLine())) {
 			checkFormalAndActualParams(designObj, factorDesignator.getLine());
 		}
 		
 		factorDesignator.struct = designObj.getType();
+		factorDesignator.getDesignator().obj = factorDesignator.getDesignator().getDesignatorName().obj;
 	}
 	
 	//--------------TERM--------------------------------------------------------------
@@ -420,7 +420,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(DesignatorName designatorName) {
 		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
 		designatorName.obj = this.currentDesignatorObj;
-		
+				
 		if (this.currentDesignatorObj == TabExtended.noObj) {
 			report_error("Simbol nije pronadjen u tabeli simbola", designatorName);
 		}
@@ -457,8 +457,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(Designator designator) {
-		designator.obj = designator.getDesignatorName().obj;
-		// this.currentDesignatorObj = null;
+		designator.obj = this.currentDesignatorObj;
+		this.currentDesignatorObj = null;
 	}
 	
 	//--------------STATEMENT--------------------------------------------------------------
@@ -510,8 +510,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(ReadStmt readStmt) {
-		// Obj designObj = readStmt.getDesignator().obj;
-		Obj designObj = this.currentDesignatorObj;
+		Obj designObj = readStmt.getDesignator().obj;
 		
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", readStmt);
@@ -521,6 +520,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!designObj.getType().equals(TabExtended.intType) && !designObj.getType().equals(TabExtended.charType) && !designObj.getType().equals(TabExtended.boolType)) {
 			report_error("Simbol " + designObj.getName() + " mora biti tipa int/char/bool!", readStmt);
 		}
+		
+		readStmt.getDesignator().obj = readStmt.getDesignator().getDesignatorName().obj;
 	}
 	
 	public void visit(PrintStmt printStmt) {
@@ -534,18 +535,16 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	//--------------DESIGNATOR STATEMENT---------------------------------------------------
 	
 	public void visit(DesignatorStmtFuncCall designStmt) {
-//		if (checkDesignatorIsFunction(designStmt.getDesignator().obj, designStmt.getLine())) {
-//			checkFormalAndActualParams(designStmt.getDesignator().obj, designStmt.getLine());
-//		}
-		if (checkDesignatorIsFunction(this.currentDesignatorObj, designStmt.getLine())) {
-			checkFormalAndActualParams(this.currentDesignatorObj, designStmt.getLine());
+		if (checkDesignatorIsFunction(designStmt.getDesignator().obj, designStmt.getLine())) {
+			checkFormalAndActualParams(designStmt.getDesignator().obj, designStmt.getLine());
 		}
+		
+		designStmt.getDesignator().obj = designStmt.getDesignator().getDesignatorName().obj;
 	}
 	
 	public void visit(DesignatorStmtInc designStmt) {
-		// Obj designObj = designStmt.getDesignator().obj;
-		Obj designObj = this.currentDesignatorObj;
-		
+		Obj designObj = designStmt.getDesignator().obj;
+
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
 			return;
@@ -554,12 +553,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!designObj.getType().equals(TabExtended.intType)) {
 			report_error("Simbol " + designObj.getName() + " mora biti tipa int!", designStmt);
 		}
+		
+		designStmt.getDesignator().obj = designStmt.getDesignator().getDesignatorName().obj;
 	}
 	
 	public void visit(DesignatorStmtDec designStmt) {
-		// Obj designObj = designStmt.getDesignator().obj;
-		Obj designObj = this.currentDesignatorObj;
-		
+		Obj designObj = designStmt.getDesignator().obj;
+
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
 			return;
@@ -568,12 +568,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!designObj.getType().equals(TabExtended.intType)) {
 			report_error("Simbol " + designObj.getName() + " mora biti tipa int!", designStmt);
 		}
+		
+		designStmt.getDesignator().obj = designStmt.getDesignator().getDesignatorName().obj;
 	}
 	
 	public void visit(DesignatorStmtAssign designStmt) {
-		// Obj designObj = designStmt.getDesignator().obj;
-		Obj designObj = this.currentDesignatorObj;
-		
+		Obj designObj = designStmt.getDesignator().obj;
+
 		if (designObj.getKind() != Obj.Var && designObj.getKind() != Obj.Elem && designObj.getKind() != Obj.Fld) {
 			report_error("Simbol " + designObj.getName() + " mora predstavljati promenjivu, element niza ili polje unutar objekta!", designStmt);
 			return;
@@ -582,6 +583,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!designStmt.getExpr().struct.assignableTo(designObj.getType())) {
 			report_error("Izrazi nisu kompatibilni pri dodeli!", designStmt);
 		}
+		
+		designStmt.getDesignator().obj = designStmt.getDesignator().getDesignatorName().obj;
 	}
 	
 	//--------------PRINT PARAMETERS-------------------------------------------------------
