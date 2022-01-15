@@ -69,7 +69,7 @@ nonterminal					MethodDeclList, MethodDecl;
 nonterminal					FormPars, FormParamList, FormParam;
 nonterminal					IndexingList, Indexing;
 nonterminal					Statements, StatementList, Statement, SingleStatement;
-nonterminal					IfStmtStart, ElseStmtStart, DoStatementStart;
+nonterminal					IfStmtStart, ThenStmtStart, ElseStmtStart, DoStatementStart;
 nonterminal					DesignatorStatement;
 nonterminal					OptActPars, ActPars;
 nonterminal					Mulop, Addop, Assignop;
@@ -179,9 +179,9 @@ Statement			::=		(SingleStmt) SingleStatement
 
 Statements			::=		(Statements) LBRACE StatementList RBRACE;
 
-SingleStatement		::=		(IfStmt) IfStmtStart Statement
+SingleStatement		::=		(IfStmt) IfStmtStart ThenStmtStart Statement
 							|
-							(IfElseStmt) IfStmtStart Statement ElseStmtStart Statement
+							(IfElseStmt) IfStmtStart ThenStmtStart Statement ElseStmtStart Statement
 							|
 							(DoWhileStmt) DoStatementStart Statement WHILE LPAREN Condition RPAREN SEMI
 							|
@@ -199,7 +199,9 @@ SingleStatement		::=		(IfStmt) IfStmtStart Statement
 							|
 							(PrintStmt) PRINT LPAREN PrintPars:p RPAREN SEMI;
 									
-IfStmtStart			::=		(IfStmtStart) IF LPAREN Condition RPAREN;
+IfStmtStart			::=		(IfStmtStart) IF;
+
+ThenStmtStart		::=		(ThenStmtStart) LPAREN Condition RPAREN;
 
 ElseStmtStart		::=		(ElseStmtStart) ELSE;
 									

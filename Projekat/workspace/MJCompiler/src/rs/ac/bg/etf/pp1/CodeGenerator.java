@@ -1,5 +1,8 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
@@ -12,11 +15,10 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	private int mainPC;
 	
-	private boolean printWidthSpecified = false;					// If the print statement has a NumConst part	
-	private Obj currentDesignatorObj = null;						// Object of a current designator in array/class indexing
+	private boolean printWidthSpecified = false;						// If the print statement has a NumConst part	
+	private Obj currentDesignatorObj = null;							// Object of a current designator in array/class indexing
 	
-	private ConditionTree conditionTree = new ConditionTree();	// Condition stack
-
+	private List<ConditionTree> conditionTreeStack = new LinkedList<>();	// Condition tree stack - for nested IFs
 	
 	public int getMainPC() {
 		return mainPC;
@@ -53,11 +55,27 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.pop);
 	}
 	
-	private void pushConditionFactor(Class relOp) {		
+	private void pushToConditionStack() {
+		this.conditionTreeStack.add(new ConditionTree());
+	}
+	
+	private ConditionTree peekConditionStack() {
+		return this.conditionTreeStack.get(this.conditionTreeStack.size() - 1);
+	}
+	
+	private ConditionTree popConditionStack() {
+		return this.conditionTreeStack.remove(this.conditionTreeStack.size() - 1);
+	}
+	
+	private void addConditionFactor(Class relOp) {
 		int opCode = getRelOpInstrCode(relOp);
 		
 		Code.putFalseJump(opCode, 0);
-		this.conditionTree.addFactor(Code.pc - 3, Code.inverse[opCode]);
+		peekConditionStack().addFactor(Code.pc - 3, Code.inverse[opCode]);
+	}
+	
+	private void addConditionTerm() {
+		peekConditionStack().addTerm();
 	}
 	
 	//====================================================================================
@@ -256,55 +274,61 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(IfStmtStart stmtStart) {
-		this.conditionTree.setIfStartAdr(Code.pc);
+		pushToConditionStack();
+	}
+	
+	public void visit(ThenStmtStart stmtStart) {
+		peekConditionStack().setIfStartAdr(Code.pc);
 	}
 	
 	public void visit(ElseStmtStart stmtStart) {
-		this.conditionTree.setElseStartAdr(Code.pc);
+		peekConditionStack().setElseStartAdr(Code.pc);
 	}
 	
 	public void visit(IfStmt stmt) {
-		this.conditionTree.endCondition();
-		this.conditionTree.setStmtEndAdr(Code.pc);
-		this.conditionTree.fixCondition();
+		ConditionTree topCondition = popConditionStack();
+		
+		topCondition.setStmtEndAdr(Code.pc);
+		topCondition.endCondition();
+		topCondition.fixCondition();
 	}
 	
 	//--------------CONDITION------------------------------------------------------------
 	
 	public void visit(SingleCondFact condFact) {
 		Code.loadConst(0);
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}
 	
 	public void visit(EQCondFact condFact) {
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}
 	
 	public void visit(NEQCondFact condFact) {
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}
 	
 	public void visit(GTCondFact condFact) {
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}
 	
 	public void visit(GTECondFact condFact) {
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}
 	
 	public void visit(LTCondFact condFact) {
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}
 	
 	public void visit(LTECondFact condFact) {
-		pushConditionFactor(condFact.getClass());
+		addConditionFactor(condFact.getClass());
 	}	
 	
 	public void visit(SingleCondition condition) {
-		this.conditionTree.addTerm();
+		addConditionTerm();
 	}
 	
 	public void visit(MultipleConditions condition) {
-		this.conditionTree.addTerm();
+		addConditionTerm();
 	}
 }

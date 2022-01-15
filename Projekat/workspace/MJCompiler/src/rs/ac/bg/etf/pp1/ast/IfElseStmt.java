@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/0/2022 13:4:17
+// 15/0/2022 14:48:28
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,13 +8,16 @@ package rs.ac.bg.etf.pp1.ast;
 public class IfElseStmt extends SingleStatement {
 
     private IfStmtStart IfStmtStart;
+    private ThenStmtStart ThenStmtStart;
     private Statement Statement;
     private ElseStmtStart ElseStmtStart;
     private Statement Statement1;
 
-    public IfElseStmt (IfStmtStart IfStmtStart, Statement Statement, ElseStmtStart ElseStmtStart, Statement Statement1) {
+    public IfElseStmt (IfStmtStart IfStmtStart, ThenStmtStart ThenStmtStart, Statement Statement, ElseStmtStart ElseStmtStart, Statement Statement1) {
         this.IfStmtStart=IfStmtStart;
         if(IfStmtStart!=null) IfStmtStart.setParent(this);
+        this.ThenStmtStart=ThenStmtStart;
+        if(ThenStmtStart!=null) ThenStmtStart.setParent(this);
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
         this.ElseStmtStart=ElseStmtStart;
@@ -29,6 +32,14 @@ public class IfElseStmt extends SingleStatement {
 
     public void setIfStmtStart(IfStmtStart IfStmtStart) {
         this.IfStmtStart=IfStmtStart;
+    }
+
+    public ThenStmtStart getThenStmtStart() {
+        return ThenStmtStart;
+    }
+
+    public void setThenStmtStart(ThenStmtStart ThenStmtStart) {
+        this.ThenStmtStart=ThenStmtStart;
     }
 
     public Statement getStatement() {
@@ -61,6 +72,7 @@ public class IfElseStmt extends SingleStatement {
 
     public void childrenAccept(Visitor visitor) {
         if(IfStmtStart!=null) IfStmtStart.accept(visitor);
+        if(ThenStmtStart!=null) ThenStmtStart.accept(visitor);
         if(Statement!=null) Statement.accept(visitor);
         if(ElseStmtStart!=null) ElseStmtStart.accept(visitor);
         if(Statement1!=null) Statement1.accept(visitor);
@@ -69,6 +81,7 @@ public class IfElseStmt extends SingleStatement {
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(IfStmtStart!=null) IfStmtStart.traverseTopDown(visitor);
+        if(ThenStmtStart!=null) ThenStmtStart.traverseTopDown(visitor);
         if(Statement!=null) Statement.traverseTopDown(visitor);
         if(ElseStmtStart!=null) ElseStmtStart.traverseTopDown(visitor);
         if(Statement1!=null) Statement1.traverseTopDown(visitor);
@@ -76,6 +89,7 @@ public class IfElseStmt extends SingleStatement {
 
     public void traverseBottomUp(Visitor visitor) {
         if(IfStmtStart!=null) IfStmtStart.traverseBottomUp(visitor);
+        if(ThenStmtStart!=null) ThenStmtStart.traverseBottomUp(visitor);
         if(Statement!=null) Statement.traverseBottomUp(visitor);
         if(ElseStmtStart!=null) ElseStmtStart.traverseBottomUp(visitor);
         if(Statement1!=null) Statement1.traverseBottomUp(visitor);
@@ -89,6 +103,12 @@ public class IfElseStmt extends SingleStatement {
 
         if(IfStmtStart!=null)
             buffer.append(IfStmtStart.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(ThenStmtStart!=null)
+            buffer.append(ThenStmtStart.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
