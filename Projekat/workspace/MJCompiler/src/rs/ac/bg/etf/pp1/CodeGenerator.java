@@ -12,8 +12,11 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	private int mainPC;
 	
-	private boolean printWidthSpecified = false;			// If the print statement has a NumConst part
-	private Obj currentDesignatorObj = null;				// Object of a current designator in array/class indexing
+	private boolean printWidthSpecified = false;					// If the print statement has a NumConst part	
+	private Obj currentDesignatorObj = null;						// Object of a current designator in array/class indexing
+	
+	private ConditionTree conditionTree = new ConditionTree();	// Condition stack
+
 	
 	public int getMainPC() {
 		return mainPC;
@@ -33,9 +36,28 @@ public class CodeGenerator extends VisitorAdaptor {
 		return -1;
 	}
 	
+	private int getRelOpInstrCode(Class op) {
+		if (op == SingleCondFact.class) return Code.gt;
+		if (op == EQCondFact.class) return Code.eq;
+		if (op == NEQCondFact.class) return Code.ne;
+		if (op == GTCondFact.class) return Code.gt;
+		if (op == GTECondFact.class) return Code.ge;
+		if (op == LTCondFact.class) return Code.lt;
+		if (op == LTECondFact.class) return Code.le;
+		
+		return -1;
+	}
+	
 	private void swapTop2ValuesOnStack() {
 		Code.put(Code.dup_x1);
 		Code.put(Code.pop);
+	}
+	
+	private void pushConditionFactor(Class relOp) {		
+		int opCode = getRelOpInstrCode(relOp);
+		
+		Code.putFalseJump(opCode, 0);
+		this.conditionTree.addFactor(Code.pc - 3, Code.inverse[opCode]);
 	}
 	
 	//====================================================================================
@@ -233,4 +255,56 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.store(stmt.getDesignator().obj);
 	}
 	
+	public void visit(IfStmtStart stmtStart) {
+		this.conditionTree.setIfStartAdr(Code.pc);
+	}
+	
+	public void visit(ElseStmtStart stmtStart) {
+		this.conditionTree.setElseStartAdr(Code.pc);
+	}
+	
+	public void visit(IfStmt stmt) {
+		this.conditionTree.endCondition();
+		this.conditionTree.setStmtEndAdr(Code.pc);
+		this.conditionTree.fixCondition();
+	}
+	
+	//--------------CONDITION------------------------------------------------------------
+	
+	public void visit(SingleCondFact condFact) {
+		Code.loadConst(0);
+		pushConditionFactor(condFact.getClass());
+	}
+	
+	public void visit(EQCondFact condFact) {
+		pushConditionFactor(condFact.getClass());
+	}
+	
+	public void visit(NEQCondFact condFact) {
+		pushConditionFactor(condFact.getClass());
+	}
+	
+	public void visit(GTCondFact condFact) {
+		pushConditionFactor(condFact.getClass());
+	}
+	
+	public void visit(GTECondFact condFact) {
+		pushConditionFactor(condFact.getClass());
+	}
+	
+	public void visit(LTCondFact condFact) {
+		pushConditionFactor(condFact.getClass());
+	}
+	
+	public void visit(LTECondFact condFact) {
+		pushConditionFactor(condFact.getClass());
+	}	
+	
+	public void visit(SingleCondition condition) {
+		this.conditionTree.addTerm();
+	}
+	
+	public void visit(MultipleConditions condition) {
+		this.conditionTree.addTerm();
+	}
 }

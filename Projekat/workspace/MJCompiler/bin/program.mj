@@ -1,22 +1,40 @@
-
 program mojProgram
 
-	record rek1 {
-		int x, y[];
-	}
+	int x;
 
-	int x, y[];
-	rek1 r1, r_arr[];
 {
 	void main() {
-		r_arr = new rek1[3];
-		r_arr[0] = new rek1;
-		r_arr[0].x = 4;
-		r_arr[0].y = new int[10];
-		r_arr[0].y[0] = 8;
+		// if (false)
+		//	x = 1;
+			
+		// if (true)
+		//	x = 1;
 		
-		x = r_arr[0].y[0];
+		// if (1 < 2)
+		//	x = 1;
 		
-		print(x);
+		// if (1 < 2 && 2 < 3)
+		// 	x = 1;
+		
+		// if (1 < 2 && 2 < 3 && 3 < 4)
+		// 	x = 1;
+		
+		// if (1 < 2 || 2 < 3)
+		//	x = 1;
+		
+		// if (2 < 1 || 1 < 2)
+		// 	x = 1;
+		
+		// if (2 < 1 || 3 < 1 || 1 < 2)
+		// 	x = 1;
+	
+		// if (1 < 2 || 2 < 3 && 3 < 4)
+		// 	x = 1;
+		
+		// if (1 < 2 && 3 < 4 || 4 < 5)
+		// 	x = 1;
+		
+		// if (8 < 9 && 2 < 3 || 9 < 10 && 5 < 6 || 6 < 7 && 7 < 8)
+		// 	x = 1;
 	}
 }

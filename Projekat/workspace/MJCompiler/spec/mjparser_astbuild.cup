@@ -84,6 +84,8 @@ nonterminal					Statements Statements;
 nonterminal StatementList StatementList;
 nonterminal Statement Statement;
 nonterminal SingleStatement SingleStatement;
+nonterminal					IfStmtStart IfStmtStart;
+nonterminal ElseStmtStart ElseStmtStart;
 nonterminal DoStatementStart DoStatementStart;
 nonterminal					DesignatorStatement DesignatorStatement;
 nonterminal					OptActPars OptActPars;
@@ -197,9 +199,9 @@ Statement			::=		(SingleStmt) SingleStatement:S1 {: RESULT=new SingleStmt(S1); R
 
 Statements			::=		(Statements) LBRACE StatementList:S1 RBRACE {: RESULT=new Statements(S1); RESULT.setLine(S1left); :};
 
-SingleStatement		::=		(IfStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RESULT=new IfStmt(C1, S2); RESULT.setLine(C1left); :}
+SingleStatement		::=		(IfStmt) IfStmtStart:I1 Statement:S2 {: RESULT=new IfStmt(I1, S2); RESULT.setLine(I1left); :}
 							|
-							(IfElseStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 ELSE Statement:S3 {: RESULT=new IfElseStmt(C1, S2, S3); RESULT.setLine(C1left); :}
+							(IfElseStmt) IfStmtStart:I1 Statement:S2 ElseStmtStart:E3 Statement:S4 {: RESULT=new IfElseStmt(I1, S2, E3, S4); RESULT.setLine(I1left); :}
 							|
 							(DoWhileStmt) DoStatementStart:D1 Statement:S2 WHILE LPAREN Condition:C3 RPAREN SEMI {: RESULT=new DoWhileStmt(D1, S2, C3); RESULT.setLine(D1left); :}
 							|
@@ -216,7 +218,11 @@ SingleStatement		::=		(IfStmt) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RES
 							(ReadStmt) READ LPAREN Designator:d RPAREN SEMI {: RESULT=new ReadStmt(d); RESULT.setLine(dleft); :}
 							|
 							(PrintStmt) PRINT LPAREN PrintPars:p RPAREN SEMI {: RESULT=new PrintStmt(p); RESULT.setLine(pleft); :};
-							
+									
+IfStmtStart			::=		(IfStmtStart) IF LPAREN Condition:C1 RPAREN {: RESULT=new IfStmtStart(C1); RESULT.setLine(C1left); :};
+
+ElseStmtStart		::=		(ElseStmtStart) ELSE {: RESULT=new ElseStmtStart(); :};
+									
 DoStatementStart	::=		(DoStatementStart) DO {: RESULT=new DoStatementStart(); :};
 
 Expr				::=		(MultipleExpr) Expr:e Addop:A1 Term:t {: RESULT=new MultipleExpr(e, A1, t); RESULT.setLine(eleft); :}

@@ -68,7 +68,8 @@ nonterminal					VarListDeclList, VarListDecls, VarDeclList, VarDecl, VarListDecl
 nonterminal					MethodDeclList, MethodDecl;
 nonterminal					FormPars, FormParamList, FormParam;
 nonterminal					IndexingList, Indexing;
-nonterminal					Statements, StatementList, Statement, SingleStatement, DoStatementStart;
+nonterminal					Statements, StatementList, Statement, SingleStatement;
+nonterminal					IfStmtStart, ElseStmtStart, DoStatementStart;
 nonterminal					DesignatorStatement;
 nonterminal					OptActPars, ActPars;
 nonterminal					Mulop, Addop, Assignop;
@@ -178,9 +179,9 @@ Statement			::=		(SingleStmt) SingleStatement
 
 Statements			::=		(Statements) LBRACE StatementList RBRACE;
 
-SingleStatement		::=		(IfStmt) IF LPAREN Condition RPAREN Statement
+SingleStatement		::=		(IfStmt) IfStmtStart Statement
 							|
-							(IfElseStmt) IF LPAREN Condition RPAREN Statement ELSE Statement
+							(IfElseStmt) IfStmtStart Statement ElseStmtStart Statement
 							|
 							(DoWhileStmt) DoStatementStart Statement WHILE LPAREN Condition RPAREN SEMI
 							|
@@ -197,7 +198,11 @@ SingleStatement		::=		(IfStmt) IF LPAREN Condition RPAREN Statement
 							(ReadStmt) READ LPAREN Designator:d RPAREN SEMI
 							|
 							(PrintStmt) PRINT LPAREN PrintPars:p RPAREN SEMI;
-							
+									
+IfStmtStart			::=		(IfStmtStart) IF LPAREN Condition RPAREN;
+
+ElseStmtStart		::=		(ElseStmtStart) ELSE;
+									
 DoStatementStart	::=		(DoStatementStart) DO;
 
 Expr				::=		(MultipleExpr) Expr:e Addop Term:t

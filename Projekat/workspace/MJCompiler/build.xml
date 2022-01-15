@@ -12,6 +12,7 @@
 					<exclude name="TabExtended.java"/>
 					<exclude name="DumpSymbolTableVisitorExtended.java"/>
 					<exclude name="CodeGenerator.java"/>
+					<exclude name="ConditionTree.java"/>
 				</fileset>
 			</delete>
 			<delete>
