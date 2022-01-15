@@ -278,17 +278,25 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(ThenStmtStart stmtStart) {
-		peekConditionStack().setIfStartAdr(Code.pc);
+		peekConditionStack().setIfStartAdr();
 	}
 	
 	public void visit(ElseStmtStart stmtStart) {
-		peekConditionStack().setElseStartAdr(Code.pc);
+		peekConditionStack().setElseStartAdr();
 	}
 	
 	public void visit(IfStmt stmt) {
 		ConditionTree topCondition = popConditionStack();
 		
-		topCondition.setStmtEndAdr(Code.pc);
+		topCondition.setStmtEndAdr();
+		topCondition.endCondition();
+		topCondition.fixCondition();
+	}
+	
+	public void visit(IfElseStmt stmt) {
+		ConditionTree topCondition = popConditionStack();
+		
+		topCondition.setStmtEndAdr();
 		topCondition.endCondition();
 		topCondition.fixCondition();
 	}

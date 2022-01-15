@@ -9,7 +9,7 @@ import rs.etf.pp1.mj.runtime.Code;
 public class ConditionTree {
 	
 	private int ifStartAdr;
-	private int elseStartAdr;
+	private int elseStartAdr = -1;
 	private int stmtEndAdr;
 	
 	private List<ConditionFactor> currentCondFactors = new ArrayList<>();
@@ -30,26 +30,40 @@ public class ConditionTree {
 		currentCondTerms = new ArrayList<>();
 	}
 	
-	public void setIfStartAdr(int adr) {
-		ifStartAdr = adr;
+	public void setIfStartAdr() {
+		ifStartAdr = Code.pc;
 	}
 	
-	public void setElseStartAdr(int adr) {
-		elseStartAdr = adr;
+	public void setElseStartAdr() {
+		// If statement finished here, so jump over else statement
+		Code.putJump(0);
+		
+		// Set else statement start address
+		elseStartAdr = Code.pc;
 	}
 	
-	public void setStmtEndAdr(int adr) {
-		stmtEndAdr = adr;
+	public void setStmtEndAdr() {
+		stmtEndAdr = Code.pc;
 	}
 	
 	public void fixCondition() {
 		List<ConditionTerm> condTerms = condition.getConditionTerms();
+	
+		// If there is else part, fix the jump address over else statement
+		if (elseStartAdr != -1) {
+			int pc = Code.pc;
+			Code.pc = stmtEndAdr;				
+			Code.fixup(elseStartAdr - 2);		// Because the address is 2 bytes long
+			Code.pc = pc;
+		}
 		
 		for (int i = 0; i < condTerms.size() - 1; i++) {
 			fixTerm(condTerms.get(i), condTerms.get(i).getEndAddr(), ifStartAdr, false);
 		}
 		
-		fixTerm(condTerms.get(condTerms.size() - 1), stmtEndAdr, ifStartAdr, true);
+		// If there is else part, jump to start of else statement, otherwise jump to if statement end
+		int nextAdr = elseStartAdr != -1 ? elseStartAdr : stmtEndAdr;
+		fixTerm(condTerms.get(condTerms.size() - 1), nextAdr, ifStartAdr, true);
 	}
 	
 	private void fixTerm(ConditionTerm condTerm, int nextAdr, int stmtStartAdr, boolean lastCondTerm) {
@@ -87,7 +101,7 @@ public class ConditionTree {
 	
 		// Fix jump address
 		Code.pc = adr;
-		Code.fixup(condFactor.getAddr() + 1);
+		Code.fixup(condFactor.getAddr() + 1);		// Because the first byte is the instruction (e.g. jeq)
 		
 		// Restore pc
 		Code.pc = pc;
