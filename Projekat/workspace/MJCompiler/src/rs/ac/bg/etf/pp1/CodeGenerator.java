@@ -289,7 +289,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		ConditionTree topCondition = popConditionStack();
 		
 		topCondition.setStmtEndAdr();
-		topCondition.endCondition();
+		topCondition.endCondition(false);
 		topCondition.fixCondition();
 	}
 	
@@ -297,7 +297,20 @@ public class CodeGenerator extends VisitorAdaptor {
 		ConditionTree topCondition = popConditionStack();
 		
 		topCondition.setStmtEndAdr();
-		topCondition.endCondition();
+		topCondition.endCondition(false);
+		topCondition.fixCondition();
+	}
+	
+	public void visit(DoStatementStart stmtStart) {
+		pushToConditionStack();
+		peekConditionStack().setIfStartAdr();
+	}
+	
+	public void visit(DoWhileStmt stmt) {
+		ConditionTree topCondition = popConditionStack();
+		
+		topCondition.setStmtEndAdr();
+		topCondition.endCondition(true);
 		topCondition.fixCondition();
 	}
 	

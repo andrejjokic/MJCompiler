@@ -46,14 +46,51 @@ program mojProgram
 		// else
 		//	x = 3;
 			
-		if (x < 2)
-			if (x < 1)
-				x = 0;
-			else 
-				x = 1;
-		else
-			x = 2;
-				
+		// if (x < 2)
+		//	if (x < 1)
+		//		x = 0;
+		//	else 
+		//		x = 1;
+		// else
+		//	x = 2;
 			
+		// if (x < 2)
+		//	if (x < 1)
+		//		x = 0;
+		//	else
+		//		x = 1;		
+		
+		// if (x < 2) {	
+		//	if (x < 1)
+		//		x = 0;
+		// } else {
+		//	x = 1;
+		//  }
+		
+		// x = 0;
+		
+		// do {
+		//	x++;
+		// } while (x < 4);
+		
+		// do {
+		//	x++;
+		// } while (8 < 9 && 2 < 1 || 9 < 10 && 5 < 4 || 6 < 7 && x < 4);
+	
+		// do {
+		// 	do {
+		//		x++;
+		//	} while (x < 2);
+		//	
+		//	x++;
+		// } while (x < 4);
+		
+		// do {
+		//	if (x < 5) {
+		//		do {
+		//			x++;
+		//		} while (x < 3);
+		//	}
+		// } while (x < 3);
 	}
 }

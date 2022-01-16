@@ -8,6 +8,8 @@ import rs.etf.pp1.mj.runtime.Code;
 
 public class ConditionTree {
 	
+	private boolean isDoWhileStmt = false;			// Whether the condition is used in DO..WHILE or IF..ELSE statement
+	
 	private int ifStartAdr;
 	private int elseStartAdr = -1;
 	private int stmtEndAdr;
@@ -25,7 +27,9 @@ public class ConditionTree {
 		currentCondFactors = new ArrayList<>();
 	}
 	
-	public void endCondition() {
+	public void endCondition(boolean isDoWhileStmt) {
+		this.isDoWhileStmt = isDoWhileStmt;
+
 		condition = new SingleCondition(currentCondTerms);
 		currentCondTerms = new ArrayList<>();
 	}
@@ -63,6 +67,7 @@ public class ConditionTree {
 		
 		// If there is else part, jump to start of else statement, otherwise jump to if statement end
 		int nextAdr = elseStartAdr != -1 ? elseStartAdr : stmtEndAdr;
+		
 		fixTerm(condTerms.get(condTerms.size() - 1), nextAdr, ifStartAdr, true);
 	}
 	
@@ -78,11 +83,15 @@ public class ConditionTree {
 		}
 		
 		/*
+		 * 	==========================================IF ELSE===============================================================
 		 *  If we made it to the last condition factor, that means all previous factors were true
 		 *  If it is a last condition term, jump over the then statement body if the last condition factor is false
 		 *  If it is not a last condition term, jump to the then statement body if the last condition factor is true
+		 *  
+		 * 	=========================================DO WHILE===============================================================
+		 * 	In case of DO..WHILE, we have to jump to statement start regardless of factor term being last or not
 		 */
-		if (lastCondTerm)
+		if (lastCondTerm && !isDoWhileStmt)
 			fixFactor(condFactors.get(condFactors.size() - 1), nextAdr, false);
 		else
 			fixFactor(condFactors.get(condFactors.size() - 1), stmtStartAdr, true);
