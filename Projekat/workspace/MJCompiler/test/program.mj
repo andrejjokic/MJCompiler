@@ -92,5 +92,20 @@ program mojProgram
 		//		} while (x < 3);
 		//	}
 		// } while (x < 3);
+		
+		// do {		
+		//	if (x % 2 == 0) {
+		//		x++;
+		//		continue;
+		//	}
+		//	else
+		//		print(x);
+		//	
+		//	x++;
+		//	
+		//	if (x == 4)
+		//		break;
+		//
+		// } while (true);
 	}
 }

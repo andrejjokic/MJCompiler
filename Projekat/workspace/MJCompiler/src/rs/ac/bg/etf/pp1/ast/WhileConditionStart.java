@@ -5,9 +5,27 @@
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class RetVoid extends ReturnType {
+public class WhileConditionStart implements SyntaxNode {
 
-    public RetVoid () {
+    private SyntaxNode parent;
+    private int line;
+    public WhileConditionStart () {
+    }
+
+    public SyntaxNode getParent() {
+        return parent;
+    }
+
+    public void setParent(SyntaxNode parent) {
+        this.parent=parent;
+    }
+
+    public int getLine() {
+        return line;
+    }
+
+    public void setLine(int line) {
+        this.line=line;
     }
 
     public void accept(Visitor visitor) {
@@ -28,10 +46,10 @@ public class RetVoid extends ReturnType {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("RetVoid(\n");
+        buffer.append("WhileConditionStart(\n");
 
         buffer.append(tab);
-        buffer.append(") [RetVoid]");
+        buffer.append(") [WhileConditionStart]");
         return buffer.toString();
     }
 }

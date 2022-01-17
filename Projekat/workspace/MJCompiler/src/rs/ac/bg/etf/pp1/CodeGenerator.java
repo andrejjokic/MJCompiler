@@ -55,8 +55,8 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.pop);
 	}
 	
-	private void pushToConditionStack() {
-		this.conditionTreeStack.add(new ConditionTree());
+	private void pushToConditionStack(boolean isDoWhileStmt) {
+		this.conditionTreeStack.add(new ConditionTree(isDoWhileStmt));
 	}
 	
 	private ConditionTree peekConditionStack() {
@@ -76,6 +76,30 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	private void addConditionTerm() {
 		peekConditionStack().addTerm();
+	}
+	
+	private void addBreak() {
+		Code.putJump(0);
+		
+		// Find outer do while loop
+		for (int i = this.conditionTreeStack.size() - 1; i >= 0; i--) {
+			if (this.conditionTreeStack.get(i).isDoWhileStmt()) {
+				this.conditionTreeStack.get(i).addBreak();
+				break;
+			}
+		}
+	}
+	
+	private void addContinue() {
+		Code.putJump(0);
+		
+		// Find outer do while loop
+		for (int i = this.conditionTreeStack.size() - 1; i >= 0; i--) {
+			if (this.conditionTreeStack.get(i).isDoWhileStmt()) {
+				this.conditionTreeStack.get(i).addContinue();
+				break;
+			}
+		}
 	}
 	
 	//====================================================================================
@@ -274,7 +298,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(IfStmtStart stmtStart) {
-		pushToConditionStack();
+		pushToConditionStack(false);
 	}
 	
 	public void visit(ThenStmtStart stmtStart) {
@@ -289,7 +313,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		ConditionTree topCondition = popConditionStack();
 		
 		topCondition.setStmtEndAdr();
-		topCondition.endCondition(false);
+		topCondition.endCondition();
 		topCondition.fixCondition();
 	}
 	
@@ -297,21 +321,33 @@ public class CodeGenerator extends VisitorAdaptor {
 		ConditionTree topCondition = popConditionStack();
 		
 		topCondition.setStmtEndAdr();
-		topCondition.endCondition(false);
+		topCondition.endCondition();
 		topCondition.fixCondition();
 	}
 	
 	public void visit(DoStatementStart stmtStart) {
-		pushToConditionStack();
+		pushToConditionStack(true);
 		peekConditionStack().setIfStartAdr();
+	}
+	
+	public void visit(WhileConditionStart stmtStart) {
+		peekConditionStack().setCondStartAdr();
 	}
 	
 	public void visit(DoWhileStmt stmt) {
 		ConditionTree topCondition = popConditionStack();
 		
 		topCondition.setStmtEndAdr();
-		topCondition.endCondition(true);
+		topCondition.endCondition();
 		topCondition.fixCondition();
+	}
+	
+	public void visit(BreakStmt stmt) {
+		addBreak();
+	}
+	
+	public void visit(ContinueStmt stmt) {
+		addContinue();
 	}
 	
 	//--------------CONDITION------------------------------------------------------------

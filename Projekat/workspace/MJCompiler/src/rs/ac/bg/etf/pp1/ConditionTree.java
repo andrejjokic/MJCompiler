@@ -13,11 +13,27 @@ public class ConditionTree {
 	private int ifStartAdr;
 	private int elseStartAdr = -1;
 	private int stmtEndAdr;
+	private int condStartAddr;
 	
 	private List<ConditionFactor> currentCondFactors = new ArrayList<>();
 	private List<ConditionTerm> currentCondTerms = new ArrayList<>();
 	private SingleCondition condition;
 	
+	private List<Integer> breakAddrs = new ArrayList<>();
+	private List<Integer> continueAddrs = new ArrayList<>();
+	
+	public ConditionTree(boolean isDoWhileStmt) {
+		this.isDoWhileStmt = isDoWhileStmt;
+	}
+	
+	public boolean isDoWhileStmt() {
+		return isDoWhileStmt;
+	}
+
+	public void setDoWhileStmt(boolean isDoWhileStmt) {
+		this.isDoWhileStmt = isDoWhileStmt;
+	}
+
 	public void addFactor(int adr, int relOp) {
 		currentCondFactors.add(new ConditionFactor(adr, relOp));
 	}
@@ -27,9 +43,7 @@ public class ConditionTree {
 		currentCondFactors = new ArrayList<>();
 	}
 	
-	public void endCondition(boolean isDoWhileStmt) {
-		this.isDoWhileStmt = isDoWhileStmt;
-
+	public void endCondition() {
 		condition = new SingleCondition(currentCondTerms);
 		currentCondTerms = new ArrayList<>();
 	}
@@ -50,15 +64,42 @@ public class ConditionTree {
 		stmtEndAdr = Code.pc;
 	}
 	
+	public void setCondStartAdr() {
+		// Condition start address for do while loop
+		condStartAddr = Code.pc;
+	}
+	
+	public void addBreak() {
+		if (isDoWhileStmt)
+			breakAddrs.add(Code.pc - 2);		// Because the address is 2 bytes long
+	}
+	
+	public void addContinue() {
+		if (isDoWhileStmt)
+			continueAddrs.add(Code.pc - 2);		// Because the address is 2 bytes long
+	}
+	
+	private void patchAddr(int buffPos, int jmpAddr) {
+		int pc = Code.pc;
+		Code.pc = jmpAddr;
+		Code.fixup(buffPos);
+		Code.pc = pc;
+	}
+	
 	public void fixCondition() {
 		List<ConditionTerm> condTerms = condition.getConditionTerms();
 	
 		// If there is else part, fix the jump address over else statement
-		if (elseStartAdr != -1) {
-			int pc = Code.pc;
-			Code.pc = stmtEndAdr;				
-			Code.fixup(elseStartAdr - 2);		// Because the address is 2 bytes long
-			Code.pc = pc;
+		if (elseStartAdr != -1)
+			patchAddr(elseStartAdr - 2, stmtEndAdr);	// Because the address is 2 bytes long
+
+		// If there are any break or continue statements, fix their jump addresses
+		for (Integer addrStart: breakAddrs) {
+			patchAddr(addrStart, stmtEndAdr);
+		}
+		
+		for (Integer addrStart: continueAddrs) {
+			patchAddr(addrStart, condStartAddr);
 		}
 		
 		for (int i = 0; i < condTerms.size() - 1; i++) {

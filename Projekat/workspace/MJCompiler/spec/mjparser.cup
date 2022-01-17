@@ -69,7 +69,7 @@ nonterminal					MethodDeclList, MethodDecl;
 nonterminal					FormPars, FormParamList, FormParam;
 nonterminal					IndexingList, Indexing;
 nonterminal					Statements, StatementList, Statement, SingleStatement;
-nonterminal					IfStmtStart, ThenStmtStart, ElseStmtStart, DoStatementStart;
+nonterminal					IfStmtStart, ThenStmtStart, ElseStmtStart, DoStatementStart, WhileConditionStart;
 nonterminal					DesignatorStatement;
 nonterminal					OptActPars, ActPars;
 nonterminal					Mulop, Addop, Assignop;
@@ -183,7 +183,7 @@ SingleStatement		::=		(IfStmt) IfStmtStart ThenStmtStart Statement
 							|
 							(IfElseStmt) IfStmtStart ThenStmtStart Statement ElseStmtStart Statement
 							|
-							(DoWhileStmt) DoStatementStart Statement WHILE LPAREN Condition RPAREN SEMI
+							(DoWhileStmt) DoStatementStart Statement WhileConditionStart LPAREN Condition RPAREN SEMI
 							|
 							(DesignatorStmt) DesignatorStatement SEMI
 							|
@@ -206,6 +206,8 @@ ThenStmtStart		::=		(ThenStmtStart) LPAREN Condition RPAREN;
 ElseStmtStart		::=		(ElseStmtStart) ELSE;
 									
 DoStatementStart	::=		(DoStatementStart) DO;
+
+WhileConditionStart	::=		(WhileConditionStart) WHILE;
 
 Expr				::=		(MultipleExpr) Expr:e Addop Term:t
 							|
