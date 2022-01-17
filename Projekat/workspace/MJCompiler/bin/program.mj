@@ -1,9 +1,11 @@
 program mojProgram
 
-	int x;
+	int x, y[];
+	char z;
+	bool t;
 
 {
-	void main() {
+	void main() {	
 		// if (false)
 		//	x = 1;
 			

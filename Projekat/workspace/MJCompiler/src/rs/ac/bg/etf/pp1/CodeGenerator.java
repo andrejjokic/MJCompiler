@@ -102,11 +102,56 @@ public class CodeGenerator extends VisitorAdaptor {
 		}
 	}
 	
+	private void defineChrAndOrdFunctions() {
+		 Obj chrObj = TabExtended.find("chr");
+		 Obj ordObj = TabExtended.find("ord");
+	     chrObj.setAdr(Code.pc);
+	     ordObj.setAdr(Code.pc);
+
+	     /* Entry */
+	     Code.put(Code.enter);
+	     Code.put(1);
+	     Code.put(1);
+	     
+	     /* Body */
+	     Code.put(Code.load_n + 0);		// Load first and only parameter to stack
+	     
+	     /* Exit */
+	     Code.put(Code.exit);
+	     Code.put(Code.return_);
+	}
+
+	private void defineLenFunction() {
+		 Obj chrObj = TabExtended.find("len");
+	     chrObj.setAdr(Code.pc);
+
+	     /* Entry */
+	     Code.put(Code.enter);
+	     Code.put(1);
+	     Code.put(1);
+	     
+	     /* Body */
+	     Code.put(Code.load_n + 0);		// Load first and only parameter to stack
+	     Code.put(Code.arraylength);
+	     
+	     /* Exit */
+	     Code.put(Code.exit);
+	     Code.put(Code.return_);
+	}
+	
 	//====================================================================================
 	//  			Visit Methods
 	//====================================================================================
 	
-	//--------------CONST---------------------------------------------------------------
+	//--------------PROGRAM--------------------------------------------------------------
+	
+	public void visit(ProgName progName) {
+		/* Define predefined functions */
+		defineLenFunction();
+		defineChrAndOrdFunctions();
+	}
+	
+	//--------------CONST----------------------------------------------------------------
 	
 	public void visit(NumConst cnst) {
 		Code.loadConst(cnst.getVal());
