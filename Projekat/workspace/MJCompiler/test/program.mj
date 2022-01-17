@@ -1,21 +1,50 @@
-program mojProgram
+// Test301
 
-	record rek1 {
-		int x, y[];
-	}
+program test301
+
+	const int nula = 0;
+	const int jedan = 1;
+	const int pet = 5;
+
+	int niz[];
+	char nizch[];
 	
-	int x, y[];
-	rek1 r1, r_arr[];
 {
-	void main() {
-		r_arr = new rek1[3];
-		r_arr[0] = new rek1;
-		r_arr[0].x = 4;
-		r_arr[0].y = new int[10];
-		r_arr[0].y[0] = 8;
+	void main()	
+		int bodovi;
+		bool bt;
+	{
+		bodovi = 0;
+		bodovi++;
+		bodovi = bodovi + jedan;
+		bodovi = bodovi * pet;
+		bodovi--;
+		print(bodovi); 
+			
 		
-		x = r_arr[0].y[0];
+		niz = new int[3];
+		niz[nula] = jedan;
+		niz[1] = 2;
+		niz[niz[jedan]] = niz[niz[0]] * 3;
+		bodovi = niz[2]/niz[0];
+		print(bodovi); 
+		print(niz[2]);
 		
-		print(x);
+		
+		nizch = new char[3];
+		nizch[0] = 'a';
+		nizch[jedan] = 'b';
+		nizch[pet - 3] = 'c';
+		print(nizch[1]);
+		print(nizch[jedan * 2]);
+			
+		
+		bodovi = bodovi + (pet * jedan - 1) * bodovi - (3 % 2 + 3 * 2 - 3); 
+		print(bodovi);
+			
+		read(bodovi);
+		print(bodovi);
 	}
 }
+
+

@@ -357,7 +357,11 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(ReadStmt stmt) {
 		// Generate instruction
-		Code.put(Code.read);
+		if (stmt.getDesignator().obj.getType() == TabExtended.charType)
+			Code.put(Code.bread);
+		else
+			Code.put(Code.read);
+		
 		Code.store(stmt.getDesignator().obj);
 	}
 	
