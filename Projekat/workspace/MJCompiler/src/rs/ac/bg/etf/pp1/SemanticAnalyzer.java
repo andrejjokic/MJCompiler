@@ -24,7 +24,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	int loopCnt = 0;										// Number of loops currently open
 	
-	Obj currentDesignatorObj= null;							// Object of a current designator
+	List<Obj> designatorObjStack = new ArrayList<>();		// Stack for designator indexing
 	
 	List<Struct> actualParamList = new ArrayList<>();		// List containing actual parameters for a function call
 	
@@ -84,6 +84,18 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	private boolean checkNameDeclaredInThisScope(String name) {
 		return TabExtended.currentScope().findSymbol(name) != null;
+	}
+	
+	private Obj peekDesignObjStack() {
+		return this.designatorObjStack.get(this.designatorObjStack.size() - 1);
+	}
+	
+	private Obj popDesignObjStack() {
+		return this.designatorObjStack.remove(this.designatorObjStack.size() - 1);
+	}
+	
+	private void pushToDesignObjStack(Obj designObj) {
+		this.designatorObjStack.add(designObj);
 	}
 	
 	//====================================================================================
@@ -418,33 +430,34 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	//--------------DESIGNATOR--------------------------------------------------------------
 	
 	public void visit(DesignatorName designatorName) {
-		this.currentDesignatorObj = TabExtended.find(designatorName.getName());
-		designatorName.obj = this.currentDesignatorObj;
+		designatorName.obj = TabExtended.find(designatorName.getName());
+		pushToDesignObjStack(designatorName.obj);
 				
-		if (this.currentDesignatorObj == TabExtended.noObj) {
+		if (designatorName.obj == TabExtended.noObj) {
 			report_error("Simbol nije pronadjen u tabeli simbola", designatorName);
 		}
 	}
 	
 	public void visit(IndexingField indexingField) {
-		if (this.currentDesignatorObj.getType().getKind() != Struct.Class) {
+		if (peekDesignObjStack().getType().getKind() != Struct.Class) {
 			report_error("Tip ne predstavlja klasu! ", indexingField);
 			return;
 		}
 		
-		Obj member = this.currentDesignatorObj.getType().getMembersTable().searchKey(indexingField.getIdentName());
+		Obj member = peekDesignObjStack().getType().getMembersTable().searchKey(indexingField.getIdentName());
 		
 		if (member == null || (member.getKind() != Obj.Meth && member.getKind() != Obj.Fld)) {
 			report_error(indexingField.getIdentName() + " ne predstavlja ni metodu ni polje klase!", indexingField);
 			return;
 		}
 		
-		this.currentDesignatorObj = member;
+		popDesignObjStack();
+		pushToDesignObjStack(member);
 	}
 	
 	public void visit(IndexingArray indexingArray) {
-		if (this.currentDesignatorObj.getType().getKind() != Struct.Array) {
-			report_error(this.currentDesignatorObj.getName() + " nije niz!", indexingArray);
+		if (peekDesignObjStack().getType().getKind() != Struct.Array) {
+			report_error(peekDesignObjStack().getName() + " nije niz!", indexingArray);
 			return;
 		}
 		
@@ -453,12 +466,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			return;
 		}
 		
-		this.currentDesignatorObj = new Obj(Obj.Elem, currentDesignatorObj.getName(), this.currentDesignatorObj.getType().getElemType());
+		Obj elem = popDesignObjStack();
+		elem = new Obj(Obj.Elem, elem.getName(), elem.getType().getElemType());
+		
+		pushToDesignObjStack(elem);
 	}
 	
 	public void visit(Designator designator) {
-		designator.obj = this.currentDesignatorObj;
-		this.currentDesignatorObj = null;
+		designator.obj = popDesignObjStack();
 	}
 	
 	//--------------STATEMENT--------------------------------------------------------------

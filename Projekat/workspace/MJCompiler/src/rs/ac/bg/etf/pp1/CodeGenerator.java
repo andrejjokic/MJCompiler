@@ -1,5 +1,6 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	private int mainPC;
 	
 	private boolean printWidthSpecified = false;						// If the print statement has a NumConst part	
-	private Obj currentDesignatorObj = null;							// Object of a current designator in array/class indexing
+	List<Obj> designatorObjStack = new ArrayList<>();					// Stack for designator indexing
 	
 	private List<ConditionTree> conditionTreeStack = new LinkedList<>();	// Condition tree stack - for nested IFs
 	
@@ -53,6 +54,18 @@ public class CodeGenerator extends VisitorAdaptor {
 	private void swapTop2ValuesOnStack() {
 		Code.put(Code.dup_x1);
 		Code.put(Code.pop);
+	}
+	
+	private Obj peekDesignObjStack() {
+		return this.designatorObjStack.get(this.designatorObjStack.size() - 1);
+	}
+	
+	private Obj popDesignObjStack() {
+		return this.designatorObjStack.remove(this.designatorObjStack.size() - 1);
+	}
+	
+	private void pushToDesignObjStack(Obj designObj) {
+		this.designatorObjStack.add(designObj);
 	}
 	
 	private void pushToConditionStack(boolean isDoWhileStmt) {
@@ -194,20 +207,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	//--------------DESIGNATOR-----------------------------------------------------------
 	
-	public void visit(Designator designator) {
-		SyntaxNode parent = designator.getParent();
-		
-		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
-			Code.load(this.currentDesignatorObj);
-		}
-		
-		designator.obj = this.currentDesignatorObj;
-		this.currentDesignatorObj = null;
-	}
-	
 	public void visit(DesignatorName designatorName) {
 		// Save designator object
-		this.currentDesignatorObj = designatorName.obj;
+		pushToDesignObjStack(designatorName.obj);
 	}
 	
 	public void visit(IndexingArray indexing) {
@@ -215,24 +217,37 @@ public class CodeGenerator extends VisitorAdaptor {
 		 *  If it is a class field, getfield instruction takes 1 argument from stack,
 		 *  which is now under the array size constant on stack, so swap them
 		 */
-		if (this.currentDesignatorObj.getKind() == Obj.Fld) {
+		if (peekDesignObjStack().getKind() == Obj.Fld) {
 			swapTop2ValuesOnStack();
 		}
 		
 		// Load designator's value (if it is a reference, it will be the pointer's value)
-		Code.load(this.currentDesignatorObj);
+		Code.load(peekDesignObjStack());
 		
 		// Designator's value will now be on top of array size constant on stack, so swap them
 		swapTop2ValuesOnStack();
 		
-		this.currentDesignatorObj = new Obj(Obj.Elem, currentDesignatorObj.getName(), this.currentDesignatorObj.getType().getElemType());
+		Obj elem = popDesignObjStack();
+		elem = new Obj(Obj.Elem, elem.getName(), elem.getType().getElemType());
+		
+		pushToDesignObjStack(elem);
 	}
 	
 	public void visit(IndexingField indexing) {
 		// Load designator's value (if it is a reference, it will be the pointer's value)
-		Code.load(this.currentDesignatorObj);
+		Code.load(peekDesignObjStack());
 		
-		this.currentDesignatorObj = this.currentDesignatorObj.getType().getMembersTable().searchKey(indexing.getIdentName());
+		pushToDesignObjStack(popDesignObjStack().getType().getMembersTable().searchKey(indexing.getIdentName()));
+	}
+	
+	public void visit(Designator designator) {
+		SyntaxNode parent = designator.getParent();
+		
+		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
+			Code.load(peekDesignObjStack());
+		}
+		
+		designator.obj = popDesignObjStack();
 	}
 	
 	//--------------EXPRESSION----------------------------------------------------------
