@@ -294,6 +294,10 @@ public class CodeGenerator extends VisitorAdaptor {
 		// Generate instruction
 		Code.put(Code.call);
 		Code.put2(offset);
+		
+		// If function has return value, pop it from the stack because no one will use it
+		if (stmt.getDesignator().obj.getType() != TabExtended.noType)
+			Code.put(Code.pop);
 	}
 	
 	public void visit(DesignatorStmtInc stmt) {

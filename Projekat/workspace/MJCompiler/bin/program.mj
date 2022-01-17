@@ -5,7 +5,8 @@ program mojProgram
 	bool t;
 
 {
-	void main() {	
+
+	void main() {
 		// if (false)
 		//	x = 1;
 			
