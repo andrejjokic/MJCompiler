@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.concepts.*;
 import rs.etf.pp1.symboltable.structure.*;
+import rs.etf.pp1.symboltable.visitors.SymbolTableVisitor;
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 
@@ -115,14 +116,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		this.errorDetected = true;
 	}
 
-	public void report_info(String message, SyntaxNode info) {
+	public void report_info(Obj objNode, int line) {
 		StringBuilder msg = new StringBuilder(); 
-		int line = (info == null) ? 0: info.getLine();
+
+		msg.append("Pretraga na liniji ").append(line).append(" : nadjeno ");
 		
-		if (line != 0)
-			msg.append ("Upozorenje na liniji ").append(line).append(" : ");
+		SymbolTableVisitor stv = new DumpSymbolTableVisitorExtended();
+		stv.visitObjNode(objNode);
 		
-		msg.append(message);
+		msg.append(stv.getOutput());
 		
 		log.info(msg.toString());
 	}
@@ -436,6 +438,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (designatorName.obj == TabExtended.noObj) {
 			report_error("Simbol nije pronadjen u tabeli simbola", designatorName);
 		}
+		
+		report_info(designatorName.obj, designatorName.getLine());
 	}
 	
 	public void visit(IndexingField indexingField) {
@@ -453,6 +457,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		
 		popDesignObjStack();
 		pushToDesignObjStack(member);
+		
+		report_info(member, indexingField.getLine());
 	}
 	
 	public void visit(IndexingArray indexingArray) {
