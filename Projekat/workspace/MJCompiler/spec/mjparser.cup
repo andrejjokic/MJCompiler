@@ -76,7 +76,7 @@ nonterminal					Mulop, Addop, Assignop;
 
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		ProgName, Program;
 nonterminal		rs.etf.pp1.symboltable.concepts.Obj		MethodIdent;
-nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator, DesignatorName;
+nonterminal		rs.etf.pp1.symboltable.concepts.Obj		Designator, DesignatorName, FuncCallStart;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Type, ReturnType;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	RecordName;
 nonterminal		rs.etf.pp1.symboltable.concepts.Struct	Const, Expr, Term, Factor;
@@ -229,7 +229,9 @@ Factor				::=		(FactorWithConst) Const:c
 							|
 							(FactorDesignator) Designator:d
 							|
-							(FactorDesignatorFuncCall) Designator:d LPAREN OptActPars RPAREN;
+							(FactorDesignatorFuncCall) FuncCallStart:f LPAREN OptActPars RPAREN;
+							
+FuncCallStart		::=		(FuncCallStart) Designator:d;
 							
 Designator			::=		(Designator) DesignatorName IndexingList;
 
@@ -271,7 +273,7 @@ DesignatorStatement	::=		(DesignatorStmtAssign) Designator Assignop Expr
 							|
 							Designator Assignop error
 							|
-							(DesignatorStmtFuncCall) Designator:d LPAREN OptActPars RPAREN
+							(DesignatorStmtFuncCall) FuncCallStart:f LPAREN OptActPars RPAREN
 							|
 							(DesignatorStmtInc) Designator:d PLUSPLUS
 							|

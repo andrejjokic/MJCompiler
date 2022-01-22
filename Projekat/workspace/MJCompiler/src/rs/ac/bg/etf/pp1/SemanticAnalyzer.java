@@ -12,25 +12,24 @@ import rs.etf.pp1.symboltable.visitors.SymbolTableVisitor;
 
 public class SemanticAnalyzer extends VisitorAdaptor {
 
-	boolean errorDetected = false;							// If any semantic/context error is detected
+	boolean errorDetected = false;								// If any semantic/context error is detected
 	
-	int currentConstVal = 0;								// Value of a current constant declaration(boolean = 1 or 0, char = ASCII code)
+	int currentConstVal = 0;									// Value of a current constant declaration(boolean = 1 or 0, char = ASCII code)
 	
-	Struct currentDeclType = null;							// Contains type, when declaring multiple variables/constants in one line
-	int currentVarObjType = Obj.Var;						// If variable is global(default), or field of a class/record
+	Struct currentDeclType = null;								// Contains type, when declaring multiple variables/constants in one line
+	int currentVarObjType = Obj.Var;							// If variable is global(default), or field of a class/record
 	
-	Obj currentMethodDeclaration = null;					// Contains object of a current method declaration
-	boolean currentMethodReturned = false;					// If there has been a return statement in a current method declaration
-	boolean isCurrentMethodValid = true;					// If declaration of a current method is valid
+	Obj currentMethodDeclaration = null;						// Contains object of a current method declaration
+	boolean currentMethodReturned = false;						// If there has been a return statement in a current method declaration
+	boolean isCurrentMethodValid = true;						// If declaration of a current method is valid
 	
-	int loopCnt = 0;										// Number of loops currently open
+	int loopCnt = 0;											// Number of loops currently open
 	
-	List<Obj> designatorObjStack = new ArrayList<>();		// Stack for designator indexing
+	Stack<Obj> designatorObjStack = new Stack<>();				// Stack for designator indexing
+	Stack<List<Struct>> actualParamListStack = new Stack<>();	// Stack containing actual parameters for a function call(for nested function calls)
 	
-	List<Struct> actualParamList = new ArrayList<>();		// List containing actual parameters for a function call
-	
-	int nVars = 0;											// Number of global variables
-	int nMethodLocalVars = 0;								// Number of local variables a method has
+	int nVars = 0;												// Number of global variables
+	int nMethodLocalVars = 0;									// Number of local variables a method has
 	
 	Logger log = Logger.getLogger(getClass());
 
@@ -62,14 +61,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	private void checkFormalAndActualParams(Obj designObj, int line) {
 		// Check formal and actual parameters compatibility
-		if (this.actualParamList.size() != designObj.getLevel()) {
+		if (this.actualParamListStack.peek().size() != designObj.getLevel()) {
 			report_error("Greska na liniji " + line +" : Broj stvarnih i formalnih parametara se ne poklapa!", null);
 		} else {
 			Iterator<Obj> formalPars = designObj.getLocalSymbols().iterator();
 			boolean compatible = true;
 			
-			for (int i = 0; i < this.actualParamList.size(); i++) {
-				if (!this.actualParamList.get(i).assignableTo(formalPars.next().getType())) {
+			for (int i = 0; i < this.actualParamListStack.peek().size(); i++) {
+				if (!this.actualParamListStack.peek().get(i).assignableTo(formalPars.next().getType())) {
 					compatible = false;
 					break;
 				}
@@ -80,23 +79,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			}
 		}
 		
-		this.actualParamList.clear();
+		this.actualParamListStack.pop();
+		// this.actualParamList.clear();
 	}
 	
 	private boolean checkNameDeclaredInThisScope(String name) {
 		return TabExtended.currentScope().findSymbol(name) != null;
-	}
-	
-	private Obj peekDesignObjStack() {
-		return this.designatorObjStack.get(this.designatorObjStack.size() - 1);
-	}
-	
-	private Obj popDesignObjStack() {
-		return this.designatorObjStack.remove(this.designatorObjStack.size() - 1);
-	}
-	
-	private void pushToDesignObjStack(Obj designObj) {
-		this.designatorObjStack.add(designObj);
 	}
 	
 	//====================================================================================
@@ -377,14 +365,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(FactorDesignatorFuncCall factorDesignator) {
-		Obj designObj = factorDesignator.getDesignator().obj;
+		Obj designObj = factorDesignator.getFuncCallStart().getDesignator().obj;
 		
 		if (checkDesignatorIsFunction(designObj, factorDesignator.getLine())) {
 			checkFormalAndActualParams(designObj, factorDesignator.getLine());
 		}
 		
 		factorDesignator.struct = designObj.getType();
-		factorDesignator.getDesignator().obj = factorDesignator.getDesignator().getDesignatorName().obj;
+		factorDesignator.getFuncCallStart().getDesignator().obj = factorDesignator.getFuncCallStart().getDesignator().getDesignatorName().obj;
 	}
 	
 	//--------------TERM--------------------------------------------------------------
@@ -433,8 +421,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(DesignatorName designatorName) {
 		designatorName.obj = TabExtended.find(designatorName.getName());
-		pushToDesignObjStack(designatorName.obj);
-				
+		this.designatorObjStack.push(designatorName.obj);	
+		
 		if (designatorName.obj == TabExtended.noObj) {
 			report_error("Simbol nije pronadjen u tabeli simbola", designatorName);
 		}
@@ -443,27 +431,27 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(IndexingField indexingField) {
-		if (peekDesignObjStack().getType().getKind() != Struct.Class) {
+		if (this.designatorObjStack.peek().getType().getKind() != Struct.Class) {
 			report_error("Tip ne predstavlja klasu! ", indexingField);
 			return;
 		}
 		
-		Obj member = peekDesignObjStack().getType().getMembersTable().searchKey(indexingField.getIdentName());
+		Obj member = this.designatorObjStack.peek().getType().getMembersTable().searchKey(indexingField.getIdentName());
 		
 		if (member == null || (member.getKind() != Obj.Meth && member.getKind() != Obj.Fld)) {
 			report_error(indexingField.getIdentName() + " ne predstavlja ni metodu ni polje klase!", indexingField);
 			return;
 		}
 		
-		popDesignObjStack();
-		pushToDesignObjStack(member);
+		this.designatorObjStack.pop();
+		this.designatorObjStack.push(member);
 		
 		report_info(member, indexingField.getLine());
 	}
 	
 	public void visit(IndexingArray indexingArray) {
-		if (peekDesignObjStack().getType().getKind() != Struct.Array) {
-			report_error(peekDesignObjStack().getName() + " nije niz!", indexingArray);
+		if (this.designatorObjStack.peek().getType().getKind() != Struct.Array) {
+			report_error(this.designatorObjStack.peek().getName() + " nije niz!", indexingArray);
 			return;
 		}
 		
@@ -472,14 +460,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			return;
 		}
 		
-		Obj elem = popDesignObjStack();
+		Obj elem = this.designatorObjStack.pop();
 		elem = new Obj(Obj.Elem, elem.getName(), elem.getType().getElemType());
 		
-		pushToDesignObjStack(elem);
+		this.designatorObjStack.push(elem);
 	}
 	
 	public void visit(Designator designator) {
-		designator.obj = popDesignObjStack();
+		designator.obj = designatorObjStack.pop();
 	}
 	
 	//--------------STATEMENT--------------------------------------------------------------
@@ -556,11 +544,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	//--------------DESIGNATOR STATEMENT---------------------------------------------------
 	
 	public void visit(DesignatorStmtFuncCall designStmt) {
-		if (checkDesignatorIsFunction(designStmt.getDesignator().obj, designStmt.getLine())) {
-			checkFormalAndActualParams(designStmt.getDesignator().obj, designStmt.getLine());
+		if (checkDesignatorIsFunction(designStmt.getFuncCallStart().getDesignator().obj, designStmt.getLine())) {
+			checkFormalAndActualParams(designStmt.getFuncCallStart().getDesignator().obj, designStmt.getLine());
 		}
 		
-		designStmt.getDesignator().obj = designStmt.getDesignator().getDesignatorName().obj;
+		designStmt.getFuncCallStart().getDesignator().obj = designStmt.getFuncCallStart().getDesignator().getDesignatorName().obj;
 	}
 	
 	public void visit(DesignatorStmtInc designStmt) {
@@ -746,11 +734,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	//--------------ACTUAL PARAMETERS----------------------------------------------------
+	public void visit(FuncCallStart funcCallStart) {
+		this.actualParamListStack.push(new ArrayList<>());
+	}
+	
 	public void visit(MultipleActPars actPars) {
-		this.actualParamList.add(actPars.getExpr().struct);
+		this.actualParamListStack.peek().add(actPars.getExpr().struct);
 	}
 	
 	public void visit(SingleActPars actPars) {
-		this.actualParamList.add(0, actPars.getExpr().struct);
+		this.actualParamListStack.peek().add(0, actPars.getExpr().struct);
 	}
 }

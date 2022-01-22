@@ -13,6 +13,7 @@
 					<exclude name="DumpSymbolTableVisitorExtended.java"/>
 					<exclude name="CodeGenerator.java"/>
 					<exclude name="ConditionTree.java"/>
+					<exclude name="Stack.java"/>
 				</fileset>
 			</delete>
 			<delete>

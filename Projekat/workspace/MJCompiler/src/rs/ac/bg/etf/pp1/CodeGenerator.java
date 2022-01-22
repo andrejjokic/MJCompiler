@@ -17,9 +17,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	private int mainPC;
 	
 	private boolean printWidthSpecified = false;						// If the print statement has a NumConst part	
-	List<Obj> designatorObjStack = new ArrayList<>();					// Stack for designator indexing
 	
-	private List<ConditionTree> conditionTreeStack = new LinkedList<>();	// Condition tree stack - for nested IFs
+	private Stack<Obj> designatorObjStack = new Stack<>();				// Stack for designator indexing
+	private Stack<ConditionTree> conditionTreeStack = new Stack<>();	// Condition tree stack - for nested IFs
 	
 	public int getMainPC() {
 		return mainPC;
@@ -56,48 +56,26 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.pop);
 	}
 	
-	private Obj peekDesignObjStack() {
-		return this.designatorObjStack.get(this.designatorObjStack.size() - 1);
-	}
-	
-	private Obj popDesignObjStack() {
-		return this.designatorObjStack.remove(this.designatorObjStack.size() - 1);
-	}
-	
-	private void pushToDesignObjStack(Obj designObj) {
-		this.designatorObjStack.add(designObj);
-	}
-	
-	private void pushToConditionStack(boolean isDoWhileStmt) {
-		this.conditionTreeStack.add(new ConditionTree(isDoWhileStmt));
-	}
-	
-	private ConditionTree peekConditionStack() {
-		return this.conditionTreeStack.get(this.conditionTreeStack.size() - 1);
-	}
-	
-	private ConditionTree popConditionStack() {
-		return this.conditionTreeStack.remove(this.conditionTreeStack.size() - 1);
-	}
-	
 	private void addConditionFactor(Class relOp) {
 		int opCode = getRelOpInstrCode(relOp);
 		
 		Code.putFalseJump(opCode, 0);
-		peekConditionStack().addFactor(Code.pc - 3, Code.inverse[opCode]);
+		conditionTreeStack.peek().addFactor(Code.pc - 3, Code.inverse[opCode]);
 	}
 	
 	private void addConditionTerm() {
-		peekConditionStack().addTerm();
+		conditionTreeStack.peek().addTerm();
 	}
 	
 	private void addBreak() {
 		Code.putJump(0);
 		
 		// Find outer do while loop
-		for (int i = this.conditionTreeStack.size() - 1; i >= 0; i--) {
-			if (this.conditionTreeStack.get(i).isDoWhileStmt()) {
-				this.conditionTreeStack.get(i).addBreak();
+		List<ConditionTree> condTreeList = conditionTreeStack.getStackList();
+		
+		for (int i = condTreeList.size() - 1; i >= 0; i--) {
+			if (condTreeList.get(i).isDoWhileStmt()) {
+				condTreeList.get(i).addBreak();
 				break;
 			}
 		}
@@ -107,9 +85,11 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.putJump(0);
 		
 		// Find outer do while loop
-		for (int i = this.conditionTreeStack.size() - 1; i >= 0; i--) {
-			if (this.conditionTreeStack.get(i).isDoWhileStmt()) {
-				this.conditionTreeStack.get(i).addContinue();
+		List<ConditionTree> condTreeList = conditionTreeStack.getStackList();
+		
+		for (int i = condTreeList.size() - 1; i >= 0; i--) {
+			if (condTreeList.get(i).isDoWhileStmt()) {
+				condTreeList.get(i).addContinue();
 				break;
 			}
 		}
@@ -209,7 +189,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(DesignatorName designatorName) {
 		// Save designator object
-		pushToDesignObjStack(designatorName.obj);
+		designatorObjStack.push(designatorName.obj);
 	}
 	
 	public void visit(IndexingArray indexing) {
@@ -217,37 +197,37 @@ public class CodeGenerator extends VisitorAdaptor {
 		 *  If it is a class field, getfield instruction takes 1 argument from stack,
 		 *  which is now under the array size constant on stack, so swap them
 		 */
-		if (peekDesignObjStack().getKind() == Obj.Fld) {
+		if (designatorObjStack.peek().getKind() == Obj.Fld) {
 			swapTop2ValuesOnStack();
 		}
 		
 		// Load designator's value (if it is a reference, it will be the pointer's value)
-		Code.load(peekDesignObjStack());
+		Code.load(designatorObjStack.peek());
 		
 		// Designator's value will now be on top of array size constant on stack, so swap them
 		swapTop2ValuesOnStack();
 		
-		Obj elem = popDesignObjStack();
+		Obj elem = designatorObjStack.pop();
 		elem = new Obj(Obj.Elem, elem.getName(), elem.getType().getElemType());
 		
-		pushToDesignObjStack(elem);
+		designatorObjStack.push(elem);
 	}
 	
 	public void visit(IndexingField indexing) {
 		// Load designator's value (if it is a reference, it will be the pointer's value)
-		Code.load(peekDesignObjStack());
+		Code.load(designatorObjStack.peek());
 		
-		pushToDesignObjStack(popDesignObjStack().getType().getMembersTable().searchKey(indexing.getIdentName()));
+		designatorObjStack.push(designatorObjStack.pop().getType().getMembersTable().searchKey(indexing.getIdentName()));
 	}
 	
 	public void visit(Designator designator) {
 		SyntaxNode parent = designator.getParent();
 		
 		if (parent.getClass() == FactorDesignator.class) {		// Part of expression
-			Code.load(peekDesignObjStack());
+			Code.load(designatorObjStack.peek());
 		}
 		
-		designator.obj = popDesignObjStack();
+		designator.obj = designatorObjStack.pop();
 	}
 	
 	//--------------EXPRESSION----------------------------------------------------------
@@ -290,7 +270,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(FactorDesignatorFuncCall factor) {
-		int offset = factor.getDesignator().obj.getAdr() - Code.pc;
+		int offset = factor.getFuncCallStart().getDesignator().obj.getAdr() - Code.pc;
 		
 		// Generate instruction
 		Code.put(Code.call);
@@ -304,14 +284,14 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorStmtFuncCall stmt) {
-		int offset = stmt.getDesignator().obj.getAdr() - Code.pc;
+		int offset = stmt.getFuncCallStart().getDesignator().obj.getAdr() - Code.pc;
 		
 		// Generate instruction
 		Code.put(Code.call);
 		Code.put2(offset);
 		
 		// If function has return value, pop it from the stack because no one will use it
-		if (stmt.getDesignator().obj.getType() != TabExtended.noType)
+		if (stmt.getFuncCallStart().getDesignator().obj.getType() != TabExtended.noType)
 			Code.put(Code.pop);
 	}
 	
@@ -366,19 +346,19 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(IfStmtStart stmtStart) {
-		pushToConditionStack(false);
+		conditionTreeStack.push(new ConditionTree(false));
 	}
 	
-	public void visit(ThenStmtStart stmtStart) {
-		peekConditionStack().setIfStartAdr();
+	public void visit(ThenStmtStart stmtStart) {;
+		conditionTreeStack.peek().setIfStartAdr();
 	}
 	
 	public void visit(ElseStmtStart stmtStart) {
-		peekConditionStack().setElseStartAdr();
+		conditionTreeStack.peek().setElseStartAdr();
 	}
 	
 	public void visit(IfStmt stmt) {
-		ConditionTree topCondition = popConditionStack();
+		ConditionTree topCondition = conditionTreeStack.pop();
 		
 		topCondition.setStmtEndAdr();
 		topCondition.endCondition();
@@ -386,7 +366,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(IfElseStmt stmt) {
-		ConditionTree topCondition = popConditionStack();
+		ConditionTree topCondition = conditionTreeStack.pop();
 		
 		topCondition.setStmtEndAdr();
 		topCondition.endCondition();
@@ -394,16 +374,16 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(DoStatementStart stmtStart) {
-		pushToConditionStack(true);
-		peekConditionStack().setIfStartAdr();
+		conditionTreeStack.push(new ConditionTree(true));
+		conditionTreeStack.peek().setIfStartAdr();
 	}
 	
 	public void visit(WhileConditionStart stmtStart) {
-		peekConditionStack().setCondStartAdr();
+		conditionTreeStack.peek().setCondStartAdr();
 	}
 	
 	public void visit(DoWhileStmt stmt) {
-		ConditionTree topCondition = popConditionStack();
+		ConditionTree topCondition = conditionTreeStack.pop();
 		
 		topCondition.setStmtEndAdr();
 		topCondition.endCondition();
