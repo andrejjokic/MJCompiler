@@ -20,7 +20,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int currentVarObjType = Obj.Var;							// If variable is global(default), or field of a class/record
 	
 	Obj currentMethodDeclaration = null;						// Contains object of a current method declaration
-	boolean currentMethodReturned = false;						// If there has been a return statement in a current method declaration
 	boolean isCurrentMethodValid = true;						// If declaration of a current method is valid
 	
 	int loopCnt = 0;											// Number of loops currently open
@@ -320,14 +319,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			methodDecl.getMethodIdent().obj.setLevel(this.nMethodLocalVars);
 			TabExtended.chainLocalSymbols(methodDecl.getMethodIdent().obj);
 			TabExtended.closeScope();
-			
-			// Check return type compatibility
-			if (!methodDecl.getMethodIdent().getReturnType().struct.equals(TabExtended.noType) && !this.currentMethodReturned) {
-				report_error("Metod ne sadrzi return iskaz!", methodDecl);
-			}	
 		}
 		
-		this.currentMethodReturned = false;
 		this.currentMethodDeclaration = null;
 		this.isCurrentMethodValid = true;
 		this.nMethodLocalVars = 0;
@@ -481,8 +474,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!retStmt.getExpr().struct.equals(this.currentMethodDeclaration.getType())) {
 			report_error("Nekompatibilan izraz u return iskazu!", retStmt);
 		}
-		
-		this.currentMethodReturned = true;
 	}
 	
 	public void visit(ReturnNoExprStmt retStmt) {
@@ -494,8 +485,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (!this.currentMethodDeclaration.getType().equals(TabExtended.noType)) {
 			report_error("Nekompatibilan izraz u return iskazu!", retStmt.getParent());
 		}
-		
-		this.currentMethodReturned = true;
 	}
 	
 	public void visit(DoStatementStart doStmtStart) {

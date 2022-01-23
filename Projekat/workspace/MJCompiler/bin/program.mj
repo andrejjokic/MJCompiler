@@ -18,8 +18,13 @@ program prog
 		if (2 < 1) return 1;
 	}
 	
+	int int_m4() {
+	
+	}
+	
 	void main() {
-		int_m3();
+		// int_m3();
+		int_m4();
 	}
 	
 }

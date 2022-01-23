@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
@@ -20,6 +22,8 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	private Stack<Obj> designatorObjStack = new Stack<>();				// Stack for designator indexing
 	private Stack<ConditionTree> conditionTreeStack = new Stack<>();	// Condition tree stack - for nested IFs
+	
+	Logger log = Logger.getLogger(getClass());
 	
 	public int getMainPC() {
 		return mainPC;
