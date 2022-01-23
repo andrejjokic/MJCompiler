@@ -313,6 +313,16 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	//--------------STATEMENT-----------------------------------------------------------
 	
+	public void visit(ReturnExprStmt stmt) {
+		Code.put(Code.exit);
+		Code.put(Code.return_);
+	}
+	
+	public void visit(ReturnNoExprStmt stmt) {
+		Code.put(Code.exit);
+		Code.put(Code.return_);
+	}
+	
 	public void visit(PrintStmt stmt) {
 		if (!this.printWidthSpecified) {
 			int width = stmt.getPrintPars().struct == Tab.charType ? BYTE_PRINT_WIDTH : INT_PRINT_WIDTH;
