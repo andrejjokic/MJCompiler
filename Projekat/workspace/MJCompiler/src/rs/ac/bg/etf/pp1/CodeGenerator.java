@@ -180,6 +180,12 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(MethodDecl methodDecl) {
+		// If the PC has made it to this point, it means there is no return statement in this program flow of a method, so check the if the method is void
+		if (methodDecl.getMethodIdent().obj.getType() != TabExtended.noType) {
+			Code.put(Code.trap);
+			Code.put(0);
+		}
+		
 		// Generate instruction
 		Code.put(Code.exit);
 		Code.put(Code.return_);

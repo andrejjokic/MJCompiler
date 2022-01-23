@@ -1,17 +1,25 @@
 program prog
-	int p;
+	int y;
 {
-	int x(int y) {
-		if (y == 0) return -1;
-		do {
-			print(y);
-			y--;
-		} while (y > 0);
-		return 1;
+	void void_m1(int x) {
+		if (x == 0) {
+			print(x);
+			return;
+		}
+		print(-1);
 	}
-
+	
+	int int_m2(int x) {
+		if (x == 2) return 2;
+		else return -2;
+	}
+	
+	int int_m3() {
+		if (2 < 1) return 1;
+	}
+	
 	void main() {
-		p = x(0);
-		print(p);
+		int_m3();
 	}
+	
 }
