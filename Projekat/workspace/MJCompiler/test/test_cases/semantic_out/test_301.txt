@@ -1,0 +1,45 @@
+INFO  12:12:10,461 - ===================================
+INFO  12:12:10,463 - Pretraga na liniji 17 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 18 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 19 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 19 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 19 : nadjeno Con jedan: int, 1, 0 
+INFO  12:12:10,464 - Pretraga na liniji 20 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 20 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 20 : nadjeno Con pet: int, 5, 0 
+INFO  12:12:10,464 - Pretraga na liniji 21 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 22 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 25 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 26 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 26 : nadjeno Con nula: int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 26 : nadjeno Con jedan: int, 1, 0 
+INFO  12:12:10,464 - Pretraga na liniji 27 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 28 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 28 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 28 : nadjeno Con jedan: int, 1, 0 
+INFO  12:12:10,464 - Pretraga na liniji 28 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 28 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 29 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 29 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 29 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 30 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,464 - Pretraga na liniji 31 : nadjeno Var niz: Arr of int, 0, 0 
+INFO  12:12:10,464 - Pretraga na liniji 34 : nadjeno Var nizch: Arr of char, 1, 0 
+INFO  12:12:10,464 - Pretraga na liniji 35 : nadjeno Var nizch: Arr of char, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 36 : nadjeno Var nizch: Arr of char, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 36 : nadjeno Con jedan: int, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 37 : nadjeno Var nizch: Arr of char, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 37 : nadjeno Con pet: int, 5, 0 
+INFO  12:12:10,465 - Pretraga na liniji 38 : nadjeno Var nizch: Arr of char, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 39 : nadjeno Var nizch: Arr of char, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 39 : nadjeno Con jedan: int, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 42 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,465 - Pretraga na liniji 42 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,465 - Pretraga na liniji 42 : nadjeno Con pet: int, 5, 0 
+INFO  12:12:10,465 - Pretraga na liniji 42 : nadjeno Con jedan: int, 1, 0 
+INFO  12:12:10,465 - Pretraga na liniji 42 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,465 - Pretraga na liniji 43 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,465 - Pretraga na liniji 45 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,465 - Pretraga na liniji 46 : nadjeno Var bodovi: int, 0, 1 
+INFO  12:12:10,465 - ===================================
+INFO  12:12:10,468 - Parsiranje uspesno zavrseno!

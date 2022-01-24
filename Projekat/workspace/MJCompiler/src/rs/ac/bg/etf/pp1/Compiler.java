@@ -31,8 +31,8 @@ public class Compiler {
 		
 		Reader br = null;
 		try {
-			if (args.length != 2) {
-				log.error("Programu se moraju proslediti tacno 2 argumenta!");
+			if (args.length < 2) {
+				log.error("Programu se moraju proslediti bar 2 argumenta!");
 				return;
 			}
 			

@@ -1,0 +1,142 @@
+INFO  12:13:57,908 - ===================================
+INFO  12:13:57,911 - Pretraga na liniji 23 : nadjeno Var z: int, 0, 1 
+INFO  12:13:57,911 - Pretraga na liniji 23 : nadjeno Var d: int, 1, 1 
+INFO  12:13:57,911 - Pretraga na liniji 29 : nadjeno Var inc: int, 1, 1 
+INFO  12:13:57,911 - Pretraga na liniji 29 : nadjeno Con jedan: int, 1, 0 
+INFO  12:13:57,911 - Pretraga na liniji 29 : nadjeno Var pom: int, 2, 1 
+INFO  12:13:57,911 - Pretraga na liniji 30 : nadjeno Var inc: int, 1, 1 
+INFO  12:13:57,911 - Pretraga na liniji 30 : nadjeno Var pom: int, 2, 1 
+INFO  12:13:57,911 - Pretraga na liniji 30 : nadjeno Var a: int, 0, 1 
+INFO  12:13:57,911 - Pretraga na liniji 32 : nadjeno Meth sum: int, 0, 2 
+   Var z: int, 0, 1 
+   Var d: int, 1, 1 
+
+INFO  12:13:57,911 - Pretraga na liniji 32 : nadjeno Var a: int, 0, 1 
+INFO  12:13:57,911 - Pretraga na liniji 32 : nadjeno Var pom: int, 2, 1 
+INFO  12:13:57,912 - Pretraga na liniji 45 : nadjeno Var ibool: bool, 1, 0 
+INFO  12:13:57,912 - Pretraga na liniji 46 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,912 - Pretraga na liniji 48 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,912 - Pretraga na liniji 48 : nadjeno Var ibool: bool, 1, 0 
+INFO  12:13:57,912 - Pretraga na liniji 49 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,912 - Pretraga na liniji 50 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,912 - Pretraga na liniji 52 : nadjeno Var ibool: bool, 1, 0 
+INFO  12:13:57,912 - Pretraga na liniji 53 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,912 - Pretraga na liniji 55 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 56 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 56 : nadjeno Fld a: int, 1, 1 
+INFO  12:13:57,912 - Pretraga na liniji 57 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 57 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 58 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 58 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 58 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 58 : nadjeno Fld a: int, 1, 1 
+INFO  12:13:57,912 - Pretraga na liniji 59 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 59 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 59 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 59 : nadjeno Fld a: int, 1, 1 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Meth sum: int, 0, 2 
+   Var z: int, 0, 1 
+   Var d: int, 1, 1 
+
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 60 : nadjeno Fld a: int, 1, 1 
+INFO  12:13:57,912 - Pretraga na liniji 61 : nadjeno Meth verify: bool, 0, 0 
+
+INFO  12:13:57,912 - Pretraga na liniji 61 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,912 - Pretraga na liniji 61 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,912 - Pretraga na liniji 61 : nadjeno Meth ord: int, 0, 1 
+   Var ch: char, 0, 1 
+
+INFO  12:13:57,912 - Pretraga na liniji 62 : nadjeno Meth ord: int, 0, 1 
+   Var ch: char, 0, 1 
+
+INFO  12:13:57,913 - Pretraga na liniji 64 : nadjeno Con eol: char, 10, 0 
+INFO  12:13:57,913 - Pretraga na liniji 65 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 67 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 69 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 72 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 73 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 73 : nadjeno Meth inkrement: int, 0, 2 
+   Var a: int, 0, 1 
+   Var inc: int, 1, 1 
+   Var pom: int, 2, 1 
+
+INFO  12:13:57,913 - Pretraga na liniji 73 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 74 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 76 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 76 : nadjeno Meth verify: bool, 0, 0 
+
+INFO  12:13:57,913 - Pretraga na liniji 79 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 79 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 80 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 80 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 81 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 81 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 82 : nadjeno Con eol: char, 10, 0 
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Meth sum: int, 0, 2 
+   Var z: int, 0, 1 
+   Var d: int, 1, 1 
+
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Meth sum: int, 0, 2 
+   Var z: int, 0, 1 
+   Var d: int, 1, 1 
+
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 84 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 86 : nadjeno Con eol: char, 10, 0 
+INFO  12:13:57,913 - Pretraga na liniji 87 : nadjeno Meth inkrement: int, 0, 2 
+   Var a: int, 0, 1 
+   Var inc: int, 1, 1 
+   Var pom: int, 2, 1 
+
+INFO  12:13:57,913 - Pretraga na liniji 87 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 87 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 89 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 90 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 90 : nadjeno Fld a: int, 1, 1 
+INFO  12:13:57,913 - Pretraga na liniji 91 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 91 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 92 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 94 : nadjeno Fld a: int, 1, 1 
+INFO  12:13:57,913 - Pretraga na liniji 95 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 96 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,913 - Pretraga na liniji 97 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 97 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 98 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,913 - Pretraga na liniji 98 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,913 - Pretraga na liniji 99 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,914 - Pretraga na liniji 99 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,914 - Pretraga na liniji 100 : nadjeno Con eol: char, 10, 0 
+INFO  12:13:57,914 - Pretraga na liniji 102 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,914 - Pretraga na liniji 103 : nadjeno Var niz2: int, 2, 0 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Var niz2: int, 2, 0 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Var niz2: int, 2, 0 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Var t1: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 3, 0 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Var t2: Class [Fld niz: Arr of int, 0, 1 Fld a: int, 1, 1 ], 4, 0 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Fld niz: Arr of int, 0, 1 
+INFO  12:13:57,914 - Pretraga na liniji 105 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,914 - Pretraga na liniji 106 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,914 - Pretraga na liniji 107 : nadjeno Var i: int, 0, 0 
+INFO  12:13:57,914 - Pretraga na liniji 108 : nadjeno Var niz2: int, 2, 0 
+INFO  12:13:57,914 - Pretraga na liniji 109 : nadjeno Con eol: char, 10, 0 
+INFO  12:13:57,914 - ===================================
+INFO  12:13:57,921 - Parsiranje uspesno zavrseno!
