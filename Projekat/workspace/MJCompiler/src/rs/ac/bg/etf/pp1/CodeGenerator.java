@@ -305,8 +305,18 @@ public class CodeGenerator extends VisitorAdaptor {
 			Code.put(Code.pop);
 	}
 	
-	public void visit(DesignatorStmtInc stmt) {
-		// Generate instruction
+	public void visit(DesignatorStmtInc stmt) {	
+		// Because astore instruction requires array address and index on stack also
+		if (stmt.getDesignator().obj.getKind() == Obj.Elem) {
+			Code.put(Code.dup2);
+		}
+		
+		// Because putfield instruction requires object address on stack also
+		if (stmt.getDesignator().obj.getKind() == Obj.Fld) {
+			Code.put(Code.dup);
+		}
+		
+		// Generate instruction	
 		Code.load(stmt.getDesignator().obj);
 		Code.loadConst(1);
 		Code.put(Code.add);
@@ -314,6 +324,16 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(DesignatorStmtDec stmt) {
+		// Because astore instruction requires array address and index on stack also
+		if (stmt.getDesignator().obj.getKind() == Obj.Elem) {
+			Code.put(Code.dup2);
+		}
+		
+		// Because putfield instruction requires object address on stack also
+		if (stmt.getDesignator().obj.getKind() == Obj.Fld) {
+			Code.put(Code.dup);
+		}
+		
 		// Generate instruction
 		Code.load(stmt.getDesignator().obj);
 		Code.loadConst(1);
